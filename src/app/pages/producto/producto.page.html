@@ -1,0 +1,28 @@
+<ion-content fullscreen>
+  <div id="fixed-menu-button" #fixedMenuButton>
+    <ion-button menuToggle slot="icon-only" fill="clear" (click)="close()">
+        <ion-icon  name="chevron-back-outline" color="redtrasnparente"></ion-icon>
+      </ion-button>
+  </div>
+ 
+
+  <ion-card>
+    <img  [src]="producto?.imagen | imagen"  id="imgcard"/>
+    <ion-card-header>
+      <ion-card-title>
+        <h6 class="card-title"> {{producto?.nombre}}</h6>
+      </ion-card-title>
+      <ion-card-content >
+        {{producto?.descripcion}}
+      </ion-card-content>
+      <ion-card-subtitle>
+        <h6 class="card-subtitle"> S/.{{producto?.precio | number: '.2'}}</h6>
+      </ion-card-subtitle>
+      <ion-button fill="outline" expand="block"  color="verdino">
+            <ion-icon color="redtrasnparente" slot="end" name="cart-outline"></ion-icon>
+            <ion-label  color="redtrasnparente"> Añadir a carrito</ion-label>
+      </ion-button>
+    </ion-card-header>
+   
+  </ion-card>
+</ion-content>

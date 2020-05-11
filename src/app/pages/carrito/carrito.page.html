@@ -1,0 +1,79 @@
+<ion-header no-border>
+  <ion-toolbar >
+    <ion-title>
+      <h1>Carrito</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+ 
+  <ion-list-header>
+    <ion-label>
+      <h5>Usted tiene 5 items en el carrito</h5>
+    </ion-label>
+  </ion-list-header>
+
+  <ion-list #list>
+    <ion-item-sliding *ngFor="let item of lstproduct" >
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-img [src]="item.imagen | imagen"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{item.nombre}}</h2>
+          <h6>S/.{{item.precio | number: '.2'}} </h6>
+        </ion-label> 
+        <ion-button  slot="end" expand="block"  color="rojo" (click)="eliminarProducto(item)">
+          <ion-icon slot="icon-only"  name="trash-sharp"></ion-icon>
+        </ion-button>
+      </ion-item>
+    <!--  <ion-item-options side="start">
+        <<ion-item-option color="secondary" (click)="addProducto(item)">
+          <ion-icon  slot="icon-only" name="add-sharp"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="primary"  (click)="restarProducto(item)">
+          <ion-icon slot="icon-only" name="remove-circle-sharp"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item-options side="end">
+        <ion-item-option color="danger"  (click)="eliminarProducto(item)">
+          <ion-icon slot="icon-only" name="trash-sharp"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>-->
+    </ion-item-sliding>
+  </ion-list>
+
+<ion-card mode="md">
+  <ion-list >
+    <ion-item>
+      <ion-input placeholder="Ingresar cupon"  type="text" [(ngModel)]="cupon"  ></ion-input>
+      <ion-button  color="rojo" (click)="cuponValidar()">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+     
+      </ion-button>
+    </ion-item>  
+  </ion-list>
+</ion-card>
+<p id="cupon" [ngStyle]="cuponValido ? {'color':'#8ff02d'} :  {'color':'#fb941b'}" *ngIf="msgxCupon!=undefined" >{{msgxCupon}}</p>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-row >
+            (5 Items)
+        </ion-row> 
+        <ion-row>
+          <ion-label>
+            S/.1075.00
+          </ion-label>
+        </ion-row> 
+      </ion-col>
+      <ion-col size="6">
+        <ion-button  expand="block"  fill="outline" color="verdino" (click)="openPedido()">
+          <ion-label color="rojo"><b>Checkout</b>  </ion-label>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

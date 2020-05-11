@@ -1,0 +1,68 @@
+<ion-header no-border >
+  <ion-toolbar>
+    <ion-title>
+      <b>Pedido</b>
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button menuToggle slot="icon-only" fill="clear" (click)="close()">
+        <ion-icon  name="chevron-back-outline" color="rojo"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content fullscreen>
+  
+  <ion-list>
+    <ion-item >
+         <ion-label color="rojo"  (click)="openCesion()">
+           <h3>Datos Personales</h3>
+         </ion-label>
+         <ion-buttons slot="end">
+           <ion-button color="verdino" (click)="openCesion()" > 
+            
+             <ion-icon name="chevron-forward-outline"></ion-icon>
+           </ion-button>
+         </ion-buttons>
+       </ion-item>
+   </ion-list>
+     
+  <ion-list>
+    <ion-item >
+         <ion-label color="rojo" >
+           <h3>Datos del Pedido</h3>
+         </ion-label>
+         <ion-buttons slot="end">
+           <ion-button color="verdino" > 
+            
+            <ion-icon name="chevron-down-outline"></ion-icon>
+           </ion-button>
+         </ion-buttons>
+       </ion-item>
+   </ion-list>
+
+
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label color="rojo"  position="stacked">Direccion Casa:</ion-label>
+            <ion-textarea type="text" placeholder="Ingresar direccion de casa"  [(ngModel)]="direccion"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-input style="color: #808080d6;" readonly type="text" [(ngModel)]="ubicacion"  ></ion-input>
+            <ion-button  color="rojo" (click)="geolocalizacion()">
+              <ion-icon name="locate" ></ion-icon>
+            </ion-button>
+          </ion-item>
+    
+          
+        </ion-list>
+        <ion-button type="submit" color="verdino" fill="outline" expand="full"  (click)="onSaveForm()" ><ion-label color="rojo"  >Enviar</ion-label></ion-button>
+      </ion-card-content>
+    </ion-card>
+  
+
+</ion-content>

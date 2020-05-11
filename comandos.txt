@@ -1,0 +1,21 @@
+ionic start myApp tabs
+
+$ ionic start myApp blank
+ionic generate page contact --spec=false  //no creara el archivo de pruebas
+ionic generate page contact--dry-run // comando de prueba
+ionic serve // inicializar el la web 
+ionic g s services/noticias --skipTests=true //sin archivo de pruebas
+IONIC g m pipes //creando module pipes
+ionic g pipe imagen --skipTests=true 
+
+npm install validator
+
+plugins vscode
+JSON to TS
+
+
+usuario:Observable<any>
+
+this.suuarios = this_dataserviece.getlin();
+
+en la vista | async

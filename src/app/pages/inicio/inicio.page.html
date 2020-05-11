@@ -1,0 +1,122 @@
+<ion-header no-border >
+  <ion-toolbar  color="danger">
+      <ion-searchbar  
+      type="tel"
+      color="blacktras"
+      (ionInput)="find($event)"
+      placeholder="Buscar tiendas"
+      >
+      </ion-searchbar>
+  
+  </ion-toolbar>
+  <ion-segment  [(ngModel)]="zona"  mode="md" color="redtrasnparente" scrollable="true"  value="favorite">  
+    <ion-segment-button *ngFor="let item of lstzonas" [value]="item">
+      <ion-label>{{item.nombre}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+  <div id="recomendados">
+    <ion-slides [options]="slideOpts">
+      <ion-slide *ngFor="let producto of lstTiendaRecomendad">
+        <ion-card mode="md" > 
+          <ion-card-content>
+            <img class="poster" [src]="producto?.imagen | imagen" (click)="openTienda(producto)" >
+          </ion-card-content>
+            <ion-card-header>
+            <ion-card-title>
+              <h6 class="card-title"> {{producto?.nombre}}</h6>
+            </ion-card-title>
+            <ion-card-subtitle>
+              <!--<h6 class="card-subtitle"> S/.{{producto?.precio | number: '.2'}}</h6>-->
+            </ion-card-subtitle>
+           
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  
+  <div id="inicio">
+    <ion-grid>
+      <ion-row id="row1">
+        <ion-col id="one">
+          <img [src]="inicio?.rubros[0]?.imagen | imagen"  (click)="openRubro(inicio?.rubros[0])">
+        </ion-col>
+        <ion-col>
+          <img [src]="inicio?.rubros[1]?.imagen  | imagen"  (click)="openRubro(inicio?.rubros[1])">
+        </ion-col>
+        <ion-col id="two">
+          <img [src]="inicio?.rubros[2]?.imagen  | imagen"  (click)="openRubro(inicio?.rubros[2])">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+        
+        </ion-col>
+        <ion-col>
+          <div id="empresa">
+            <!--<ion-icon name="gift-outline" (click)="verOfertas()" ></ion-icon>-->
+            <img [src]="inicio?.logoempresa | imagen" (click)="verOfertas()" >
+          </div>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+      <ion-row id="row3">
+        <ion-col id="three">
+          <img [src]="inicio?.rubros[3]?.imagen  | imagen"  (click)="openRubro(inicio?.rubros[3])">
+        </ion-col>
+        <ion-col>
+          <img [src]="inicio?.rubros[4]?.imagen  | imagen"  (click)="openRubro(inicio?.rubros[4])">
+        </ion-col>
+        <ion-col id="four">
+          <img [src]="inicio?.rubros[5]?.imagen  | imagen"  (click)="openRubro(inicio?.rubros[5])">
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+
+  </div>
+
+
+<!--<div  *ngFor="let categoria of lstCategoria">
+
+    <ion-list>
+     <ion-item >
+          <ion-label>
+            <h3>{{categoria.nombre}}</h3>
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button (click)="openPorCategoria(categoria)" > 
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+    </ion-list>
+
+
+ <ion-slides [options]="slideOpts">
+    <ion-slide *ngFor="let producto of categoria.producto">
+      <ion-card>
+         <img class="poster" [src]="producto.imagen | imagen" (click)="openProducto(producto)">
+         <ion-card-header>
+          <ion-card-title>
+            <h6 class="card-title"> {{producto.nombre}}</h6>
+          </ion-card-title>
+          <ion-card-subtitle>
+            <h6 class="card-subtitle"> S/.{{producto.precio | number: '.2'}}</h6>
+          </ion-card-subtitle>
+          <ion-button fill="outline" expand="block"  size="small" color="redtrasnparente">
+            <ion-icon name="cart-outline"></ion-icon>
+           </ion-button>
+        </ion-card-header>
+      </ion-card>
+      
+    </ion-slide>
+ </ion-slides>
+
+</div>-->
+
+</ion-content>

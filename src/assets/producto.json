@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ensalada Arequipeña",
+    "precio": 215,
+    "descripcion": "zapatilla baja de la marca nike",
+    "imagen": "ensaladaarequipeña.jpg",
+    "oferta" : 200
+  },
+  {
+    "id": 2,
+    "nombre": "Ensalada Cesar",
+    "precio": 215,
+    "descripcion": "zapatilla baja de la marca ad",
+    "imagen": "ensaladacesar.jpg",
+    "oferta" : 0
+  },
+  {
+    "id": 3,
+    "nombre": "Ensalada Francesa",
+    "precio": 215,
+    "descripcion": "zapatilla baja de la marca nike",
+    "imagen": "ensaladafrancesa.jpg",
+    "oferta" : 0
+  },
+  {
+    "id": 4,
+    "nombre": "Ensalada Romana",
+    "precio": 215,
+    "descripcion": "zapatilla baja de la marca nike",
+    "imagen": "ensaladaromana.jpg",
+    "oferta" : 100
+  },
+  {
+    "id": 5,
+    "nombre": "Ensalada Rusa",
+    "precio": 215,
+    "descripcion": "carteras",
+    "imagen": "ensaladarusa.jpg",
+    "oferta" : 0
+  }
+]

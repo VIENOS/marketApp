@@ -1,0 +1,85 @@
+
+<ion-content color="white" fullscreen="true" #ionContent>
+ <!-- <div id="fixed-menu-button" #fixedMenuButton>
+    <ion-button menuToggle slot="icon-only" fill="clear" (click)="close()">
+        <ion-icon  name="chevron-back-outline" color="redtrasnparente"></ion-icon>
+      </ion-button>
+  </div>
+  
+  <div> 
+    <ion-toolbar color="white" id="second-header" #secondHeader>
+      
+      <ion-row class="filters">
+
+          <ion-col no-padding col-12>
+            <div id="slidesstatic">
+              <ion-slides slidesPerView="1" pager>
+                <ion-slide *ngFor="let item of tienda?.imagen">
+                  <img [src]="item?.img | imagen">
+                </ion-slide>
+            </ion-slides>
+            </div>
+             
+          </ion-col>
+        
+      </ion-row>
+     
+      <div id="logo">
+        <img [src]="tienda?.imagen[0] | imagen">
+       </div>
+
+      <div id="titulostatic">
+        {{tienda?.nombre}} <span>{{tienda?.direccion}}</span>
+      </div>
+
+    </ion-toolbar>
+    
+   
+</div>-->
+
+
+<div id="fixed-menu-button" #fixedMenuButton>
+  <ion-button menuToggle slot="icon-only" fill="clear" (click)="close()">
+      <ion-icon  name="chevron-back-outline" color="redtrasnparente"></ion-icon>
+    </ion-button>
+</div>
+
+
+<ion-card>
+  <img  [src]="tienda?.imagen | imagen"  id="imgcard"/>
+  <div id="logo">
+    <img [src]="tienda?.imagen | imagen">
+   </div>
+
+</ion-card>
+
+
+
+<ion-list id="time">
+  <ion-item>              
+    <p (click)="mostrar()" *ngIf="!showHorario" ><img src="../assets/imgs/time.png" height="15px" alt=""  style="margin-right: 20px;">Horario</p>
+
+    <div *ngIf="showHorario" id="horario">
+      <img src="../assets/imgs/time.png" height="15px" alt="" class="nuevo" (click)="cerrar()" style="margin-right: 20px;">
+      <div class="segundo animated fadeInDown" >
+        <div *ngFor="let item of tienda?.horario" >
+          <ion-row (click)="cerrar()">
+            <ion-col size="3">
+              {{item.d}}
+            </ion-col>
+            <ion-col >
+              {{item.o}} a.m. a {{item.t}} p.m
+            </ion-col>
+        </ion-row>
+        </div>
+      </div>
+    </div>
+  </ion-item>
+  <ion-item>
+    <p (click)="openPorCategoria()"><img src="../assets/imgs/menu.png" height="15px" alt=""  style="margin-right: 20px;">Productos</p>
+  </ion-item>
+  <!--<ion-item>
+    <p><img src="../assets/imgs/llamar.png" height="15px" alt=""  style="margin-right: 20px;">{{tienda?.tel}}</p>
+  </ion-item>-->
+</ion-list>
+</ion-content>

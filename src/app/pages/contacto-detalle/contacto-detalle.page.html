@@ -1,0 +1,80 @@
+<ion-content fullscreen>
+  <div id="fixed-menu-button" #fixedMenuButton>
+    <ion-button menuToggle slot="icon-only" fill="clear" (click)="close()">
+      <ion-icon name="chevron-back-outline" color="redtrasnparente"></ion-icon>
+    </ion-button>
+  </div>
+
+
+  <ion-card>
+    <img [src]="item?.imagen | imagen">
+    <ion-card-header>
+      <ion-card-title>
+        <h6 class="card-title">Nombre del motorizado</h6>
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        <p>{{item?.nombre}}</p>
+      </ion-card-subtitle>
+      <ion-card-content>
+        <ion-label slot="start">
+          <form id="form">
+
+            <p class="clasificacion">
+
+              <input id="radio1" #radio5 type="radio" name="estrellas" value="5" (click)="cero(radio5.value)">
+              <!--
+           --><label for="radio1" [ngStyle]="pintado5 ? {'color':'orange'} :  {'color':'grey'}">★</label>
+              <!--
+           --><input id="radio2" #radio4 type="radio" name="estrellas" value="4" (click)="cero(radio4.value)">
+              <!--
+           --><label for="radio2" [ngStyle]="pintado4 ? {'color':'orange'} :  {'color':'grey'}">★</label>
+              <!--
+           --><input id="radio3" #radio3 type="radio" name="estrellas" value="3" (click)="cero(radio3.value)">
+              <!--
+           --><label for="radio3" [ngStyle]="pintado3 ? {'color':'orange'} :  {'color':'grey'}">★</label>
+              <!--
+           --><input id="radio4" #radio2 type="radio" name="estrellas" value="2" (click)="cero(radio2.value)">
+              <!--
+           --><label for="radio4" [ngStyle]="pintado2 ? {'color':'orange'} :  {'color':'grey'}">★</label>
+              <!--
+           --><input id="radio5" #radio1 type="radio" name="estrellas" value="1" (click)="cero(radio1.value)">
+              <!--
+           --><label for="radio5" [ngStyle]="pintado ? {'color':'orange'} :  {'color':'grey'}">★</label>
+            </p>
+
+            <ion-label position="stacked">
+              <h6 class="card-title">Comentario o queja del pedido</h6>
+            </ion-label>
+            <ion-item>
+              <ion-textarea [(ngModel)]="comentario" name="comentario">
+              </ion-textarea>
+            </ion-item>
+
+          </form>
+        </ion-label>
+      </ion-card-content>
+      <ion-button fill="outline" expand="block" color="verdino" (click)="finalizar()">
+        <ion-icon color="redtrasnparente" slot="end" name="cart-outline"></ion-icon>
+        <ion-label color="redtrasnparente"> Finalizar pedido </ion-label>
+      </ion-button>
+    </ion-card-header>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="danger">
+
+    <ion-buttons slot="start">
+      <ion-button menuToggle slot="icon-only" fill="clear" (click)="close()">
+        <ion-icon name="chevron-back-outline" color="light"></ion-icon>
+      </ion-button>
+      <!--<ion-back-button text="" defaulHref="/"></ion-back-button>-->
+    </ion-buttons>
+    <ion-title>
+      <h5>Pedido en proceso</h5>
+    </ion-title>
+
+  </ion-toolbar>
+</ion-footer>

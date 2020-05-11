@@ -1,0 +1,54 @@
+
+
+<ion-content>
+    <div  id="categoriaSelect">
+        <ion-header no-border >
+          <ion-toolbar  color="danger">
+            <ion-title>
+                Ofertas
+          
+            </ion-title> 
+          
+          </ion-toolbar>
+        
+        </ion-header>
+    
+        </div>
+
+    
+
+    <ion-row *ngFor="let pares of _service.lstofertas | pares">
+        <ion-col size="6" *ngFor="let producto of pares">
+            
+          <ion-card>
+            <img class="poster" [src]="producto.imagen | imagen" (click)="openProducto(producto)">
+            <ion-card-header>
+              <ion-card-title>
+                <h6 class="card-title"> {{producto.nombre}}</h6>
+              </ion-card-title>
+              <ion-card-subtitle>
+                <div *ngIf="producto.oferta>0 == true else blockeif">
+                    <h6 >S/.{{producto.oferta | number: '.2'}} </h6>
+                    <del > <h6 style="color:#9d9d9d;font-weight: bold;">S/.{{producto.precio | number: '.2'}} </h6></del>
+                  </div>
+                 
+                  <ng-template #blockeif>
+                       <h6  class="card-subtitle" >S/.{{producto.precio | number: '.2'}} </h6>
+                  </ng-template>
+              </ion-card-subtitle>
+              <ion-button fill="outline" expand="block"  size="small" color="redtrasnparente">
+                    <ion-icon name="cart-outline"></ion-icon>
+              </ion-button>
+            </ion-card-header>
+          </ion-card>
+    
+        </ion-col>
+      </ion-row>
+
+      <ion-infinite-scroll (ionInfinite)="siguiente_pagina($event)" >
+        <ion-infinite-scroll-content
+        loadingSpinner="crescent"
+        loadingText="Cargando mas ofertas..."
+        ></ion-infinite-scroll-content>
+      </ion-infinite-scroll>  
+</ion-content>

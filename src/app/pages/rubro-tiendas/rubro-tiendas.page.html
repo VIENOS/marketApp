@@ -1,0 +1,42 @@
+<ion-header no-border >
+  <ion-toolbar  color="danger">
+      
+    <ion-buttons slot="start">
+      <ion-button menuToggle slot="icon-only" fill="clear" (click)="close()">
+        <ion-icon  name="chevron-back-outline" color="light"></ion-icon>
+      </ion-button>
+     <!--<ion-back-button text="" defaulHref="/"></ion-back-button>--> 
+    </ion-buttons>
+
+      <ion-searchbar 
+      class="searchbar-sin-icono"
+      type="tel"
+      color="redtrasnparente"
+      (ionInput)="find($event)"
+      placeholder="Buscar tienda.."
+      >
+    
+      </ion-searchbar>
+  
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let item of _service_rubro_tienda.tiendas" (click)="openTienda(item)">
+   <img [src]="item?.imagen | imagen">
+   <div id="logo">
+    <img [src]="item?.imagen | imagen">
+   </div>
+   <ion-card-content>
+    <!-- <h4 class="card-title">{{item?.nombre}}</h4>
+     <p>{{item?.direccion}}</p>-->
+   </ion-card-content>
+ </ion-card> 
+
+ <ion-infinite-scroll (ionInfinite)="siguiente_pagina($event)">
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>
+

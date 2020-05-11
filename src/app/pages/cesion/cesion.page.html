@@ -1,0 +1,53 @@
+<ion-header no-border >
+  <ion-toolbar>
+    <ion-title>
+      <b>Datos Contacto</b>
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button menuToggle slot="icon-only" fill="clear" (click)="close()">
+        <ion-icon  name="chevron-back-outline" color="rojo"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content fullscreen>
+  <form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Datos personales</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label color="rojo"  position="stacked">Nombres:</ion-label>
+            <ion-input type="text" placeholder="Ingresar nombres" formControlName="nombre" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="rojo"  position="stacked">Email:</ion-label>
+            <ion-input type="email" placeholder="Ingresar correo electronico" formControlName="email" ></ion-input>
+          </ion-item>
+          <ion-label color="danger" size="small" position="stacked" *ngIf="email.invalid" >Email invalido</ion-label>
+          <ion-label color="danger" size="small" position="stacked" *ngIf="email.invalid && email.errors.required" >Email requerido</ion-label>
+          <ion-item>
+            <ion-label color="rojo"  position="stacked">Celular:</ion-label>
+            <ion-input type="number" placeholder="Ingresar numero de celular" formControlName="celular" ></ion-input>
+          </ion-item>
+          <ion-label color="danger" size="small" position="stacked" *ngIf="celular.invalid" >Celular invalido</ion-label>
+          <ion-item>
+            <ion-label color="rojo"  position="stacked">Fecha Cumpleaños:</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccionar fecha de cumpleaños"  formControlName="fecha"> </ion-datetime>
+           
+          </ion-item>
+        </ion-list>
+        <ion-button type="submit" color="verdino" fill="outline" expand="full"  ><ion-label color="rojo">Guardar</ion-label></ion-button>
+      </ion-card-content>
+    </ion-card>
+  
+
+  
+  </form>
+</ion-content>

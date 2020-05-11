@@ -1,0 +1,24 @@
+{
+  "id": 4,
+  "nombre": "Cajamarca",
+  "direccion": "Av. la marina 549",
+  "tel": "933856688",
+  "imagen": "tienda2.jpg",
+  "horario": [
+    {
+      "d": "Lunes",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Miercoles",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Sabado",
+      "o": "9:00",
+      "t": "10:00"
+    }
+  ]
+}

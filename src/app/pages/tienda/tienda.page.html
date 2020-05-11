@@ -1,0 +1,40 @@
+<ion-content>
+  <div  id="categoriaSelect">
+    <ion-header no-border >
+      <ion-toolbar  color="danger">
+        <ion-title>
+          Tiendas
+      
+
+      
+        </ion-title> 
+      
+      </ion-toolbar>
+    
+    </ion-header>
+
+    </div>
+
+  <ion-card *ngFor="let item of _service_tienda.tiendas" (click)="openTienda(item)">
+   <img [src]="item?.imagen | imagen">
+   <div id="logo">
+    <img [src]="item?.imagen | imagen">
+   </div>
+
+   <ion-card-content>
+   
+     <!--<h4 class="card-title">{{item?.nombre}}</h4>
+     <p>{{item?.direccion}}</p>-->
+   </ion-card-content>
+ </ion-card> 
+<!--
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="cabezera"  (click)="dismiss()">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+ </ion-fab> -->
+ <ion-infinite-scroll (ionInfinite)="siguiente_pagina($event)">
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>
+

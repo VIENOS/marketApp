@@ -1,0 +1,35 @@
+{
+  "logoempresa": "logo.png",
+  "rubros": [
+    {
+      "id": 1,
+      "nombre": "farmacia",
+      "imagen": "farmacia.jpg"
+    },
+    {
+      "id": 2,
+      "nombre": "restaurantes",
+      "imagen": "restaurant.jpg"
+    },
+    {
+      "id": 3,
+      "nombre": "cafeterias",
+      "imagen": "cafeteria.jpg"
+    },
+    {
+      "id": 4,
+      "nombre": "minimarkets",
+      "imagen": "minimarket.jpg"
+    },
+    {
+      "id": 5,
+      "nombre": "ropas y calzado",
+      "imagen": "ropa.jpg"
+    },
+    {
+      "id": 6,
+      "nombre": "otros",
+      "imagen": "otros.png"
+    }
+  ]
+}

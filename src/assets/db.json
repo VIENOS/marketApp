@@ -1,0 +1,247 @@
+{
+  "categoria": [
+    {
+      "id": 1,
+      "nombre": "Ropa",
+      "producto": [
+          {
+            "id": 1,
+            "nombre": "zapatilla nike",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca nike",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          },
+          {
+            "id": 2,
+            "nombre": "zapatilla adidas",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca ad",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          },
+           {
+            "id": 3,
+            "nombre": "zapatilla norstar",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca nike",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          },
+          {
+            "id": 4,
+            "nombre": "zapatilla bata",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca nike",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          },
+          {
+            "id": 5,
+            "nombre": "cartera renzo costa",
+            "precio": 215.00,
+            "descripcion": "carteras",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          }
+        ]
+
+    },
+    {
+      "id": 2,
+      "nombre": "Productos de Primer Necesidad",
+      "producto": [
+          {
+            "id": 1,
+            "nombre": "zapatilla nike",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca nike",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          },
+          {
+            "id": 2,
+            "nombre": "zapatilla adidas",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca ad",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          }
+        ]
+    },
+    {
+      "id": 3,
+      "nombre": "Accesorios",
+      "producto": [
+          {
+            "id": 1,
+            "nombre": "zapatilla nike",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca nike",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          },
+          {
+            "id": 2,
+            "nombre": "zapatilla adidas",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca ad",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          }
+        ]
+    },
+    {
+      "id": 4,
+      "nombre": "Electrodomesticos",
+      "producto": [
+          {
+            "id": 1,
+            "nombre": "zapatilla nike",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca nike",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          },
+          {
+            "id": 2,
+            "nombre": "zapatilla adidas",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca ad",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          }
+        ]
+    }
+  ],
+  "producto": [
+          {
+            "id": 1,
+            "nombre": "zapatilla nike",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca nike",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          },
+          {
+            "id": 2,
+            "nombre": "zapatilla adidas",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca ad",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          },
+           {
+            "id": 3,
+            "nombre": "zapatilla norstar",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca nike",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          },
+          {
+            "id": 4,
+            "nombre": "zapatilla bata",
+            "precio": 215.00,
+            "descripcion": "zapatilla baja de la marca nike",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          },
+          {
+            "id": 5,
+            "nombre": "cartera renzo costa",
+            "precio": 215.00,
+            "descripcion": "carteras",
+            "imagen":"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+          }
+  ],
+   "lstcategorias": [
+          {
+            "id": 0,
+            "nombre": "Todas las categorias"
+          },
+          {
+            "id": 1,
+            "nombre": "Ropa"
+          },
+          {
+            "id": 2,
+            "nombre": "Productos de Primer Necesidad"
+          },
+           {
+            "id": 3,
+            "nombre": "Accesorios"
+          },
+            {
+            "id": 4,
+            "nombre": "Electrodomesticos"
+          }
+    ],
+   "productoOne":{
+            "id": 3,
+            "nombre": "zapatilla negra nike air",
+            "precio": 215.00,
+            "descripcion": "zapatilla modelo air, de la marca nike, fabricado en Vietnam ",
+            "imagen":""
+    },
+  "tiendas0": [
+          {
+            "id": 1,
+            "nombre": "Piura",
+            "direccion": "Av. la marina 549",
+            "imagen":""
+          },
+          {
+            "id": 2,
+            "nombre": "Chimbote",
+            "direccion": "Av. la marina 549",
+            "imagen":""
+          },
+           {
+            "id": 3,
+            "nombre": "Casma",
+            "direccion": "Av. la marina 549",
+            "imagen":""
+          }
+  ],
+   "tiendas1": [
+          {
+            "id": 4,
+            "nombre": "Cajamarca",
+            "direccion": "Av. la marina 549",
+            "imagen":""
+          },
+          {
+            "id": 5,
+            "nombre": "Chiclayo",
+            "direccion": "Av. la marina 549",
+            "imagen":""
+          },
+           {
+            "id": 6,
+            "nombre": "Talara",
+            "direccion": "Av. la marina 549",
+            "imagen":""
+          }
+  ],
+  "tiendaOne":  
+          {
+            "id": 4,
+            "nombre": "Cajamarca",
+            "direccion": "Av. la marina 549",
+            "tel":"933856688",
+            "imagen": [
+                        {
+                          "img" : ""
+                        },
+                         {
+                          "img" : ""
+                        },
+                         {
+                          "img" : ""
+                        }
+                      ],
+             "horario": [
+                          {
+                            "d" : "Lunes",
+                            "o" : "9:00",
+                            "t" : "10:00"
+                          },
+                          {
+                            "d" : "Miercoles",
+                            "o" : "9:00",
+                            "t" : "10:00"
+                          },
+                          {
+                            "d" : "Sabado",
+                            "o" : "9:00",
+                            "t" : "10:00"
+                          }
+                      ]
+          }
+}

@@ -1,0 +1,15 @@
+#logo{
+    img{
+        display: block;
+        margin: auto;
+        // cambia estos dos valores para definir el tamaño de tu círculo 
+        width: 100px;
+        height: 100px;            
+        // los siguientes valores son independientes del tamaño del círculo 
+        background-repeat: no-repeat;
+        background-position: 50%;
+        border-radius: 50%;
+        background-size: 100% auto;
+        margin-top: -55px;
+    }
+}

@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "nombre": "Polo nike",
+    "precio": 80,
+    "descripcion": "polo color plomo de la marca nike",
+    "imagen": "polonike.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Respirador",
+    "precio": 20,
+    "descripcion": "Respirador para la cara ",
+    "imagen": "respirador.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "zapatillas",
+    "precio": 215,
+    "descripcion": "zapatilla baja de la marca adidas",
+    "imagen": "zapatillas.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Jabon Liquido",
+    "precio": 20,
+    "descripcion": "Jabon liquido",
+    "imagen": "jabonliquido.jpg"
+  }
+
+]

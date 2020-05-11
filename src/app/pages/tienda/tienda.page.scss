@@ -1,0 +1,34 @@
+.card-title{
+    font-size: 15px;
+    color: #fb941b;
+    font-weight: 500;
+}
+p{
+    font-size: 12px;
+    font-weight: 300;
+}
+
+#logo{
+    img{
+        display: block;
+        margin: auto;
+        // cambia estos dos valores para definir el tamaño de tu círculo 
+        width: 100px;
+        height: 100px;            
+        // los siguientes valores son independientes del tamaño del círculo 
+        background-repeat: no-repeat;
+        background-position: 50%;
+        border-radius: 50%;
+        background-size: 100% auto;
+        margin-top: -55px;
+        transition: .4s all;
+        transition: .3s all;
+        z-index: 1;
+    }
+    /*img:hover{
+        //transform: rotate(360deg);
+        transform: scale(1.2);
+        
+    }*/
+}
+

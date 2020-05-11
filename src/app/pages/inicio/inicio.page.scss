@@ -1,0 +1,448 @@
+
+.ios.list-ios.hydrated{
+    margin-top: 15px;
+}
+
+ion-toolbar.sc-ion-searchbar-ios-h, ion-toolbar .sc-ion-searchbar-ios-h {
+    padding-top: 0px;
+    padding-bottom: 1px;
+    height: 52px;
+}
+
+#a{
+
+        margin: 10px 0;
+      
+}
+
+/** animaciones*/
+ion-icon{
+    position: absolute;
+    left: 70%;
+    font-size: 40px;
+   animation-duration: 8s;
+   animation-name: anim;
+   animation-iteration-count: infinite;
+}
+
+
+/** animaciones*/
+@keyframes anim{
+    0% {color: #fb941b;} /*Amarillo*/
+   25% {color: #8ff02d;} /*Naranja*/
+   50% {color: #fb941b;} /*Negro*/
+   75% {color: #8ff02d;} /*Otra vez naranja*/
+  100% {color: #fb941b;} /*Otra vez amarillo*/
+}
+
+
+
+ 
+
+#recomendados{
+    margin-bottom: -40px;
+
+    ion-card{
+        margin-left: 8px;
+        margin-right: 2px;
+        ion-card-content{
+            height: 80px;
+            padding: 0px;
+        }
+        ion-card-header{
+            padding: 0px 2px 5px 2px;
+            ion-card-title{
+                h6{
+                    font-size: 10px;
+                    margin-top: 2px;
+                    font-weight: bold;
+                    text-align: left;       
+                    margin-bottom: 1px;
+                }
+                ion-item{
+                    .item-native{
+                        padding: 0;
+                        margin-top: -15px;
+                        margin-bottom: -15px;
+                    }        
+                }
+             
+            }
+            ion-card-subtitle{
+                h6{
+                    font-size: 10px;
+                    margin-top: -8px;
+                    font-weight: bold;
+                    text-align: left;
+                    margin-bottom: 0px;
+                    color: #ff3643;
+                }
+            }
+        }
+    }
+}
+
+
+/*ion-card{
+    margin-left: 8px;
+    margin-right: 2px;
+    
+    ion-card-header{
+        padding: 0px 2px 5px 2px;
+        ion-card-title{
+            h6{
+                font-size: 13px;
+                margin-top: 2px;
+                font-weight: bold;
+                text-align: left;       
+                margin-bottom: 1px;
+            }
+        }
+        ion-card-subtitle{
+            h6{
+                font-size: 10px;
+                margin-top: 2px;
+                font-weight: bold;
+                text-align: left;
+                margin-bottom: 0px;
+                color: #ff3643;
+            }
+        }
+    }
+}*/
+
+ion-list{
+    padding-bottom: 0px;
+}
+
+
+
+
+
+#inicio{
+  
+    @media (min-width: 320px) {
+        ion-grid{
+            margin-top: 7%;
+        }
+     }
+
+    @media (min-width: 360px) {
+        ion-grid{
+            margin-top: 10%;
+        }
+     }
+
+     @media (min-width: 360px) and (orientation: landscape) { 
+        ion-grid{
+            margin-top: 0%;
+        }
+      }
+
+    @media (min-width: 375px) {
+        ion-grid{
+            margin-top: 8%;
+        }
+     }
+
+     @media only screen and (min-height: 812px) {
+        ion-grid{
+            margin-top: 20%;
+        }
+     }
+
+     @media only screen and (min-height: 1024px) {
+        ion-grid{
+            margin-top: 5%;
+        }
+     }
+     @media only screen and (min-height: 1366px) {
+        ion-grid{
+            margin-top: 15%;
+        }
+     }
+
+     @media (min-width: 375px) and (orientation: landscape) { 
+        ion-grid{
+            margin-top: 0%;
+        }
+      }
+
+   ion-grid{
+      
+        @media (min-width: 375px) {
+            #row1{
+                margin-top: 250px;
+            }
+         }
+         @media (min-width: 320px) {
+            #row1{
+                margin-top: 12%;
+            }
+         }
+
+         @media (min-width: 360px) and (orientation: landscape) { 
+            #row1{
+                margin-top: 2%;
+            }
+          }
+        #row3{
+            margin-top: 50px;
+        }
+        ion-row{
+            @media (min-width: 360px) and (orientation: landscape) { 
+                #one{
+                    padding-top: 10%;
+                }
+            }
+            #one{
+                padding-top: 20%;
+            }
+            #two{
+                padding-top: 20%;
+            }
+            #three{
+                margin-top: -20%;
+            }
+            #four{
+                margin-top: -20%;
+            }
+        }
+        #empresa{
+          
+           
+
+             @media (min-width: 1024px) {
+                img {
+            
+                    // cambia estos dos valores para definir el tamaño de tu círculo 
+                    width: 130px;
+                    height: 100px;            
+                    // los siguientes valores son independientes del tamaño del círculo 
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 50%;
+                    background-size: 100% auto;
+                    margin-bottom: 170px;
+                    transition: .3s all;
+                    z-index: 1;
+                }
+                 img:hover{
+                    //transform: rotate(360deg);
+                    transform: scale(1.2);           
+                }
+             }
+            @media (min-width: 320px) {
+                img {
+            
+                    // cambia estos dos valores para definir el tamaño de tu círculo 
+                    width: 130px;
+                    height: 100px;            
+                    // los siguientes valores son independientes del tamaño del círculo 
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 50%;
+                    background-size: 100% auto;
+                    margin-bottom: -25px;
+                    margin-top: -25px;
+                    transition: .3s all;
+                    z-index: 1;
+                }
+                 img:hover{
+                    //transform: rotate(360deg);
+                    transform: scale(1.2);           
+                }
+             }
+             @media (min-width: 375px) {
+                img {
+                    
+                    // cambia estos dos valores para definir el tamaño de tu círculo 
+                    width: 100px;
+                    height: 100px;           
+                    // los siguientes valores son independientes del tamaño del círculo 
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 50%;
+                    background-size: 100% auto;
+                    transition: .3s all;
+                    z-index: 1;
+                }
+                 img:hover{
+                    //transform: rotate(360deg);
+                    transform: scale(1.2);           
+                }
+             }
+       
+            @media (min-width: 360px)  { 
+                img {
+                    
+                    // cambia estos dos valores para definir el tamaño de tu círculo 
+                    width: 100px;
+                    height: 100px;           
+                    // los siguientes valores son independientes del tamaño del círculo 
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 50%;
+                    background-size: 100% auto;
+                    margin-top: -30px;
+                    margin-bottom: -18px;
+
+                    transition: .3s all;
+                    z-index: 1;
+                }
+                 img:hover{
+                    //transform: rotate(360deg);
+                    transform: scale(1.2);           
+                }
+               
+            }
+           
+            @media (min-width: 411px) and (orientation: landscape) { 
+                img {
+                    
+                    // cambia estos dos valores para definir el tamaño de tu círculo 
+                    width: 100px;
+                    height: 100px;           
+                    // los siguientes valores son independientes del tamaño del círculo 
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 50%;
+                    background-size: 100% auto;
+                    margin-bottom: 85px;
+                    transition: .3s all;
+                    z-index: 1;
+                }
+                 img:hover{
+                    //transform: rotate(360deg);
+                    transform: scale(1.2);           
+                }
+            }
+            @media (min-width: 411px) { 
+                img {
+                    
+                    // cambia estos dos valores para definir el tamaño de tu círculo 
+                    width: 100px;
+                    height: 100px;           
+                    // los siguientes valores son independientes del tamaño del círculo 
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 50%;
+                    background-size: 100% auto;
+                    margin-bottom: 0.2px;
+                    margin-top: 0.01px;
+                    transition: .3s all;
+                    z-index: 1;
+                }
+                 img:hover{
+                    //transform: rotate(360deg);
+                    transform: scale(1.2);           
+                }
+            }
+            @media (min-width: 414px) { 
+                img {
+                    
+                    // cambia estos dos valores para definir el tamaño de tu círculo 
+                    width: 100px;
+                    height: 100px;           
+                    // los siguientes valores son independientes del tamaño del círculo 
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 50%;
+                    background-size: 100% auto;
+                    margin-bottom: 1px;
+                    margin-top: -25px;
+                    transition: .3s all;
+                    z-index: 1;
+                }
+                 img:hover{
+                    //transform: rotate(360deg);
+                    transform: scale(1.2);           
+                }
+            }
+            @media (min-width: 415px)  {
+                img {
+            
+                    // cambia estos dos valores para definir el tamaño de tu círculo 
+                    width: 130px;
+                    height: 100px;            
+                    // los siguientes valores son independientes del tamaño del círculo 
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 50%;
+                    background-size: 100% auto;
+                    margin-bottom: 100px;
+                    margin-top: -25px;
+                    transition: .3s all;
+                    z-index: 1;
+                }
+                 img:hover{
+                    //transform: rotate(360deg);
+                    transform: scale(1.2);           
+                }
+             }
+             @media (min-width: 1024px)  {
+                img {
+            
+                    // cambia estos dos valores para definir el tamaño de tu círculo 
+                    width: 130px;
+                    height: 100px;            
+                    // los siguientes valores son independientes del tamaño del círculo 
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 50%;
+                    background-size: 100% auto;
+                    margin-bottom: 150px;
+                    margin-top: 40px;
+                    transition: .3s all;
+                    z-index: 1;
+                }
+                 img:hover{
+                    //transform: rotate(360deg);
+                    transform: scale(1.2);           
+                }
+             }
+             @media (min-width: 640px) and (orientation: landscape) { 
+                img {
+                    
+                    // cambia estos dos valores para definir el tamaño de tu círculo 
+                    width: 100px;
+                    height: 100px;           
+                    // los siguientes valores son independientes del tamaño del círculo 
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 50%;
+                    background-size: 100% auto;
+                    margin-bottom: 40px;
+                    transition: .3s all;
+                    z-index: 1;
+                }
+                 img:hover{
+                    //transform: rotate(360deg);
+                    transform: scale(1.2);           
+                }
+            }
+          
+        }
+        img {
+            //para centrar
+          
+            display: block;
+            margin: auto;
+            // cambia estos dos valores para definir el tamaño de tu círculo 
+            width: 60px;
+            height: 60px;
+            // los siguientes valores son independientes del tamaño del círculo 
+            background-repeat: no-repeat;
+            background-position: 50%;
+            border-radius: 50%;
+            background-size: 100% auto;
+            transition: .20s all;
+                    z-index: 1;
+                }
+             img:hover{
+                    //transform: rotate(360deg);
+                    transform: scale(1.9);           
+              } 
+        
+    }
+}
