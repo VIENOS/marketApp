@@ -1,13 +1,20 @@
 <ion-header no-border >
   <ion-toolbar  color="danger">
       <ion-searchbar  
+      class="searchbar-transparente"
       type="tel"
-      color="blacktras"
+      color="redtrasnparente"
       (ionInput)="find($event)"
       placeholder="Buscar tiendas"
       >
       </ion-searchbar>
-  
+      <ion-buttons slot="end" >
+        <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" >
+          <ion-badge mode="ios" slot="end" color="verdino" >4</ion-badge>
+          <ion-icon name="cart-outline"></ion-icon>
+        </ion-button>
+       <!--<ion-back-button text="" defaulHref="/"></ion-back-button>--> 
+      </ion-buttons>
   </ion-toolbar>
   <ion-segment  [(ngModel)]="zona"  mode="md" color="redtrasnparente" scrollable="true"  value="favorite">  
     <ion-segment-button *ngFor="let item of lstzonas" [value]="item">

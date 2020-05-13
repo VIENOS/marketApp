@@ -17,6 +17,10 @@ export class TiendaService {
     return this.http.get<any>("assets/tiendas0.json");
   }
 
+  getSugeridos(){
+    return this.http.get<any>("assets/subcategorias.json");
+  }
+  
 
   getTiendaRecomendada1(){
     return this.http.get<any>("assets/tiendas1.json");

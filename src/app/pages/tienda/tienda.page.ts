@@ -11,7 +11,9 @@ import { ModalController } from '@ionic/angular';
 export class TiendaPage implements OnInit {
 
   public lstzonas:any;
+  public lstsugeridos:any;
   public zona:any;
+  public sugerido:any;
   constructor(public _service_tienda:TiendaService, public viewCtrl: ModalController ) {
     this._service_tienda.tiendas = [];
    }
@@ -19,6 +21,7 @@ export class TiendaPage implements OnInit {
   ngOnInit() {
     this._service_tienda.getTienda();
     this.listzonas();
+    this.listsugeridos();
   }
 
   listzonas(){
@@ -27,6 +30,15 @@ export class TiendaPage implements OnInit {
           console.log("zonas"+res);
            this.lstzonas = res;
            this.zona = this.listzonas.length>0 ? this.listzonas[0]:undefined; 
+        }
+    );
+  }
+
+  listsugeridos(){
+    this._service_tienda.getSugeridos().subscribe(
+        res=>{
+           this.lstsugeridos = res;
+           this.sugerido = this.lstsugeridos.length>0 ? this.lstsugeridos[0]:undefined; 
         }
     );
   }

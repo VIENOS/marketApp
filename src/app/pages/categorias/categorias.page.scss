@@ -95,4 +95,36 @@ ion-card{
             }
         }
     }
+    ion-button{
+        max-width: 30px;
+        margin-left: 3px;
+        ion-input{
+            margin-left: -6px;
+        }
+    }
+}
+
+
+
+ion-header{
+    ion-toolbar{
+       #carrito{
+           ion-icon{
+               margin-bottom: 2px;
+               padding-top: 10px;
+               font-size: 25px;
+               margin-right: -6px;
+           }
+            ion-badge{
+               margin-bottom: 10px;
+           }
+       }
+
+    
+   }
+}
+
+//icono carrito ANDROID
+.buttons-last-slot.sc-ion-buttons-md-h.sc-ion-buttons-md-s.md.hydrated{
+    margin-bottom: 10px;
 }

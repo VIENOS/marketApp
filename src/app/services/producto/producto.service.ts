@@ -18,5 +18,10 @@ export class ProductoService {
     return this.http.get<any>("assets/producto.json");
   }
 
+  getListTipoPagos(): Observable<any>{
+    return this.http.get<any>("assets/tipopago.json");
+  }
+
+
 
 }

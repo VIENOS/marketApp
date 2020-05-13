@@ -15,13 +15,17 @@ export class CarritoPage implements OnInit {
   cupon:any;
   msgxCupon:string;
   cuponValido:boolean;
+  tipoPago:any;
+  lstTipoPago:any;
 
   constructor(private _servcio_producto:ProductoService,private _service_inicio:InicioService, public viewCtrl: ModalController) {
     this.cuponValido=false;
+    
    }
 
   ngOnInit() {
     this.loadList();
+    this.loadListPagos();
   }
 
   loadList(){
@@ -32,6 +36,17 @@ export class CarritoPage implements OnInit {
      }   
     );
   }
+
+  loadListPagos(){
+    this._servcio_producto.getListTipoPagos().subscribe(
+      res=>{
+         this.lstTipoPago = res;
+         this.tipoPago = this.lstTipoPago[0];
+        console.log(res);
+     }   
+    );
+  }
+  
 
 addProducto(item:any){
   console.log(item)
@@ -67,6 +82,10 @@ const myModal = await this.viewCtrl.create({
   component:PedidoPage
 });
 await myModal.present();
+}
+
+OnChange($event){
+  console.log("CAMIO TIPO")
 }
 
 }

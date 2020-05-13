@@ -1,4 +1,3 @@
-
 ion-item{
     ion-label{
         h6{
@@ -7,6 +6,14 @@ ion-item{
             span{
                 color: gray;
             }
+        }
+    }
+    ion-button{
+        max-width: 30px;
+        margin-left: 3px;
+        
+        ion-input{
+            margin-left: -6px;
         }
     }
 }
@@ -71,11 +78,14 @@ ion-title.ios.title-default.hydrated{
 .md ion-grid{
     ion-row{
         ion-col{
+            ion-button{
+                font-size: 9px;
+            }
             ion-row{
-                font-size: 12px;
+               // font-size: 12px;
                 margin-top: 4px;
                 ion-label{
-                    font-size: 20px;
+               
                     margin-bottom: 0px;
                     margin-top: -5px;
                     font-weight: bold;
@@ -90,8 +100,11 @@ ion-title.ios.title-default.hydrated{
     margin-top: 15px;
     ion-row{
         ion-col{
+            ion-button{
+                font-size: 13px;
+            }
             ion-row{
-                font-size: 12px;
+                //font-size: 12px;
                 margin-top: 4px;
                 ion-label{
                     font-size: 24px;

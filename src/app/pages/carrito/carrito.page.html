@@ -24,6 +24,9 @@
           <h2>{{item.nombre}}</h2>
           <h6>S/.{{item.precio | number: '.2'}} </h6>
         </ion-label> 
+        <ion-button slot="end" expand="block"  size="small" color="redtrasnparente" >
+          <ion-input id="contador" mode="md" name="contador" #contador type="number"  value="1" ></ion-input>
+        </ion-button>
         <ion-button  slot="end" expand="block"  color="rojo" (click)="eliminarProducto(item)">
           <ion-icon slot="icon-only"  name="trash-sharp"></ion-icon>
         </ion-button>
@@ -61,19 +64,40 @@
     <ion-row>
       <ion-col size="6">
         <ion-row >
-            (5 Items)
+            Total pedido
         </ion-row> 
         <ion-row>
           <ion-label>
             S/.1075.00
           </ion-label>
         </ion-row> 
+        <ion-row >
+          Total Delivery
+      </ion-row> 
+      <ion-row>
+        <ion-label>
+          S/.3.50
+        </ion-label>
+      </ion-row> 
+      <ion-row >
+        Tipo de pago
+       </ion-row> 
+      <ion-row>
+        <ion-chip  color="redtrasnparente">
+          <ion-select [(ngModel)]="tipoPago" (ionChange)="OnChange($event)"  >
+            <ion-select-option *ngFor="let item of lstTipoPago" [value]="item" >
+              {{item.nombre}}
+            </ion-select-option>
+          </ion-select>
+         </ion-chip>
+      </ion-row>
       </ion-col>
       <ion-col size="6">
         <ion-button  expand="block"  fill="outline" color="verdino" (click)="openPedido()">
-          <ion-label color="rojo"><b>Checkout</b>  </ion-label>
+          <ion-label color="rojo"><b>Pagar o enviar producto</b>  </ion-label>
         </ion-button>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 </ion-content>

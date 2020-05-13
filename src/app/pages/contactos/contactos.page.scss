@@ -103,3 +103,33 @@ ion-title.ios.title-default.hydrated{
         }
     }
 }
+
+
+
+ion-header{
+    ion-toolbar{
+       #carrito{
+           ion-icon{
+               margin-bottom: 2px;
+               padding-top: 10px;
+               font-size: 25px;
+               margin-right: -6px;
+           }
+            ion-badge{
+               margin-bottom: 10px;
+           }
+       }
+
+    
+   }
+}
+
+//icono carrito ANDROID
+.buttons-last-slot.sc-ion-buttons-md-h.sc-ion-buttons-md-s.md.hydrated{
+    margin-top: 11px;
+}
+
+//icono carrito IOS
+.buttons-last-slot.sc-ion-buttons-ios-h.sc-ion-buttons-ios-s.ios.hydrated{
+    margin-top: 11px;
+}

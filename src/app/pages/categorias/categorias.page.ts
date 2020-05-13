@@ -144,4 +144,9 @@ export class CategoriasPage implements OnInit {
   close(){
     this.viewCtrl.dismiss();
   }
+
+
+  addCarrito(value:any){
+    console.log("add carrito " + value)
+  }
 }

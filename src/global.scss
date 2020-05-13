@@ -60,6 +60,23 @@
      //}
  }
 
+ .searchbar-transparente{
+    // ion-searchbar{
+       
+         input.searchbar-input.sc-ion-searchbar-md {
+            padding-left: 50px !important;
+            padding-top: 9px;
+        }
+
+        .searchbar-input-container.sc-ion-searchbar-md {
+            --background: var(--ion-background-color, #fff);
+            --box-shadow: rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+         
+
+     //}
+ }
+
  .searchbar-sin-icono{
     // ion-searchbar{
          ion-icon.searchbar-search-icon.sc-ion-searchbar-ios.ios.hydrated{

@@ -3,18 +3,69 @@
     "id": 4,
     "nombre": "Restaurant Urbina",
     "direccion": "Av. la marina 549",
-    "imagen": "tienda4.jpg"
+    "imagen": "tienda4.jpg",
+ "horario": [
+    {
+      "d": "Lunes",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Miercoles",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Sabado",
+      "o": "9:00",
+      "t": "10:00"
+    }
+  ]
   },
   {
     "id": 5,
     "nombre": "Restaurant Julio",
     "direccion": "Av. la marina 549",
-    "imagen": "tienda5.jpg"
+    "imagen": "tienda5.jpg",
+ "horario": [
+    {
+      "d": "Lunes",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Miercoles",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Sabado",
+      "o": "9:00",
+      "t": "10:00"
+    }
+  ]
   },
   {
     "id": 6,
     "nombre": "Restaurant Pablo",
     "direccion": "Av. la marina 549",
-    "imagen": ""
+    "imagen": "",
+ "horario": [
+    {
+      "d": "Lunes",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Miercoles",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Sabado",
+      "o": "9:00",
+      "t": "10:00"
+    }
+  ]
   }
 ]

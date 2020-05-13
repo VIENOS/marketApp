@@ -24,4 +24,12 @@ export interface Tienda {
   nombre: string;
   direccion: string;
   imagen: string;
+  horario:Horario[];
+
+}
+
+export interface Horario{
+  d:any;
+  o:any;
+  t:any;
 }
