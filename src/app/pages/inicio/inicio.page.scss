@@ -132,7 +132,7 @@ ion-list{
                     border-radius: 0%;
                     border-style: none;
                     border-width: 0px;
-                    border-color: #8ff02d;
+                  //  border-color: #8ff02d;
                     width: 100%;
                     max-height: 100%;
                    }
@@ -140,7 +140,7 @@ ion-list{
             img{
                 background-repeat: no-repeat;
                 background-position: 50%;
-                border-radius: 50%;
+                border-radius: 0%;
                }
         }
     }
@@ -256,9 +256,9 @@ ion-list{
                     margin-bottom: 170px;
                     transition: .3s all;
                     z-index: 1;
-                    border-style: solid;
-                    border-width: 3px;
-                    border-color: #8ff02d;
+                   // border-style: solid;
+                   // border-width: 3px;
+                   // border-color: #8ff02d;
                 }
                  img:hover{
                     //transform: rotate(360deg);
@@ -280,9 +280,9 @@ ion-list{
                     margin-top: -25px;
                     transition: .3s all;
                     z-index: 1;
-                    border-style: solid;
-                    border-width: 3px;
-                    border-color: #8ff02d;
+                   // border-style: solid;
+                  //  border-width: 3px;
+                  //  border-color: #8ff02d;
                 }
                  img:hover{
                     //transform: rotate(360deg);
@@ -302,9 +302,9 @@ ion-list{
                     background-size: 100% auto;
                     transition: .3s all;
                     z-index: 1;
-                    border-style: solid;
-                    border-width: 3px;
-                    border-color: #8ff02d;
+                   // border-style: solid;
+                  //  border-width: 3px;
+                  //  border-color: #8ff02d;
                 }
                  img:hover{
                     //transform: rotate(360deg);
@@ -328,9 +328,9 @@ ion-list{
 
                     transition: .3s all;
                     z-index: 1;
-                    border-style: solid;
-                    border-width: 3px;
-                    border-color: #8ff02d;
+                   // border-style: solid;
+                   // border-width: 3px;
+                   // border-color: #8ff02d;
                 }
                  img:hover{
                     //transform: rotate(360deg);
@@ -353,9 +353,9 @@ ion-list{
                     margin-bottom: 85px;
                     transition: .3s all;
                     z-index: 1;
-                    border-style: solid;
-                    border-width: 3px;
-                    border-color: #8ff02d;
+                   // border-style: solid;
+                   // border-width: 3px;
+                   // border-color: #8ff02d;
                 }
                  img:hover{
                     //transform: rotate(360deg);
@@ -377,9 +377,9 @@ ion-list{
                     margin-top: 0.01px;
                     transition: .3s all;
                     z-index: 1;
-                    border-style: solid;
-                    border-width: 3px;
-                    border-color: #8ff02d;
+                  //  border-style: solid;
+                   // border-width: 3px;
+                   // border-color: #8ff02d;
                 }
                  img:hover{
                     //transform: rotate(360deg);
@@ -401,9 +401,9 @@ ion-list{
                     margin-top: -25px;
                     transition: .3s all;
                     z-index: 1;
-                    border-style: solid;
-                    border-width: 3px;
-                    border-color: #8ff02d;
+                  //  border-style: solid;
+                  //  border-width: 3px;
+                  //  border-color: #8ff02d;
                 }
                  img:hover{
                     //transform: rotate(360deg);
@@ -425,9 +425,9 @@ ion-list{
                     margin-top: -25px;
                     transition: .3s all;
                     z-index: 1;
-                    border-style: solid;
-                    border-width: 3px;
-                    border-color: #8ff02d;
+                 //   border-style: solid;
+                   // border-width: 3px;
+                  //  border-color: #8ff02d;
                 }
                  img:hover{
                     //transform: rotate(360deg);
@@ -449,9 +449,9 @@ ion-list{
                     margin-top: 40px;
                     transition: .3s all;
                     z-index: 1;
-                    border-style: solid;
-                    border-width: 3px;
-                    border-color: #8ff02d;
+                   // border-style: solid;
+                   // border-width: 3px;
+                   // border-color: #8ff02d;
                 }
                  img:hover{
                     //transform: rotate(360deg);
@@ -472,9 +472,9 @@ ion-list{
                     margin-bottom: 40px;
                     transition: .3s all;
                     z-index: 1;
-                    border-style: solid;
-                    border-width: 3px;
-                    border-color: #8ff02d;
+                   // border-style: solid;
+                  //  border-width: 3px;
+                  //  border-color: #8ff02d;
                 }
                  img:hover{
                     //transform: rotate(360deg);
@@ -498,9 +498,9 @@ ion-list{
             background-size: 100% auto;
             transition: .20s all;
                     z-index: 1;
-                    border-style: solid;
-                    border-width: 3px;
-                    border-color: #8ff02d;
+                   // border-style: solid;
+                  //  border-width: 3px;
+                  //  border-color: #8ff02d;
                 }
              img:hover{
                     //transform: rotate(360deg);
@@ -539,4 +539,10 @@ ion-header{
 .buttons-last-slot.sc-ion-buttons-ios-h.sc-ion-buttons-ios-s.ios.hydrated{
     margin-bottom: 5px;
     padding-bottom: 0px;
+}
+
+
+ion-content {
+    --background: none;
+
 }

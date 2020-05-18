@@ -1,0 +1,28 @@
+<ion-header no-border >
+  <ion-toolbar  color="danger">
+    <ion-buttons slot="start">
+      <ion-button id="atras" menuToggle slot="icon-only" fill="clear" (click)="close()">
+        <ion-icon  name="chevron-back-outline" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button id="atras" menuToggle slot="icon-only" fill="clear" (click)="agregarInicio()"  [color]="!ingresarInicio ? 'light':'verdino'">
+        <ion-icon name="add-circle-outline"></ion-icon> Partida
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button id="atras" menuToggle slot="icon-only" fill="clear" (click)="agregarFin()" [color]="!ingresarFin ? 'light':'verdino'">
+        <ion-icon name="add-circle-outline"></ion-icon> Llegada
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div id="map_canvas">
+
+  </div>
+        <ion-button type="submit" color="verdino" fill="outline" expand="full"  ><ion-label color="rojo"  (click)="guardar()" >Guardar Ubicaciones</ion-label></ion-button>
+
+</ion-content>

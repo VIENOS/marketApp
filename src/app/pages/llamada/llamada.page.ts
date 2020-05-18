@@ -4,6 +4,7 @@ import { ProductoPage } from '../producto/producto.page';
 import { ModalController } from '@ionic/angular';
 import { LlamadaService } from 'src/app/services/llamada/llamada.service';
 import { IonInfiniteScroll } from '@ionic/angular';
+import { CarritoPage } from '../carrito/carrito.page';
 @Component({
   selector: 'app-llamada',
   templateUrl: './llamada.page.html',
@@ -43,4 +44,18 @@ export class LlamadaPage implements OnInit {
          event.target.complete();
     });
   }
+
+  
+  openCarrito(){
+    this.abrirModalCarrito();
+  }
+  
+  
+  async abrirModalCarrito(){
+    const myModal = await this.viewCtrl.create({
+      component:CarritoPage
+      });
+    await myModal.present();
+  }
+  
 }

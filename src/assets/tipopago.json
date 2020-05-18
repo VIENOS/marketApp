@@ -1,14 +1,14 @@
 [
   {
     "id": 0,
-    "nombre": "Sin especificar"
+    "nombre": "Elegir tipo pago"
   },
   {
     "id": 1,
-    "nombre": "Al contado"
+    "nombre": "pago al contado"
   },
   {
     "id": 2,
-    "nombre": "Con tarjeta"
+    "nombre": "pago con tarjeta"
   }
 ]

@@ -5,6 +5,7 @@ import { RubroTiendasService } from 'src/app/services/rubro-tiendas/rubro-tienda
 import { TiendaDetallePage } from '../tienda-detalle/tienda-detalle.page';
 import { ProductoPage } from '../producto/producto.page';
 import { CategoriasPage } from '../categorias/categorias.page';
+import { CarritoPage } from '../carrito/carrito.page';
 
 @Component({
   selector: 'app-rubro-tiendas',
@@ -61,5 +62,18 @@ export class RubroTiendasPage implements OnInit {
 close(){
   this.viewCtrl.dismiss();
 }
+
+openCarrito(){
+  this.abrirModalCarrito();
+}
+
+
+async abrirModalCarrito(){
+  const myModal = await this.viewCtrl.create({
+    component:CarritoPage
+    });
+  await myModal.present();
+}
+
 
 }

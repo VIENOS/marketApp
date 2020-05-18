@@ -30,7 +30,7 @@ export class CesionPage implements OnInit {
   //  this.contacto.email="mel@gmail.com";
   //  this.contacto.celular=933853399;
  //   this.contacto.fecha="1995-02-15";
-    this.contactForm = this.editarFormGroup();
+    this.contactForm = this.createFormGroup();
 
   }
 

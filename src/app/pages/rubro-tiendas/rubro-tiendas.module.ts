@@ -10,6 +10,7 @@ import { RubroTiendasPage } from './rubro-tiendas.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
+
   imports: [
     CommonModule,
     FormsModule,

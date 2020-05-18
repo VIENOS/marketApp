@@ -10,10 +10,13 @@ import { LlamadaPage } from './llamada.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { ProductoPage } from '../producto/producto.page';
 import { ProductoPageModule } from '../producto/producto.module';
+import { CarritoPage } from '../carrito/carrito.page';
+import { CarritoPageModule } from '../carrito/carrito.module';
 
 @NgModule({
   entryComponents:[
-    ProductoPage
+    ProductoPage,
+    CarritoPage
    ],
   imports: [
     CommonModule,
@@ -21,7 +24,8 @@ import { ProductoPageModule } from '../producto/producto.module';
     PipesModule,
     IonicModule,
     LlamadaPageRoutingModule,
-    ProductoPageModule
+    ProductoPageModule,
+    CarritoPageModule
   ],
   declarations: [LlamadaPage]
 })

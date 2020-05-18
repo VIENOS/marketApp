@@ -3,6 +3,13 @@
     <ion-title>
       <h1>Carrito</h1>
     </ion-title>
+    <ion-buttons slot="end" >
+      <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="close()" >
+      
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+     <!--<ion-back-button text="" defaulHref="/"></ion-back-button>--> 
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -62,7 +69,7 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="6">
+      <ion-col size="5">
         <ion-row >
             Total pedido
         </ion-row> 
@@ -79,21 +86,21 @@
           S/.3.50
         </ion-label>
       </ion-row> 
-      <ion-row >
-        Tipo de pago
-       </ion-row> 
-      <ion-row>
-        <ion-chip  color="redtrasnparente">
-          <ion-select [(ngModel)]="tipoPago" (ionChange)="OnChange($event)"  >
-            <ion-select-option *ngFor="let item of lstTipoPago" [value]="item" >
-              {{item.nombre}}
-            </ion-select-option>
-          </ion-select>
-         </ion-chip>
-      </ion-row>
+  
       </ion-col>
-      <ion-col size="6">
-        <ion-button  expand="block"  fill="outline" color="verdino" (click)="openPedido()">
+      <ion-col size="7">
+        <ion-row>
+          <ion-chip  color="redtrasnparente">
+          
+            <ion-select [(ngModel)]="tipoPago" (ionChange)="OnChange($event)"  >
+              <ion-select-option *ngFor="let item of lstTipoPago" [value]="item" >
+                {{item.nombre}}
+              </ion-select-option>
+            </ion-select>
+           </ion-chip>
+        </ion-row>
+    
+        <ion-button *ngIf="habilitarpago"  expand="block"  fill="outline" color="verdino" (click)="openPedido()">
           <ion-label color="rojo"><b>Pagar o enviar producto</b>  </ion-label>
         </ion-button>
       </ion-col>

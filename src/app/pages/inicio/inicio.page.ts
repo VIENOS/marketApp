@@ -10,6 +10,8 @@ import { CategoriasService } from 'src/app/services/categorias/categorias.servic
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { TiendaService } from 'src/app/services/tienda/tienda.service';
 import { TiendaDetallePage } from '../tienda-detalle/tienda-detalle.page';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
+import { CarritoPage } from '../carrito/carrito.page';
 
 @Component({
   selector: 'app-inicio',
@@ -31,7 +33,7 @@ export class InicioPage implements OnInit {
   };;
 
   
-  constructor(public _service_tienda:TiendaService,private _service_inicio:InicioService,private router:Router, public viewCtrl: ModalController,private popoverCrrl:PopoverController,private _service_categoria:CategoriasService) { }
+  constructor(public _service_tienda:TiendaService,private _service_inicio:InicioService,private router:Router, public viewCtrl: ModalController,private popoverCrrl:PopoverController,private _service_categoria:CategoriasService,public service_carrito:CarritoService) { }
 
   ngOnInit() {
    //this.loadList();+
@@ -177,6 +179,17 @@ export class InicioPage implements OnInit {
   verOfertas(){
 
   }
+
+  openCarrito(){
+    this.abrirModalCarrito();
+  }
+
   
+  async abrirModalCarrito(){
+    const myModal = await this.viewCtrl.create({
+      component:CarritoPage
+      });
+    await myModal.present();
+  }
 
 }

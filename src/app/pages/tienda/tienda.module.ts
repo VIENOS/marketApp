@@ -10,10 +10,13 @@ import { TiendaPage } from './tienda.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { TiendaDetallePage } from '../tienda-detalle/tienda-detalle.page';
 import { TiendaDetallePageModule } from '../tienda-detalle/tienda-detalle.module';
+import { CarritoPage } from '../carrito/carrito.page';
+import { CarritoPageModule } from '../carrito/carrito.module';
 
 @NgModule({
   entryComponents:[
-    TiendaDetallePage
+    TiendaDetallePage,
+    CarritoPage
    ],
   imports: [
     CommonModule,
@@ -21,7 +24,8 @@ import { TiendaDetallePageModule } from '../tienda-detalle/tienda-detalle.module
     IonicModule,
     PipesModule,
     TiendaPageRoutingModule,
-    TiendaDetallePageModule
+    TiendaDetallePageModule,
+    CarritoPageModule
   ],
   declarations: [TiendaPage]
 })

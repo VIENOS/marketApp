@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { ProductoPage } from '../producto/producto.page';
 import { ModalController, NavParams } from '@ionic/angular';
+import { CarritoPage } from '../carrito/carrito.page';
 
 @Component({
   selector: 'app-categorias',
@@ -149,4 +150,18 @@ export class CategoriasPage implements OnInit {
   addCarrito(value:any){
     console.log("add carrito " + value)
   }
+
+
+  openCarrito(){
+    this.abrirModalCarrito();
+  }
+  
+  
+  async abrirModalCarrito(){
+    const myModal = await this.viewCtrl.create({
+      component:CarritoPage
+      });
+    await myModal.present();
+  }
+  
 }

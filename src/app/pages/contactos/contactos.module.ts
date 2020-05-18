@@ -8,11 +8,14 @@ import { ContactosPageRoutingModule } from './contactos-routing.module';
 
 import { ContactosPage } from './contactos.page';
 import { ContactoDetallePageModule } from '../contacto-detalle/contacto-detalle.module';
+import { CarritoPage } from '../carrito/carrito.page';
+import { CarritoPageModule } from '../carrito/carrito.module';
 
 
 @NgModule({
   entryComponents:[
-    ContactosPage
+    ContactosPage,
+    CarritoPage
    ],
   imports: [
     CommonModule,
@@ -20,7 +23,8 @@ import { ContactoDetallePageModule } from '../contacto-detalle/contacto-detalle.
     IonicModule,
     ContactosPageRoutingModule,
     ReactiveFormsModule,
-    ContactoDetallePageModule
+    ContactoDetallePageModule,
+    CarritoPageModule
   ],
   declarations: [ContactosPage]
 })

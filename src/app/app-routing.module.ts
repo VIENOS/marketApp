@@ -60,6 +60,18 @@ const routes: Routes = [
     path: 'cesion',
     loadChildren: () => import('./pages/cesion/cesion.module').then( m => m.CesionPageModule)
   },
+  {
+    path: 'recadeo',
+    loadChildren: () => import('./pages/recadeo/recadeo.module').then( m => m.RecadeoPageModule)
+  },
+  {
+    path: 'mapa',
+    loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule)
+  },
+  {
+    path: 'mapa-tienda',
+    loadChildren: () => import('./pages/mapa-tienda/mapa-tienda.module').then( m => m.MapaTiendaPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,86 @@
+<ion-content>
+  <div  id="categoriaSelect">
+    <ion-header no-border >
+      <ion-toolbar  color="danger">
+        <ion-title>
+          Recadeo
+        </ion-title> 
+        <ion-buttons slot="end" >
+          <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="openCarrito()" >
+            <ion-badge mode="ios" slot="end" color="verdino" >4</ion-badge>
+            <ion-icon name="cart-outline"></ion-icon>
+          </ion-button>
+         <!--<ion-back-button text="" defaulHref="/"></ion-back-button>--> 
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    </div>
+
+    <ion-list>
+      <ion-item >
+           <ion-label color="rojo"  (click)="openCesion()">
+             <h3>Datos Personales</h3>
+           </ion-label>
+           <ion-buttons slot="end">
+             <ion-button color="verdino" (click)="openCesion()" > 
+              
+               <ion-icon name="chevron-forward-outline"></ion-icon>
+             </ion-button>
+           </ion-buttons>
+         </ion-item>
+     </ion-list>
+  <!--<ion-card >
+   <img src="../assets/imgs/fondo.jpg">
+ </ion-card> -->
+
+
+
+   
+<ion-list>
+  <ion-item >
+       <ion-label color="rojo" >
+         <h3>Datos del recadeo</h3>
+       </ion-label>
+       <ion-buttons slot="end">
+         <ion-button color="verdino" > 
+          
+          <ion-icon name="chevron-down-outline"></ion-icon>
+         </ion-button>
+       </ion-buttons>
+     </ion-item>
+ </ion-list>
+
+ <ion-card>
+  <ion-card-content>
+    <ion-list>
+      <ion-label color="rojo"  position="stacked">Número de paquetes:</ion-label>
+      <ion-item>
+        
+        <ion-input type="number" placeholder="Ingresar # de paquetes"  [(ngModel)]="numrecadeos"></ion-input>
+      </ion-item>
+
+      <ion-label color="rojo"  position="stacked">Ubicacion de partida y llegada</ion-label>
+
+      <ion-item>
+        <ion-input style="color: #808080d6;" readonly type="text" [(ngModel)]="ubicacionMsg"  ></ion-input>
+        <ion-button  color="rojo" (click)="abrirMapa()">
+          <ion-icon name="locate" ></ion-icon>
+        </ion-button>
+      </ion-item>
+     <!-- <ion-label color="rojo"  position="stacked">Ubicacion de llegada </ion-label>
+
+    <ion-item>
+        <ion-input style="color: #808080d6;" readonly type="text" [(ngModel)]="ubicacionFin"  ></ion-input>
+        <ion-button  color="rojo" (click)="abrirMapa()">
+          <ion-icon name="locate" ></ion-icon>
+        </ion-button>
+      </ion-item>--> 
+      
+    </ion-list>
+    <ion-button type="submit" color="verdino" fill="outline" expand="full"  (click)="onSaveForm()" ><ion-label color="rojo"  >Relizar proceso</ion-label></ion-button>
+  </ion-card-content>
+</ion-card>
+
+</ion-content>
+

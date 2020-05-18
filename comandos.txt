@@ -19,3 +19,17 @@ usuario:Observable<any>
 this.suuarios = this_dataserviece.getlin();
 
 en la vista | async
+
+//para pasar a formato pwa 
+ionic build --prod --service-worker
+
+///pasar a android
+en windows , descarge e installe el sdk gradle 
+ingresar su ruta en la variable de entorno tanto como de usuario como del sistema
+ejecutar ionic cordova prepare android   pero desde el cmd y acepta Y contruir plataforma android
+luego lo abres en android studio aceptas construir gradles , luego en build y generate signed bundle or APK
+selecciona APK, creas un api key , insertas datos y ok , saldra un error le damos en ok, luego release y V1 jar
+ionic cordova build android ||   ionic cordova run android --targer=Pixe_2_XL_API_28-I
+ionic cordova build android --prod --release
+
+pk.eyJ1IjoiamdtZWw5NXN6IiwiYSI6ImNrYTY5MHVydzAzanQyeHBjeWxmY2F4Y2QifQ.PQsHafpf1HWQamLbVQHsFg

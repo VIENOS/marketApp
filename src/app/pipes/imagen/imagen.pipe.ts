@@ -16,8 +16,8 @@ export class ImagenPipe implements PipeTransform {
   }*/
   transform(img: string): string {
     if(!img){
-      return './assets/no-image.jpg';
+      return '../assets/no-image.jpg';
     }
-    return environment.imgPath+"/"+img;
+    return "../../assets/imgs/"+img;
   }
 }

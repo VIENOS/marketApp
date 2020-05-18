@@ -82,13 +82,14 @@ ion-title.ios.title-default.hydrated{
                 font-size: 9px;
             }
             ion-row{
-               // font-size: 12px;
                 margin-top: 4px;
+                font-size: 13px;
                 ion-label{
                
                     margin-bottom: 0px;
                     margin-top: -5px;
                     font-weight: bold;
+                    font-size: 18px;
                 }
             }
         }
@@ -106,6 +107,7 @@ ion-title.ios.title-default.hydrated{
             ion-row{
                 //font-size: 12px;
                 margin-top: 4px;
+                font-size: 13px;
                 ion-label{
                     font-size: 24px;
                     margin-bottom: 0px;
@@ -136,3 +138,23 @@ ion-card{
     font-size: 13px;
     margin-top: -2px;
 }
+
+
+//icono carrito ANDROID
+.buttons-last-slot.sc-ion-buttons-md-h.sc-ion-buttons-md-s.md.hydrated{
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+//icono carrito IOS
+.buttons-last-slot.sc-ion-buttons-ios-h.sc-ion-buttons-ios-s.ios.hydrated{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+/*
+ion-content {
+    --background: url('/assets/imgs/fondo.jpg') 0 0/100% 100% no-repeat;
+}*/

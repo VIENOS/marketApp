@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content >
   <div  id="categoriaSelect">
     <ion-header no-border >
       <ion-toolbar  color="danger">
@@ -9,7 +9,7 @@
       
         </ion-title> 
         <ion-buttons slot="end" >
-          <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" >
+          <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="openCarrito()"  >
             <ion-badge mode="ios" slot="end" color="verdino" >4</ion-badge>
             <ion-icon name="cart-outline"></ion-icon>
           </ion-button>
@@ -35,7 +35,7 @@
      <ion-list id="time">
       <ion-item>              
         <div  id="horario">
-          <img src="../assets/imgs/time.png" height="15px" alt="" class="nuevo"  style="margin-right: 20px;">
+          <img  src="../assets/imgs/time.png" height="15px" alt="" class="nuevo"  style="margin-right: 20px;">
           <div class="segundo animated fadeInDown" >
             <div *ngFor="let itema of item?.horario" >
               <ion-row>

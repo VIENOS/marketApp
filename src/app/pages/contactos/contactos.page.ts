@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ContactoDetallePage } from '../contacto-detalle/contacto-detalle.page';
 import { ModalController } from '@ionic/angular';
+import { CarritoPage } from '../carrito/carrito.page';
 @Component({
   selector: 'app-contactos',
   templateUrl: './contactos.page.html',
@@ -42,5 +43,16 @@ export class ContactosPage implements OnInit {
     await myModal.present();
   }
 
+  openCarrito(){
+    this.abrirModalCarrito();
+  }
+  
+  
+  async abrirModalCarrito(){
+    const myModal = await this.viewCtrl.create({
+      component:CarritoPage
+      });
+    await myModal.present();
+  }
 
 }

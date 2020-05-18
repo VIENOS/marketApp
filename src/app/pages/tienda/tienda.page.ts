@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TiendaService } from 'src/app/services/tienda/tienda.service';
 import { TiendaDetallePage } from '../tienda-detalle/tienda-detalle.page';
 import { ModalController } from '@ionic/angular';
+import { CarritoPage } from '../carrito/carrito.page';
 
 @Component({
   selector: 'app-tienda',
@@ -68,5 +69,16 @@ export class TiendaPage implements OnInit {
   }
 
  
-
+  openCarrito(){
+    this.abrirModalCarrito();
+  }
+  
+  
+  async abrirModalCarrito(){
+    const myModal = await this.viewCtrl.create({
+      component:CarritoPage
+      });
+    await myModal.present();
+  }
+  
 }

@@ -3,6 +3,8 @@ import { ModalController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CesionPage } from '../cesion/cesion.page';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { MapaTiendaPage } from '../mapa-tienda/mapa-tienda.page';
 
 @Component({
   selector: 'app-pedido',
@@ -16,8 +18,11 @@ export class PedidoPage implements OnInit {
   public politica :any;
   public direccion : any;
   public ubicacion : any;
+  public gps : any;
+  public distancia:any;
+  public ubicacionMsg:any;
 
-  constructor(private router:Router, public viewCtrl: ModalController,public alertController: AlertController) {
+  constructor(private geolocation: Geolocation,private router:Router, public viewCtrl: ModalController,public alertController: AlertController) {
       this.ubicacion ="Click en el boton gps"
    }
 
@@ -86,6 +91,16 @@ export class PedidoPage implements OnInit {
   geolocalizacion(){
     console.log("PETICION DE GEOLOCALIZACION")
     this.ubicacion ="Ubicacion obtenida"
+   
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // resp.coords.latitude
+      // resp.coords.longitude
+      const coords = resp.coords.latitude + "," + resp.coords.longitude;
+      this.abrirModalMapaGoogle( resp.coords.latitude ,resp.coords.longitude);
+      console.log(coords)
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
   }
 
 
@@ -102,5 +117,25 @@ const myModal = await this.viewCtrl.create({
 });
 await myModal.present();
 }
+
+
+
+async abrirModalMapaGoogle(latitud,longitud){
+  const myModal = await this.viewCtrl.create({
+    component:MapaTiendaPage,
+    componentProps:{latitud:latitud,longitud:longitud}
+  });
+  await myModal.present();
+  const {data} = await myModal.onDidDismiss();
+  //console.log("DATA = "+JSON.stringify(data))
+  if(data["distanciaKm"]!=null && data["distanciaKm"]!=undefined){
+      this.distancia = data["distanciaKm"];
+      console.log("DISTANCIAA = "+this.distancia);
+      this.ubicacionMsg ="Ubicaciones obtenidas";
+  }
+  }
+  
+
+
 
 }

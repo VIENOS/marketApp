@@ -2,14 +2,14 @@
   <ion-toolbar  color="danger">
       <ion-searchbar  
       class="searchbar-transparente"
-      type="tel"
+      type="text"
       color="redtrasnparente"
       (ionInput)="find($event)"
       placeholder="Buscar tiendas"
       >
       </ion-searchbar>
       <ion-buttons slot="end" >
-        <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" >
+        <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="openCarrito()" >
           <ion-badge mode="ios" slot="end" color="verdino" >4</ion-badge>
           <ion-icon name="cart-outline"></ion-icon>
         </ion-button>
@@ -23,7 +23,9 @@
   </ion-segment>
 </ion-header>
 
-<ion-content>
+<ion-content [style.background-image]="'url(../../assets/imgs/fondo.jpg)'" 
+[style.background-size]="'cover'" 
+[style.background-repeat]="'no-repeat'" >
   <div id="recomendados">
     <ion-slides [options]="slideOpts">
       <ion-slide *ngFor="let producto of lstTiendaRecomendad">
@@ -50,13 +52,13 @@
     <ion-grid>
       <ion-row id="row1">
         <ion-col id="one">
-          <img [src]="inicio?.rubros[0]?.imagen | imagen"  (click)="openRubro(inicio?.rubros[0])">
+          <img src="../assets/inicio/restaurante.png"  (click)="openRubro(0)">
         </ion-col>
         <ion-col>
-          <img [src]="inicio?.rubros[1]?.imagen  | imagen"  (click)="openRubro(inicio?.rubros[1])">
+          <img src="../assets/inicio/cafeteria.png"  (click)="openRubro(1)">
         </ion-col>
         <ion-col id="two">
-          <img [src]="inicio?.rubros[2]?.imagen  | imagen"  (click)="openRubro(inicio?.rubros[2])">
+          <img  src="../assets/inicio/bar.png"  (click)="openRubro(2)">
         </ion-col>
       </ion-row>
       <ion-row>
@@ -66,7 +68,7 @@
         <ion-col>
           <div id="empresa">
             <!--<ion-icon name="gift-outline" (click)="verOfertas()" ></ion-icon>-->
-            <img [src]="inicio?.logoempresa | imagen" (click)="verOfertas()" >
+            <img  src="../assets/inicio/deliver.png" (click)="verOfertas()" >
           </div>
         </ion-col>
         <ion-col>
@@ -74,13 +76,13 @@
       </ion-row>
       <ion-row id="row3">
         <ion-col id="three">
-          <img [src]="inicio?.rubros[3]?.imagen  | imagen"  (click)="openRubro(inicio?.rubros[3])">
+          <img  src="../assets/inicio/farmacia.png"  (click)="openRubro(3)">
         </ion-col>
         <ion-col>
-          <img [src]="inicio?.rubros[4]?.imagen  | imagen"  (click)="openRubro(inicio?.rubros[4])">
+          <img  src="../assets/inicio/market.png"  (click)="openRubro(4)">
         </ion-col>
         <ion-col id="four">
-          <img [src]="inicio?.rubros[5]?.imagen  | imagen"  (click)="openRubro(inicio?.rubros[5])">
+          <img  src="../assets/inicio/boutique.png" (click)="openRubro(5)">
         </ion-col>
       </ion-row>
   </ion-grid>

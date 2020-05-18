@@ -16,13 +16,16 @@ import { RubroTiendasPageModule } from '../rubro-tiendas/rubro-tiendas.module';
 import { RubroTiendasPage } from '../rubro-tiendas/rubro-tiendas.page';
 import { TiendaDetallePage } from '../tienda-detalle/tienda-detalle.page';
 import { TiendaDetallePageModule } from '../tienda-detalle/tienda-detalle.module';
+import { CarritoPage } from '../carrito/carrito.page';
+import { CarritoPageModule } from '../carrito/carrito.module';
 
 @NgModule({
   entryComponents:[
     ProductoPage,
     CategoriasPage,
     RubroTiendasPage,
-    TiendaDetallePage
+    TiendaDetallePage,
+    CarritoPage
    ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import { TiendaDetallePageModule } from '../tienda-detalle/tienda-detalle.module
     ProductoPageModule,
     CategoriasPageModule,
     RubroTiendasPageModule,
-    TiendaDetallePageModule
+    TiendaDetallePageModule,
+    CarritoPageModule
   ],
   declarations: [InicioPage]
 })

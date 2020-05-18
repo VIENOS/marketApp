@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import { InicioService } from 'src/app/services/inicio/inicio.service';
-import { IonList, ModalController } from '@ionic/angular';
+import { IonList, ModalController, AlertController } from '@ionic/angular';
 import { PedidoPage } from '../pedido/pedido.page';
 
 @Component({
@@ -17,9 +17,12 @@ export class CarritoPage implements OnInit {
   cuponValido:boolean;
   tipoPago:any;
   lstTipoPago:any;
+  habilitarpago:boolean;
+  messagepago:any;
 
-  constructor(private _servcio_producto:ProductoService,private _service_inicio:InicioService, public viewCtrl: ModalController) {
+  constructor(private _servcio_producto:ProductoService,private _service_inicio:InicioService, public viewCtrl: ModalController,public alertController: AlertController) {
     this.cuponValido=false;
+    this.habilitarpago=false;
     
    }
 
@@ -85,7 +88,59 @@ await myModal.present();
 }
 
 OnChange($event){
-  console.log("CAMIO TIPO")
+    if(this.tipoPago!==undefined && this.tipoPago.id===0){
+      this.habilitarpago = false;
+
+      return;
+    }
+
+    if(this.tipoPago.id===1){
+         this.messagepago="Debe asegurarse tener el dinero exacto por medidas de precaucion...."
+    }else{
+      if(this.tipoPago.id===2){
+        this.messagepago="el motorizado llevara un aparato para pasar la tarjet...."
+
+
+      }
+    }
+   this.presentAlertConfirm();
+}
+
+
+async presentAlertConfirm() {
+  const alert = await this.alertController.create({
+    mode:'ios',
+    header: 'Aviso',
+    message: this.messagepago,
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Aceptar',
+        handler: () => {
+          console.log('Confirm Okay');
+          console.log("CAMIO TIPO")
+          this.habilitarpago = this.tipoPago!=undefined && this.tipoPago.id !=0 ? true : false; 
+          console.log("HABILITADO = "+this.habilitarpago)
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+
+openPolitica(){
+  this.presentAlertConfirm();
+}
+
+close(){
+  this.viewCtrl.dismiss();
 }
 
 }

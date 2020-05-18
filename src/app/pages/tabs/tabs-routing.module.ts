@@ -21,8 +21,8 @@ const routes: Routes = [
         loadChildren: () => import('../contactos/contactos.module').then( m => m.ContactosPageModule)
       },
       {
-        path: 'carrito',
-        loadChildren: () => import('../carrito/carrito.module').then( m => m.CarritoPageModule)
+        path: 'recadeo',
+        loadChildren: () => import('../recadeo/recadeo.module').then( m => m.RecadeoPageModule)
       },
       {
         path: 'llamada',
