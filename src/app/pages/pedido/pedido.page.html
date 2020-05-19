@@ -57,8 +57,15 @@
               <ion-icon name="locate" ></ion-icon>
             </ion-button>
           </ion-item>
+          <span *ngIf="distancia!=undefined && distancia!=null" >
+           
+      
+            <ion-item>
+              <ion-label color="rojo"  position="stacked">Distancia en Km. de la tienda a su ubicacion</ion-label>
+              <ion-input style="color: #1f1e1e;" readonly type="text" [(ngModel)]="distancia"  > </ion-input>
+            </ion-item>
+          </span> 
     
-          
         </ion-list>
         <ion-button type="submit" color="verdino" fill="outline" expand="full"  (click)="onSaveForm()" ><ion-label color="rojo"  >Enviar</ion-label></ion-button>
       </ion-card-content>

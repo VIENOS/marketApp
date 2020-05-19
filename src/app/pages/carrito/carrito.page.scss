@@ -1,4 +1,20 @@
 ion-item{
+    #borrar{
+        margin-bottom: 30px;
+    }
+    #cantidad{
+        margin-bottom: 30px;
+    }
+    #suma{
+        margin-right: -50px;
+        margin-top: 46px;
+     
+    }
+    #resta{
+       // margin-right: 18px;
+       margin-top: 46px;
+      
+    }
     ion-label{
         h6{
             color: #fb941b;
@@ -54,7 +70,7 @@ ion-title.ios.title-default.hydrated{
 
 .md ion-label{
     margin-top: 0px;
-    margin-bottom: 25px;
+    //margin-bottom: 25px;
     h5{
         font-size: 12px;
     }
@@ -83,16 +99,27 @@ ion-title.ios.title-default.hydrated{
             }
             ion-row{
                 margin-top: 4px;
+                font-size: 11px;
+                ion-label{
+               
+                    margin-bottom: 0px;
+                    margin-top: -5px;
+                    font-weight: bold;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+    #monto-total{
+        margin-top: 4px;
                 font-size: 13px;
                 ion-label{
                
                     margin-bottom: 0px;
                     margin-top: -5px;
                     font-weight: bold;
-                    font-size: 18px;
+                    font-size: 24px;
                 }
-            }
-        }
     }
 }
 
@@ -107,15 +134,26 @@ ion-title.ios.title-default.hydrated{
             ion-row{
                 //font-size: 12px;
                 margin-top: 4px;
-                font-size: 13px;
+                font-size: 11px;
                 ion-label{
-                    font-size: 24px;
+                    font-size: 15px;
                     margin-bottom: 0px;
                     margin-top: -5px;
                     font-weight: bold;
                 }
             }
         }
+    }
+    #monto-total{
+        margin-top: 4px;
+                font-size: 13px;
+                ion-label{
+               
+                    margin-bottom: 0px;
+                    margin-top: -5px;
+                    font-weight: bold;
+                    font-size: 24px;
+                }
     }
 }
 
@@ -158,3 +196,8 @@ ion-card{
 ion-content {
     --background: url('/assets/imgs/fondo.jpg') 0 0/100% 100% no-repeat;
 }*/
+
+
+.ion-color.ion-color-redtrasnparente.ios.button.button-block.button-small.button-outline.ion-activatable.ion-focusable.hydrated{
+    margin-right: -0.015px;
+}

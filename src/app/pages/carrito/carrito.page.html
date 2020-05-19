@@ -25,16 +25,33 @@
     <ion-item-sliding *ngFor="let item of lstproduct" >
       <ion-item>
         <ion-thumbnail slot="start">
-          <ion-img [src]="item.imagen | imagen"></ion-img>
+          <ion-img [src]="item.producto.imagen | imagen"></ion-img>
         </ion-thumbnail>
         <ion-label>
-          <h2>{{item.nombre}}</h2>
-          <h6>S/.{{item.precio | number: '.2'}} </h6>
+          <h2>{{item.producto.nombre}}</h2>
+          <div *ngIf="item.producto.oferta>0 == true else blockeif">
+            <h6 >S/.{{item.producto.oferta | number: '.2'}}
+       
+            </h6>
+            <del > <h6 style="color:#9d9d9d;font-weight: bold;">S/.{{item.producto.precio | number: '.2'}} </h6></del>
+          </div>
+         
+          <ng-template #blockeif>
+               <h6>S/.{{item.producto.precio | number: '.2'}}
+               
+              </h6>
+          </ng-template>
         </ion-label> 
-        <ion-button slot="end" expand="block"  size="small" color="redtrasnparente" >
-          <ion-input id="contador" mode="md" name="contador" #contador type="number"  value="1" ></ion-input>
+        <ion-button  mode="ios" id="resta" slot="end"   fill="outline"  (click)="restarCantidad(item.producto.id)"  expand="block"  size="small" color="redtrasnparente" >
+          <ion-icon name="remove-circle-outline"></ion-icon>
         </ion-button>
-        <ion-button  slot="end" expand="block"  color="rojo" (click)="eliminarProducto(item)">
+        <ion-button   mode="ios" id="suma" slot="end"   fill="outline" (click)="sumarCantidad(item.producto.id)"  expand="block"  size="small" color="redtrasnparente" >
+           <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-button   slot="end"  expand="block"  size="small" id="cantidad" color="empresa">
+          <ion-input   mode="md" id="contador" name="contador" readonly [(ngModel)]="item.cantidad"  #contador type="number"  ></ion-input>
+        </ion-button>
+        <ion-button  slot="end" id="borrar" expand="block"  color="rojo" (click)="eliminarProducto(item)">
           <ion-icon slot="icon-only"  name="trash-sharp"></ion-icon>
         </ion-button>
       </ion-item>
@@ -70,7 +87,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="5">
-        <ion-row >
+        <ion-row>
             Total pedido
         </ion-row> 
         <ion-row>
@@ -86,7 +103,14 @@
           S/.3.50
         </ion-label>
       </ion-row> 
-  
+      <ion-row  id="monto-total" >
+        Monto Total 
+      </ion-row> 
+      <ion-row id="monto-total">
+        <ion-label>
+          S/.1,078.5‬
+        </ion-label>
+      </ion-row> 
       </ion-col>
       <ion-col size="7">
         <ion-row>

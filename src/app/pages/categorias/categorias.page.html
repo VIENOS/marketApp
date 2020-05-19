@@ -104,29 +104,44 @@
           <ion-label>{{item.nombre}}</ion-label>
         </ion-segment-button>
       </ion-segment>
+
     
       <ion-list #list>
         <ion-item-sliding *ngFor="let item of lstProductos" >
           <ion-item>
             <ion-thumbnail slot="start">
-              <ion-img [src]="item.imagen | imagen"  (click)="openProducto(item)"></ion-img>
+              <ion-img [src]="item.producto.imagen | imagen"  (click)="openProducto(item)"></ion-img>
             </ion-thumbnail>
             <ion-label (click)="openProducto(item)">
-              <h2>{{item.nombre}}</h2>
-              <div *ngIf="item.oferta>0 == true else blockeif">
-                <h6 >S/.{{item.oferta | number: '.2'}} </h6>
-                <del > <h6 style="color:#9d9d9d;font-weight: bold;">S/.{{item.precio | number: '.2'}} </h6></del>
+              <h2>{{item.producto.nombre}} </h2>
+              <div *ngIf="item.producto.oferta>0 == true else blockeif">
+                <h6 >S/.{{item.producto.oferta | number: '.2'}}
+           
+                </h6>
+                <del > <h6 style="color:#9d9d9d;font-weight: bold;">S/.{{item.producto.precio | number: '.2'}} </h6></del>
               </div>
              
               <ng-template #blockeif>
-                   <h6>S/.{{item.precio | number: '.2'}} </h6>
+                   <h6>S/.{{item.producto.precio | number: '.2'}}
+                   
+                  </h6>
               </ng-template>
+              
             </ion-label >
-            <ion-button slot="end" expand="block"  size="small" color="redtrasnparente" >
-              <ion-input id="contador" name="contador" #contador type="number"  value="1" ></ion-input>
+            
+        
+            <ion-button  mode="ios" id="resta" slot="end"   fill="outline"  (click)="restarCantidad(item.producto.id)"  expand="block"  size="small" color="redtrasnparente" >
+              <ion-icon name="remove-circle-outline"></ion-icon>
             </ion-button>
-            <ion-button slot="end" expand="block"  size="small" color="redtrasnparente" (click)="addCarrito(contador.value)" >
+            <ion-button   mode="ios" id="suma" slot="end"   fill="outline" (click)="sumarCantidad(item.producto.id)"  expand="block"  size="small" color="redtrasnparente" >
+               <ion-icon name="add-circle-outline"></ion-icon>
+            </ion-button>
+            <ion-button   slot="end"  expand="block"  size="small" id="cantidad" color="empresa">
+              <ion-input mode="md" id="contador" name="contador" readonly [(ngModel)]="item.cantidad"  #contador type="number"  ></ion-input>
+            </ion-button>
+            <ion-button slot="end" id="carrito" expand="block"  size="small" color="redtrasnparente" (click)="addCarrito(contador.value)" >
               <ion-icon name="cart-outline"></ion-icon>
+
             </ion-button>
           </ion-item>
         </ion-item-sliding>

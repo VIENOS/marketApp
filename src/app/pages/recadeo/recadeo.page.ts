@@ -30,11 +30,12 @@ export class RecadeoPage implements OnInit {
 
   abrirMapa(){
     console.log("PETICION DE GEOLOCALIZACION")
-
+   
 
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       // resp.coords.longitude
+      this.distancia =null;
       const coords = resp.coords.latitude + "," + resp.coords.longitude;
       console.log("COORDEANADAS GPS ="+coords)
       //this.ubicacionMsg ="Ubicacion obtenida";

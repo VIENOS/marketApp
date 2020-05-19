@@ -1,9 +1,10 @@
 [
   {
     "id": 1,
-    "nombre": "Restaurant LoCelso",
+    "nombre": "Restaurant 'Juan Camilo'",
     "direccion": "Av. la marina 549",
     "imagen": "tienda1.jpg",
+    "imagenlogo": "logtienda.jpg",
  "horario": [
     {
       "d": "Lunes",
@@ -27,6 +28,7 @@
     "nombre": "Restaurant Giovanni",
     "direccion": "Av. la marina 549",
     "imagen": "tienda2.jpg",
+    "imagenlogo": "kfc.png",
  "horario": [
     {
       "d": "Lunes",
@@ -50,6 +52,7 @@
     "nombre": "Restaurant Pablo",
     "direccion": "Av. la marina 549",
     "imagen": "tienda3.jpg",
+    "imagenlogo": "logtienda.jpg",
  "horario": [
     {
       "d": "Lunes",

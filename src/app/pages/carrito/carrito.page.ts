@@ -3,6 +3,7 @@ import { ProductoService } from 'src/app/services/producto/producto.service';
 import { InicioService } from 'src/app/services/inicio/inicio.service';
 import { IonList, ModalController, AlertController } from '@ionic/angular';
 import { PedidoPage } from '../pedido/pedido.page';
+import { ProductoCont } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-carrito',
@@ -11,7 +12,7 @@ import { PedidoPage } from '../pedido/pedido.page';
 })
 export class CarritoPage implements OnInit {
   @ViewChild('list',{static: false}) list: IonList;
-  lstproduct :any;
+  lstproduct :ProductoCont[]=[];
   cupon:any;
   msgxCupon:string;
   cuponValido:boolean;
@@ -34,10 +35,23 @@ export class CarritoPage implements OnInit {
   loadList(){
     this._servcio_producto.getListProductos().subscribe(
       res=>{
-         this.lstproduct = res;
-        console.log(res);
+        console.log("POR" +JSON.stringify(res));
+        let productos = res;
+      
+         this.cargarProductosConContador(productos);
+       
      }   
     );
+  }
+
+  cargarProductosConContador(productos:any){
+    productos.forEach(p => {
+      let productoCont = new ProductoCont();
+      productoCont.cantidad = 1;
+      productoCont.producto = p;
+      this.lstproduct.push(productoCont); 
+  }); 
+  console.log(this.lstproduct);       
   }
 
   loadListPagos(){
@@ -141,6 +155,23 @@ openPolitica(){
 
 close(){
   this.viewCtrl.dismiss();
+}
+
+
+
+
+
+sumarCantidad(id:any){
+  let pos = this.lstproduct.findIndex(p=> p.producto.id === id);
+   this.lstproduct[pos].cantidad =   this.lstproduct[pos].cantidad + 1  ;
+}
+
+restarCantidad(id:any){
+  let pos = this.lstproduct.findIndex(p=> p.producto.id === id);
+  if(this.lstproduct[pos].cantidad<=1){
+    return;
+  }
+  this.lstproduct[pos].cantidad =   this.lstproduct[pos].cantidad - 1  ;
 }
 
 }

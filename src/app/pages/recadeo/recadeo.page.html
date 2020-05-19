@@ -68,6 +68,13 @@
           <ion-icon name="locate" ></ion-icon>
         </ion-button>
       </ion-item>
+     <span *ngIf="distancia!=undefined && distancia!=null" >
+      <ion-label color="rojo"  position="stacked">Distancia en Km.</ion-label>
+
+      <ion-item>
+        <ion-input style="color: #1f1e1e;" readonly type="text" [(ngModel)]="distancia"  > </ion-input>
+      </ion-item>
+    </span> 
      <!-- <ion-label color="rojo"  position="stacked">Ubicacion de llegada </ion-label>
 
     <ion-item>

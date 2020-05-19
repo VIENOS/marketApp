@@ -6,6 +6,7 @@ import { TiendaDetallePage } from '../tienda-detalle/tienda-detalle.page';
 import { ProductoPage } from '../producto/producto.page';
 import { CategoriasPage } from '../categorias/categorias.page';
 import { CarritoPage } from '../carrito/carrito.page';
+import { TiendaService } from 'src/app/services/tienda/tienda.service';
 
 @Component({
   selector: 'app-rubro-tiendas',
@@ -13,10 +14,10 @@ import { CarritoPage } from '../carrito/carrito.page';
   styleUrls: ['./rubro-tiendas.page.scss'],
 })
 export class RubroTiendasPage implements OnInit {
-
+  public lstsugeridos:any;
   public idRubroTienda:any;
-  
-  constructor(public _service_rubro_tienda:RubroTiendasService, private router:Router, public viewCtrl: ModalController,private navParams: NavParams) { 
+  public sugerido:any;
+  constructor(public _service_rubro_tienda:RubroTiendasService, private router:Router, public viewCtrl: ModalController,private navParams: NavParams,public _service_tienda:TiendaService) { 
     this.idRubroTienda = this.navParams.get('id');
     console.log("ID = "+this.idRubroTienda);
     this._service_rubro_tienda.paginax=0;
@@ -25,6 +26,7 @@ export class RubroTiendasPage implements OnInit {
   ngOnInit() {
     this._service_rubro_tienda.tiendas = [] ;
    this._service_rubro_tienda.getTienda(this.idRubroTienda);
+   this.listsugeridos();
   }
 
   siguiente_pagina(infinite){
@@ -76,4 +78,12 @@ async abrirModalCarrito(){
 }
 
 
+listsugeridos(){
+  this._service_tienda.getSugeridos().subscribe(
+      res=>{
+         this.lstsugeridos = res;
+         this.sugerido = this.lstsugeridos.length>0 ? this.lstsugeridos[0]:undefined; 
+      }
+  );
+}
 }

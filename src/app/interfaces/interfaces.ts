@@ -24,6 +24,7 @@ export interface Tienda {
   nombre: string;
   direccion: string;
   imagen: string;
+  imagenlogo:string;
   horario:Horario[];
 
 }
@@ -33,3 +34,10 @@ export interface Horario{
   o:any;
   t:any;
 }
+
+
+
+export class ProductoCont {
+  producto:Producto;
+  cantidad: number;
+ }

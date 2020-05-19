@@ -4,6 +4,7 @@
     "nombre": "Restaurant Urbina",
     "direccion": "Av. la marina 549",
     "imagen": "tienda4.jpg",
+"imagenlogo": "logtienda.jpg",
  "horario": [
     {
       "d": "Lunes",
@@ -27,6 +28,7 @@
     "nombre": "Restaurant Julio",
     "direccion": "Av. la marina 549",
     "imagen": "tienda5.jpg",
+"imagenlogo": "logtienda.jpg",
  "horario": [
     {
       "d": "Lunes",
@@ -50,6 +52,7 @@
     "nombre": "Restaurant Pablo",
     "direccion": "Av. la marina 549",
     "imagen": "",
+"imagenlogo": "logtienda.jpg",
  "horario": [
     {
       "d": "Lunes",

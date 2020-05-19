@@ -85,13 +85,34 @@ ion-card{
     height: auto;
   }
 
+
+
   ion-item{
+    #carrito{
+        margin-bottom: 30px;
+    }
+    #cantidad{
+        margin-bottom: 30px;
+    }
+    #suma{
+        margin-right: -50px;
+        margin-top: 46px;
+     
+    }
+    #resta{
+       // margin-right: 18px;
+       margin-top: 46px;
+      
+    }
     ion-label{
         h6{
             color: #fb941b;
             font-weight: bold;
             span{
                 color: gray;
+                input{
+                   // border: 20px;
+                }
             }
         }
     }
@@ -100,6 +121,7 @@ ion-card{
         margin-left: 3px;
         ion-input{
             margin-left: -6px;
+            
         }
     }
 }
@@ -133,3 +155,8 @@ ion-header{
 ion-content {
     --background: url('/assets/imgs/fondo.jpg') 0 0/100% 100% no-repeat;
 }*/
+
+
+.ion-color.ion-color-redtrasnparente.ios.button.button-block.button-small.button-outline.ion-activatable.ion-focusable.hydrated{
+    margin-right: -0.015px;
+}

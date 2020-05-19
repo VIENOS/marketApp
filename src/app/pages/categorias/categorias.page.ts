@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Categoria, Producto, Categorias } from 'src/app/interfaces/interfaces';
+import { Categoria, Producto, Categorias, ProductoCont } from 'src/app/interfaces/interfaces';
 import { InicioService } from 'src/app/services/inicio/inicio.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
@@ -16,7 +16,7 @@ export class CategoriasPage implements OnInit {
   public recomendados:any;
   public lstCategoria: Categorias[]=[];
   public categoriaSelect:Categorias;
-  public lstProductos: Producto[]=[];
+  public lstProductos: ProductoCont[]=[];
   public idCategoria:number;
   public idTienda:number;
   public nomTienda:any;
@@ -69,10 +69,35 @@ export class CategoriasPage implements OnInit {
   loadList(){
     this._service_inicio.getLista().subscribe(
       res=>{
-        this.lstProductos= res[0].producto;
-        console.log(res);
+        let productos= res[0].producto;
+        //console.log(res);
+        this.cargarProductosConContador(productos);
      }   
     );
+  }
+
+  cargarProductosConContador(productos:any){
+    productos.forEach(p => {
+      let productoCont = new ProductoCont();
+      productoCont.cantidad = 1;
+      productoCont.producto = p;
+      this.lstProductos.push(productoCont); 
+  }); 
+  console.log(this.lstProductos);       
+  }
+  
+
+  sumarCantidad(id:any){
+    let pos = this.lstProductos.findIndex(p=> p.producto.id === id);
+     this.lstProductos[pos].cantidad =   this.lstProductos[pos].cantidad + 1  ;
+  }
+
+  restarCantidad(id:any){
+    let pos = this.lstProductos.findIndex(p=> p.producto.id === id);
+    if(this.lstProductos[pos].cantidad<=1){
+      return;
+    }
+    this.lstProductos[pos].cantidad =   this.lstProductos[pos].cantidad - 1  ;
   }
 
   find(ev: any) {
