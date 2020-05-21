@@ -16,7 +16,14 @@
         {{producto?.descripcion}}
       </ion-card-content>
       <ion-card-subtitle>
-        <h6 class="card-subtitle"> S/.{{producto?.precio | number: '.2'}}</h6>
+        <div *ngIf="producto?.oferta>0 == true else blockeif">
+          <h6 class="card-subtitle">S/.{{producto?.oferta | number: '.2'}} </h6>
+          <del > <h6 style="color:#9d9d9d;font-weight: bold;">S/.{{producto?.precio | number: '.2'}} </h6></del>
+        </div>
+        <ng-template #blockeif>
+          <h6 class="card-subtitle">S/.{{producto?.precio | number: '.2'}}  </h6>
+         </ng-template>
+       
       </ion-card-subtitle>
       <ion-button fill="outline" expand="block"  color="verdino">
             <ion-icon color="redtrasnparente" slot="end" name="cart-outline"></ion-icon>

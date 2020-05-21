@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, LoadingController } from '@ionic/angular';
 import { RecadeoService } from 'src/app/services/recadeo/recadeo.service';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 declare var google;
 @Component({
   selector: 'app-mapa-tienda',
@@ -15,19 +16,23 @@ export class MapaTiendaPage implements OnInit {
   marker:any;
   latitud:any;
   longitud:any;
+  mapEle:HTMLElement;
 
 
- constructor(public viewCtrl: ModalController, private navParams: NavParams, public _recadeoService: RecadeoService) {
+ constructor(
+  public geo: Geolocation,
+  private loadCtrl:LoadingController,public viewCtrl: ModalController, private navParams: NavParams, public _recadeoService: RecadeoService) {
    
 }
 
 ngOnInit() {
  //para cargar el mapa 
+ this.map=null;
  this.loadMap(this.navParams.get('latitud'), this.navParams.get('longitud'));
 
 
- this.metodo2();
 }
+
 
 calcularDistancia(myLatlng, myLatlng2) {
  let distance = google.maps.geometry.spherical.computeDistanceBetween(myLatlng, myLatlng2);
@@ -38,19 +43,59 @@ calcularDistancia(myLatlng, myLatlng2) {
 
 }
 
-loadMap(latitud: any, longitud: any) {
- // create a new map by passing HTMLElement
- const mapEle: HTMLElement = document.getElementById('map_canvas');
- // create LatLng object
- const myLatLng = { lat: latitud, lng: longitud };
- // create map
- this.map = new google.maps.Map(mapEle, {
-   center: myLatLng,
-   zoom: 11
- });
- //metodo para mostar el mapa
- mapEle.classList.add('show-map');
+ loadMap(latitud: any, longitud: any) {
 
+ // create a new map by passing HTMLElement
+ this.mapEle = document.getElementById('mapita');
+ // create LatLng object
+ let myLatLng = { lat: -10.0000000, lng: -76.0000000 };
+ // create map
+ this.map = new google.maps.Map( this.mapEle , {
+   center: myLatLng,
+   zoom: 5
+ });
+
+ /*google.maps.event.addListenerOnce(this.map, 'idle', () => {
+  
+// mapEle.classList.add('show-map');
+});*/
+//this.getPosition();
+
+ this.metodo2();
+
+}
+
+async getPosition() {
+  const loading =  await this.loadCtrl.create();
+  loading.present();
+  this.geo.getCurrentPosition().then(resp => {
+    console.log("ta bien")
+      this.setCenter(resp);
+      loading.dismiss(); 
+  }).catch((error) => {
+    console.log("ERROR CAHTC")
+    let mapElee: HTMLElement = document.getElementById('mapita');
+    let myLatLngs = { lat: -10.0000000, lng: -76.0000000 };
+    this.map = new google.maps.Map(mapElee, {
+        center: myLatLngs,
+        zoom: 12
+    });
+    loading.dismiss();
+  })
+}
+
+setCenter(position: Geoposition) {
+  let myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
+  //this.map.setCenter(myLatLng);
+  this.map = new google.maps.Map(this.mapEle , {
+    center: myLatLng,
+    zoom: 12
+  });
+  google.maps.event.addListenerOnce(this.map, 'idle', () => {
+    this.mapEle .classList.add('show-map')
+    //  this.map.classList.add('show-map');
+  });
+  this.metodo2();
 }
 
 addMarkerInicio(posicion: any, titulo: any) {
@@ -111,7 +156,9 @@ metodo2() {
  });
 }
 
-
+ubicacionRango(){
+  this.getPosition();
+}
 
 
 

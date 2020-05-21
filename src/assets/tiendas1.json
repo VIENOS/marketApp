@@ -5,6 +5,16 @@
     "direccion": "Av. la marina 549",
     "imagen": "tienda4.jpg",
 "imagenlogo": "logtienda.jpg",
+"zona" : {
+      "id": 1,
+      "nombre" :"Tingo Maria"
+   },
+
+  "nomcategoria" : "restaurantes",
+  "subcategoria" :{
+     "id": 1,
+     "nombre":"Cevicheria"
+  },
  "horario": [
     {
       "d": "Lunes",
@@ -29,6 +39,16 @@
     "direccion": "Av. la marina 549",
     "imagen": "tienda5.jpg",
 "imagenlogo": "logtienda.jpg",
+"zona" : {
+      "id": 1,
+      "nombre" :"Tingo Maria"
+   },
+
+  "nomcategoria" : "restaurantes",
+  "subcategoria" :{
+     "id": 1,
+     "nombre":"Cevicheria"
+  },
  "horario": [
     {
       "d": "Lunes",
@@ -53,6 +73,16 @@
     "direccion": "Av. la marina 549",
     "imagen": "",
 "imagenlogo": "logtienda.jpg",
+"zona" : {
+      "id": 1,
+      "nombre" :"Tingo Maria"
+   },
+
+  "nomcategoria" : "restaurantes",
+  "subcategoria" :{
+     "id": 1,
+     "nombre":"Cevicheria"
+  },
  "horario": [
     {
       "d": "Lunes",

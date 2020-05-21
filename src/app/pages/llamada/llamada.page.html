@@ -1,28 +1,21 @@
-
-
 <ion-content>
     <div  id="categoriaSelect">
         <ion-header no-border >
           <ion-toolbar  color="danger">
             <ion-title>
-                Ofertas
-          
+                Ofertas        
             </ion-title> 
             <ion-buttons slot="end" >
-              <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="openCarrito()" >
-                <ion-badge mode="ios" slot="end" color="verdino" >4</ion-badge>
+              <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="openCarrito()" *ngIf="service_carrito.long_carrito!=undefined">
+                <ion-badge mode="ios" slot="end" color="verdino"  >{{service_carrito.long_carrito}} </ion-badge>
                 <ion-icon name="cart-outline"></ion-icon>
               </ion-button>
              <!--<ion-back-button text="" defaulHref="/"></ion-back-button>--> 
             </ion-buttons>
           </ion-toolbar>
-        
         </ion-header>
-    
-        </div>
-
-    
-
+    </div>
+      
     <ion-row *ngFor="let pares of _service.lstofertas | pares">
         <ion-col size="6" *ngFor="let producto of pares">
             
@@ -42,12 +35,11 @@
                        <h6  class="card-subtitle" >S/.{{producto.precio | number: '.2'}} </h6>
                   </ng-template>
               </ion-card-subtitle>
-              <ion-button fill="outline" expand="block"  size="small" color="redtrasnparente">
+              <ion-button fill="outline" expand="block"  size="small" color="redtrasnparente" (click)="guardarCarrito(producto)" >
                     <ion-icon name="cart-outline"></ion-icon>
               </ion-button>
             </ion-card-header>
           </ion-card>
-    
         </ion-col>
       </ion-row>
 

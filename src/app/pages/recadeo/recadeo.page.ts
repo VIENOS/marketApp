@@ -5,6 +5,7 @@ import { MapaPage } from '../mapa/mapa.page';
 import { CarritoPage } from '../carrito/carrito.page';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
 
 @Component({
   selector: 'app-recadeo',
@@ -18,7 +19,10 @@ export class RecadeoPage implements OnInit {
   numrecadeos:any;
   distancia:any;
 
-  constructor( private geolocation: Geolocation,public viewCtrl: ModalController,public alertController: AlertController) { 
+  constructor( private geolocation: Geolocation,public viewCtrl: ModalController,public alertController: AlertController 
+    , public service_carrito:CarritoService) {
+  
+    this.service_carrito.longCarrito();
     this.ubicacionMsg ="Click en el boton gps"
 
   }
@@ -30,9 +34,10 @@ export class RecadeoPage implements OnInit {
 
   abrirMapa(){
     console.log("PETICION DE GEOLOCALIZACION")
-   
-
-    this.geolocation.getCurrentPosition().then((resp) => {
+    let lat:any = -10.0000000;
+    let long:any = -76.0000000;
+    this.abrirModalMapaGoogle(lat,long);
+   /* this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       // resp.coords.longitude
       this.distancia =null;
@@ -44,8 +49,8 @@ export class RecadeoPage implements OnInit {
      }).catch((error) => {
        console.log('Error getting location', error);
        this.ubicacionMsg ="Active su GPS"
-     });
-
+     });*/
+     -76.0000000
    
   }
 
@@ -109,7 +114,7 @@ guardarRecadeo(){
 }
 
 
-
+/*
 async abrirModalMapaGoogle(latitud,longitud){
 const myModal = await this.viewCtrl.create({
   component:MapaPage,
@@ -124,9 +129,23 @@ if(data["distanciaKm"]!=null && data["distanciaKm"]!=undefined){
     this.ubicacionMsg ="Ubicaciones obtenidas";
 }
 
-}
+}*/
 
-
+async abrirModalMapaGoogle(latitud,longitud){
+  const myModal = await this.viewCtrl.create({
+    component:MapaPage,
+    componentProps:{latitud:latitud,longitud:longitud}
+  });
+  await myModal.present();
+  const {data} = await myModal.onDidDismiss();
+  //console.log("DATA = "+JSON.stringify(data))
+  if(data["distanciaKm"]!=null && data["distanciaKm"]!=undefined){
+      this.distancia = data["distanciaKm"];
+      console.log("DISTANCIAA = "+this.distancia);
+      this.ubicacionMsg ="Ubicaciones obtenidas";
+  }
+  
+  }
 
 openCarrito(){
   this.abrirModalCarrito();

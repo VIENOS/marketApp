@@ -7,6 +7,7 @@ import { ProductoPage } from '../producto/producto.page';
 import { CategoriasPage } from '../categorias/categorias.page';
 import { CarritoPage } from '../carrito/carrito.page';
 import { TiendaService } from 'src/app/services/tienda/tienda.service';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
 
 @Component({
   selector: 'app-rubro-tiendas',
@@ -14,23 +15,62 @@ import { TiendaService } from 'src/app/services/tienda/tienda.service';
   styleUrls: ['./rubro-tiendas.page.scss'],
 })
 export class RubroTiendasPage implements OnInit {
-  public lstsugeridos:any;
+  public lstsubcategorias:any;
   public idRubroTienda:any;
-  public sugerido:any;
-  constructor(public _service_rubro_tienda:RubroTiendasService, private router:Router, public viewCtrl: ModalController,private navParams: NavParams,public _service_tienda:TiendaService) { 
+  public subcategoria:any;
+  public idzona:any;
+  public verFiltros:any;
+
+  constructor(public _service_rubro_tienda:RubroTiendasService, private router:Router, public viewCtrl: ModalController,private navParams: NavParams,
+    public _service_tienda:TiendaService,  public service_carrito:CarritoService) {
+  
+      this.service_carrito.longCarrito();
     this.idRubroTienda = this.navParams.get('id');
-    console.log("ID = "+this.idRubroTienda);
+    this.idzona = this.navParams.get('idzona');
+    console.log("ID NAME = "+this.idRubroTienda);
     this._service_rubro_tienda.paginax=0;
+    this.verFiltros=true;
+    
   }
 
   ngOnInit() {
+    this.listSubCategorias(this.idzona,this.idRubroTienda);
+ 
+   
+  }
+
+  listSubCategorias(id:any,idzona:any){
+    this._service_tienda.getSubCategorias(id,idzona).subscribe(
+        res=>{
+           this.lstsubcategorias = res;
+           if(this.lstsubcategorias.length>0){
+              this.subcategoria = this.lstsubcategorias[0];  
+              console.log("zona elegida"+JSON.stringify(this.subcategoria));  
+              this.cargarTiendas(this.idzona.id,this.idRubroTienda,this.subcategoria.id);
+           }else{
+             console.log("no hay subcategorias")
+             this.subcategoria=0;
+             this.cargarTiendas(this.idzona,this.idRubroTienda,this.subcategoria.id);
+           }      
+        }
+    );
+  }
+
+  cargarTiendas(idzona:any,idrubro:any,idsubcategoria:any){
     this._service_rubro_tienda.tiendas = [] ;
-   this._service_rubro_tienda.getTienda(this.idRubroTienda);
-   this.listsugeridos();
+    this._service_rubro_tienda.getTienda(idzona,idrubro,idsubcategoria);
+  }
+
+  cambioSubCategorias(item:any){
+    this.subcategoria =item;
+    this._service_rubro_tienda.paginax=0;
+    console.log("zona elegida"+JSON.stringify(this.subcategoria));
+    this.cargarTiendas(this.idzona,this.idRubroTienda,this.subcategoria.id);
+    
   }
 
   siguiente_pagina(infinite){
-    this._service_rubro_tienda.getTienda(this.idRubroTienda).then(()=> {
+    this._service_rubro_tienda.getTienda(this.idzona,this.idRubroTienda, this.subcategoria.id).then(()=> {
       infinite.target.complete();
     });
   }
@@ -38,27 +78,43 @@ export class RubroTiendasPage implements OnInit {
 
   openTienda(tienda:any){
     console.log("TIENDA = "+tienda.id)
-    this.abrirModalProducto(tienda.id);
+    this.idzona = tienda.zona.id;
+    this.idRubroTienda= tienda.nomcategoria;
+    this.subcategoria= tienda.subcategoria;
+    this.abrirModalProducto(this.idzona,this.idRubroTienda,this.subcategoria.id,tienda.id);
   }
 
 
-  async abrirModalProducto(ids){
+  async abrirModalProducto(idzona,idRubroTienda,idsubcategoria,idtienda){
     const myModal = await this.viewCtrl.create({
       component:CategoriasPage,
-      componentProps:{id:ids}});
+      componentProps:{idzona:idzona,idRubroTienda:idRubroTienda,idsubcategoria:idsubcategoria,idtienda:idtienda}});
     await myModal.present();
   }
 
 
+  cargarTiendasSearch(idzona:any,idrubro:any,term:any){
+    this._service_rubro_tienda.paginax=0;
+    this._service_rubro_tienda.tiendas = [] ;
+    this._service_rubro_tienda.getTiendaSearch(idzona,idrubro,term);
+  }
 
-  find(ev: any) {
-    let valor = ev.target.value;
+find(ev: any) {
+    this.verFiltros=false;
+     let valor = ev.target.value;
      console.log(valor);
+     this.cargarTiendasSearch(this.idzona,this.idRubroTienda,valor);
+     if(valor===""){
+       this.cancelFind();
+       this.verFiltros=true;
+     }
  }
 
  cancelFind(){
-  this._service_rubro_tienda.tiendas = [];
-  this._service_rubro_tienda.getTienda(this.idRubroTienda);
+   console.log("CANCELADO")
+   this._service_rubro_tienda.paginax=0;
+   this._service_rubro_tienda.tiendas = [];
+   this._service_rubro_tienda.getTienda(this.idzona,this.idRubroTienda, this.subcategoria.id);
 }
 
 close(){
@@ -78,12 +134,5 @@ async abrirModalCarrito(){
 }
 
 
-listsugeridos(){
-  this._service_tienda.getSugeridos().subscribe(
-      res=>{
-         this.lstsugeridos = res;
-         this.sugerido = this.lstsugeridos.length>0 ? this.lstsugeridos[0]:undefined; 
-      }
-  );
-}
+
 }

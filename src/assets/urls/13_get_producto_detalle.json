@@ -1,0 +1,12 @@
+{
+  "id": 3,
+  "nombre": "zapatilla negra nike air",
+  "precio": 215,
+  "descripcion": "zapatilla modelo air, de la marca nike, fabricado en Vietnam ",
+  "imagen": "ensaladaarequipeña.jpg",
+  "oferta" : 200,
+  "categoria": {
+      "id": 1,
+      "nombre": "postres"
+    }
+}

@@ -1,0 +1,50 @@
+{
+ "cupon" : "ds4545",
+ "carrito": [
+		 {
+		  "producto" : {
+		    "id": 1,
+		    "nombre": "Ensalada Arequipeña",
+		    "precio": 215,
+		    "descripcion": "zapatilla baja de la marca nike",
+		    "imagen": "ensaladaarequipeña.jpg",
+		    "oferta" : 200,
+		    "categoria": {
+		      "id": 1,
+		      "nombre": "postres"
+		     }
+		   },
+		   "cantidad":1
+		  },
+		  {
+		  "producto" : {
+		    "id": 1,
+		    "nombre": "Ensalada Arequipeña",
+		    "precio": 215,
+		    "descripcion": "zapatilla baja de la marca nike",
+		    "imagen": "ensaladaarequipeña.jpg",
+		    "oferta" : 200,
+		    "categoria": {
+		      "id": 1,
+		      "nombre": "postres"
+		     }
+		   },
+		   "cantidad":2
+		  },
+		  {
+		  "producto" : {
+		    "id": 1,
+		    "nombre": "Ensalada Arequipeña",
+		    "precio": 215,
+		    "descripcion": "zapatilla baja de la marca nike",
+		    "imagen": "ensaladaarequipeña.jpg",
+		    "oferta" : 200,
+		    "categoria": {
+		      "id": 1,
+		      "nombre": "postres"
+		     }
+		   },
+		   "cantidad":1
+		  }
+		]	
+}

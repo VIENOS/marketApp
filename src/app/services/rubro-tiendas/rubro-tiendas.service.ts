@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Tienda } from '../../interfaces/interfaces';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,9 @@ export class RubroTiendasService {
   public tiendas: Tienda[] = [];
   constructor(private http: HttpClient) { }
 
-  getTienda(idrubro:any){
+  getTienda(idzona:any,idrubro:any,idsubcategoria:any){
     let promesa = new Promise( (resolve, reject) => {
-      //let url = environment.urlServicios+"tiendas"+ this.pagina;
+      //let url = environment.urlServicios+"tiendas/"+idzona+"/"+idrubro+"/"+idsubcategoria+"/"+ this.paginax;
       let url = "assets/tiendas"+ this.paginax+".json";
       this.http.get(url).subscribe( 
           data => { 
@@ -34,10 +35,10 @@ export class RubroTiendasService {
   }
 
 
-  getTiendaSearch(idrubro:any,termsearch:any){
+  getTiendaSearch(idzona:any,idrubro:any,termsearch:any){
     console.log("COMENZAMOS A BUSCAR")
     let promesa = new Promise( (resolve, reject) => {
-      //let url = environment.urlServicios+"tiendas"+ this.pagina;
+         //let url = environment.urlServicios+"tiendas/"+idzona+"/"+idrubro+"/"+termsearch+"/"+ this.paginax;
       let url = "assets/tiendas"+ this.paginax+".json";
       this.http.get(url).subscribe( 
           data => { 

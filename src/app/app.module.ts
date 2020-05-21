@@ -12,6 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {Geolocation} from  '@ionic-native/geolocation/ngx';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import {Geolocation} from  '@ionic-native/geolocation/ngx';
     IonicModule.forRoot(), 
     AppRoutingModule,
     HttpClientModule,
+    IonicStorageModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 ],
   providers: [

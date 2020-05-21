@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "nombre": "Restaurant 'Juan Camilo'",
+    "direccion": "Av. la marina 549",
+    "imagen": "tienda1.jpg",
+    "imagenlogo": "logtienda.jpg",
+    "horario": [
+    {
+      "d": "Lunes",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Miercoles",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Sabado",
+      "o": "9:00",
+      "t": "10:00"
+    }
+  ]
+  },
+  {
+    "id": 2,
+    "nombre": "Restaurant Giovanni",
+    "direccion": "Av. la marina 549",
+    "imagen": "tienda2.jpg",
+    "imagenlogo": "kfc.png",
+    "horario": [
+    {
+      "d": "Lunes",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Miercoles",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Sabado",
+      "o": "9:00",
+      "t": "10:00"
+    }
+  ]
+  },
+  {
+    "id": 3,
+    "nombre": "Restaurant Pablo",
+    "direccion": "Av. la marina 549",
+    "imagen": "tienda3.jpg",
+    "imagenlogo": "logtienda.jpg",
+    "horario": [
+    {
+      "d": "Lunes",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Miercoles",
+      "o": "9:00",
+      "t": "10:00"
+    },
+    {
+      "d": "Sabado",
+      "o": "9:00",
+      "t": "10:00"
+    }
+  ]
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "pedido":{
+    "id": 1,
+    "nombre": "pedido - compra",
+    "nombreMotorizado" : "Juan Carlos"
+  },
+  "valoracion" : 5,
+  "comentario" : "llego justo a tiempo.." 
+}

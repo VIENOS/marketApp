@@ -5,7 +5,11 @@
     "precio": 215,
     "descripcion": "zapatilla baja de la marca nike",
     "imagen": "ensaladaarequipeña.jpg",
-    "oferta" : 200
+    "oferta" : 200,
+    "categoria": {
+      "id": 1,
+      "nombre": "postres"
+    }
   },
   {
     "id": 2,
@@ -13,7 +17,11 @@
     "precio": 215,
     "descripcion": "zapatilla baja de la marca ad",
     "imagen": "ensaladacesar.jpg",
-    "oferta" : 0
+    "oferta" : 0,
+    "categoria": {
+      "id": 1,
+      "nombre": "postres"
+    }
   },
   {
     "id": 3,
@@ -21,7 +29,11 @@
     "precio": 215,
     "descripcion": "zapatilla baja de la marca nike",
     "imagen": "ensaladafrancesa.jpg",
-    "oferta" : 0
+    "oferta" : 0,
+    "categoria": {
+      "id": 1,
+      "nombre": "postres"
+    }
   },
   {
     "id": 4,
@@ -29,7 +41,11 @@
     "precio": 215,
     "descripcion": "zapatilla baja de la marca nike",
     "imagen": "ensaladaromana.jpg",
-    "oferta" : 100
+    "oferta" : 100,
+    "categoria": {
+      "id": 1,
+      "nombre": "postres"
+    }
   },
   {
     "id": 5,
@@ -37,6 +53,10 @@
     "precio": 215,
     "descripcion": "carteras",
     "imagen": "ensaladarusa.jpg",
-    "oferta" : 0
+    "oferta" : 0,
+    "categoria": {
+      "id": 1,
+      "nombre": "postres"
+    }
   }
 ]

@@ -4,6 +4,17 @@
   "direccion": "Av. la marina 549",
   "tel": "933856688",
   "imagen": "tienda2.jpg",
+  "imagenlogo" : "tienda2.jpg",
+  "zona" : {
+      "id": 1,
+      "nombre" :"Tingo Maria"
+   },
+
+  "nomcategoria" : "restaurantes",
+  "subcategoria" :{
+     "id": 1,
+     "nombre":"Cevicheria"
+  },
   "horario": [
     {
       "d": "Lunes",

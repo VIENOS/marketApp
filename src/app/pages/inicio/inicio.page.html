@@ -9,15 +9,15 @@
       >
       </ion-searchbar>
       <ion-buttons slot="end" >
-        <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="openCarrito()" >
-          <ion-badge mode="ios" slot="end" color="verdino" >4</ion-badge>
+        <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" *ngIf="service_carrito.long_carrito!=undefined" (click)="openCarrito()">
+          <ion-badge mode="ios" slot="end" color="verdino" >{{service_carrito.long_carrito}}</ion-badge>
           <ion-icon name="cart-outline"></ion-icon>
         </ion-button>
        <!--<ion-back-button text="" defaulHref="/"></ion-back-button>--> 
       </ion-buttons>
   </ion-toolbar>
-  <ion-segment  [(ngModel)]="zona"  mode="md" color="redtrasnparente" scrollable="true"  value="favorite">  
-    <ion-segment-button *ngFor="let item of lstzonas" [value]="item">
+  <ion-segment  [(ngModel)]="zona"  mode="md" color="redtrasnparente" scrollable="true"  >  
+    <ion-segment-button *ngFor="let item of lstzonas" [value]="item"  (click)="cambioZona(segment.value)" #segment name="segment">
       <ion-label>{{item.nombre}}</ion-label>
     </ion-segment-button>
   </ion-segment>
@@ -52,13 +52,13 @@
     <ion-grid>
       <ion-row id="row1">
         <ion-col id="one">
-          <img src="../assets/inicio/restaurante.png"  (click)="openRubro(0)">
+          <img src="../assets/inicio/restaurante.png"  (click)="openRubro('restaurantes')">
         </ion-col>
         <ion-col>
-          <img src="../assets/inicio/cafeteria.png"  (click)="openRubro(1)">
+          <img src="../assets/inicio/cafeteria.png"  (click)="openRubro('cafeterias')">
         </ion-col>
         <ion-col id="two">
-          <img  src="../assets/inicio/bar.png"  (click)="openRubro(2)">
+          <img  src="../assets/inicio/bar.png"  (click)="openRubro('bar')">
         </ion-col>
       </ion-row>
       <ion-row>
@@ -68,7 +68,7 @@
         <ion-col size="6">
           <div id="empresa">
             <!--<ion-icon name="gift-outline" (click)="verOfertas()" ></ion-icon>-->
-            <img  src="../assets/inicio/deliver.png" (click)="verOfertas()" >
+            <img  src="../assets/inicio/deliver.png" >
           </div>
         </ion-col>
         <ion-col size="3"> 
@@ -76,13 +76,13 @@
       </ion-row>
       <ion-row id="row3">
         <ion-col id="three">
-          <img  src="../assets/inicio/farmacia.png"  (click)="openRubro(3)">
+          <img  src="../assets/inicio/farmacia.png"  (click)="openRubro('farmacias')">
         </ion-col>
         <ion-col>
-          <img  src="../assets/inicio/market.png"  (click)="openRubro(4)">
+          <img  src="../assets/inicio/market.png"  (click)="openRubro('markets')">
         </ion-col>
         <ion-col id="four">
-          <img  src="../assets/inicio/boutique.png" (click)="openRubro(5)">
+          <img  src="../assets/inicio/boutique.png" (click)="openRubro('boutique')">
         </ion-col>
       </ion-row>
   </ion-grid>

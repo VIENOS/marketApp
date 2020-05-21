@@ -1,0 +1,66 @@
+{
+ "datosPersonales":{
+    "nombre" : "JUAN JOSE",
+    "email" : "jsds@ggmail.com",
+    "celular" : "933856522",
+    "fechanacimiento" : "2020-11-10"
+ },
+ "coordenadas":{
+    "latitud" : -45545,
+    "longitud" : -545454
+ },	
+ "distanciakm" : 42.50,
+ "direccion" : "av.jose galvez 549",	
+ "tipoPago" : "al contado",	
+ "totalPedido" : "1000.50",
+ "totalDelivery" : "3.50",
+ "montoTotal" : "1004.00",	
+ "cupon" : "ds4545",
+ "carrito": [
+		 {
+		  "producto" : {
+		    "id": 1,
+		    "nombre": "Ensalada Arequipeña",
+		    "precio": 215,
+		    "descripcion": "zapatilla baja de la marca nike",
+		    "imagen": "ensaladaarequipeña.jpg",
+		    "oferta" : 200,
+		    "categoria": {
+		      "id": 1,
+		      "nombre": "postres"
+		     }
+		   },
+		   "cantidad":1
+		  },
+		  {
+		  "producto" : {
+		    "id": 1,
+		    "nombre": "Ensalada Arequipeña",
+		    "precio": 215,
+		    "descripcion": "zapatilla baja de la marca nike",
+		    "imagen": "ensaladaarequipeña.jpg",
+		    "oferta" : 200,
+		    "categoria": {
+		      "id": 1,
+		      "nombre": "postres"
+		     }
+		   },
+		   "cantidad":2
+		  },
+		  {
+		  "producto" : {
+		    "id": 1,
+		    "nombre": "Ensalada Arequipeña",
+		    "precio": 215,
+		    "descripcion": "zapatilla baja de la marca nike",
+		    "imagen": "ensaladaarequipeña.jpg",
+		    "oferta" : 200,
+		    "categoria": {
+		      "id": 1,
+		      "nombre": "postres"
+		     }
+		   },
+		   "cantidad":1
+		  }
+		]	
+}

@@ -1,0 +1,96 @@
+
+{idzona} > Referencia al id de las zonas como Tingo Maria, Jaen, etc
+{nomcategoria} > Son los siguientes ('restaurantes','cafeterias','bar','farmacias','markets','boutique')
+{idsubcategoria} > Referencias al id de las subcategorias como Cevicheria, Criollo, etc
+{pagina0}> Comienza en 0 
+
+
+1 @Get
+https//...../inicio/zonas
+
+2 @Get
+https//...../inicio/tiendasrecomendadas/{idzona}
+
+3 @Get
+https//...../tiendas/subcategorias/{idzona}/{nomcategoria}
+
+4 @Get 												
+https//...../tiendas/{idzona}/{nomcategoria}/{idsubcategoria}/{pagina0};
+
+5 @Get
+https//...../productos/recomendados/{idtienda};
+
+6 @Get
+https//...../productos/categorias/{idtienda};
+
+7 @Get
+https//...../productos/listar/{idtienda}/{categoria};
+
+8 @Get
+https//...../tiendas/sugeridos/subcategorias
+
+9 @Get 
+https//...../tiendas/sugeridos/listar/{idsubcategoria_sugerido}/{pagina0}
+
+10 @Get 
+https//...../tiendas/detalle-tienda/{idtienda}
+
+11 @Get
+https//...../tiendas/search/{idzona}/{nomcategoria}/{term}/{pagina0}
+
+12 @Get
+https//...../productos/search/{termino}
+
+13 @Get
+https//...../productos/detalle/{idproducto}
+
+14 @Get *
+https//...../ofertas/{idzona}/{pagina0}   
+
+15 @Get *
+https//...../pedidos/{nombres_contacto}/{numero_celular_contacto}/{correo_electronico}/{fecha_cumpleaños}
+
+16 @Get *
+https//...../pedidos/detalle-pedido/{idpedido}
+
+17 @Post *
+https//...../carrito/calculos
+
+18 @Post *
+https//...../carrito/nuevo-pedido
+
+19 @Get *
+https//...../carrito/politicas
+
+20 @Post *
+https//...../carrito/validacion/obtener-coordenadas-tienda
+
+21 @Post *
+https//...../recadeo/nuevo-recadeo
+
+22 @Post *
+https//...../pedidos/finalizar-pedido
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

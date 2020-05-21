@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "nombre": "Restaurant 'Juan Camilo'",
+    "imagen": "tienda1.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Restaurant Giovanni",
+    "imagen": "tienda2.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Restaurant Pablo",
+    "imagen": "tienda3.jpg"
+  },
+    {
+    "id": 4,
+    "nombre": "Restaurant 'Juan Camilo'",
+    "imagen": "tienda1.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Restaurant Giovanni",
+    "imagen": "tienda2.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Restaurant Pablo",
+    "imagen": "tienda3.jpg"
+  }
+
+]

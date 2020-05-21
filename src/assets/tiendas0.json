@@ -5,7 +5,17 @@
     "direccion": "Av. la marina 549",
     "imagen": "tienda1.jpg",
     "imagenlogo": "logtienda.jpg",
- "horario": [
+    "zona" : {
+      "id": 1,
+      "nombre" :"Tingo Maria"
+   },
+
+  "nomcategoria" : "restaurantes",
+  "subcategoria" :{
+     "id": 1,
+     "nombre":"Cevicheria"
+  },
+    "horario": [
     {
       "d": "Lunes",
       "o": "9:00",
@@ -29,7 +39,17 @@
     "direccion": "Av. la marina 549",
     "imagen": "tienda2.jpg",
     "imagenlogo": "kfc.png",
- "horario": [
+    "zona" : {
+      "id": 1,
+      "nombre" :"Tingo Maria"
+   },
+
+  "nomcategoria" : "restaurantes",
+  "subcategoria" :{
+     "id": 1,
+     "nombre":"Cevicheria"
+  },
+    "horario": [
     {
       "d": "Lunes",
       "o": "9:00",
@@ -53,7 +73,17 @@
     "direccion": "Av. la marina 549",
     "imagen": "tienda3.jpg",
     "imagenlogo": "logtienda.jpg",
- "horario": [
+    "zona" : {
+      "id": 1,
+      "nombre" :"Tingo Maria"
+   },
+
+  "nomcategoria" : "restaurantes",
+  "subcategoria" :{
+     "id": 1,
+     "nombre":"Cevicheria"
+  },
+    "horario": [
     {
       "d": "Lunes",
       "o": "9:00",

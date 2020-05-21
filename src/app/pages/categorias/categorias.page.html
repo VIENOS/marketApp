@@ -18,8 +18,8 @@
     
       </ion-searchbar>
       <ion-buttons slot="end" >
-        <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="openCarrito()">
-          <ion-badge mode="ios" slot="end" color="verdino" >4</ion-badge>
+        <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" *ngIf="service_carrito.long_carrito!=undefined" (click)="openCarrito()">
+          <ion-badge mode="ios" slot="end" color="verdino" >{{service_carrito.long_carrito}}</ion-badge>
           <ion-icon name="cart-outline"></ion-icon>
         </ion-button>
        <!--<ion-back-button text="" defaulHref="/"></ion-back-button>--> 
@@ -29,7 +29,7 @@
 </ion-header>
 
 <ion-content>
-    <div class="ini">
+    <div class="ini" *ngIf="verFiltros" >
      <p>
           <ion-chip  color="redtrasnparente"  >
             <ion-icon name="star-outline"></ion-icon>
@@ -44,7 +44,7 @@
         </p>
     </div>
 
-    <ion-row >
+    <ion-row *ngIf="verFiltros">
       <ion-col size="6" *ngFor="let producto of recomendados">
           
         <ion-card>
@@ -96,11 +96,11 @@
   </ion-slide>
 </ion-slides>-->
 
-<div *ngIf="categoriaSelect!=undefined" id="categoriaSelect">
+<div id="categoriaSelect">
 <!--  <ion-progress-bar color="redtrasnparente" value="1">
   </ion-progress-bar>-->
-      <ion-segment  [(ngModel)]="categoriaSelect"  mode="md" color="redtrasnparente" scrollable="true"  value="favorite">  
-        <ion-segment-button *ngFor="let item of lstCategoria" [value]="item">
+      <ion-segment  *ngIf="verFiltros"  [(ngModel)]="categoriaSelect"  mode="md" color="redtrasnparente" scrollable="true" >  
+        <ion-segment-button *ngFor="let item of lstCategoria" [value]="item" (click)="cambioCategorias(segmentss.value)" #segmentss name="segmentss">
           <ion-label>{{item.nombre}}</ion-label>
         </ion-segment-button>
       </ion-segment>
@@ -139,7 +139,7 @@
             <ion-button   slot="end"  expand="block"  size="small" id="cantidad" color="empresa">
               <ion-input mode="md" id="contador" name="contador" readonly [(ngModel)]="item.cantidad"  #contador type="number"  ></ion-input>
             </ion-button>
-            <ion-button slot="end" id="carrito" expand="block"  size="small" color="redtrasnparente" (click)="addCarrito(contador.value)" >
+            <ion-button slot="end" id="carrito" expand="block"  size="small" color="redtrasnparente" (click)="addCarrito(item)" >
               <ion-icon name="cart-outline"></ion-icon>
 
             </ion-button>

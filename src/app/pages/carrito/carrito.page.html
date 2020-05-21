@@ -4,7 +4,7 @@
       <h1>Carrito</h1>
     </ion-title>
     <ion-buttons slot="end" >
-      <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="close()" >
+      <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="close()"  >
       
         <ion-icon name="close-circle-outline"></ion-icon>
       </ion-button>
@@ -114,11 +114,10 @@
       </ion-col>
       <ion-col size="7">
         <ion-row>
-          <ion-chip  color="redtrasnparente">
-          
-            <ion-select [(ngModel)]="tipoPago" (ionChange)="OnChange($event)"  >
+          <ion-chip  color="dark">
+            <ion-select [(ngModel)]="tipoPago" (ionChange)="OnChange($event)" placeholder="Elegir Tipo Pago" ok-text="Aceptar" cancel-text="Cancelar">
               <ion-select-option *ngFor="let item of lstTipoPago" [value]="item" >
-                {{item.nombre}}
+                  {{item.nombre}}
               </ion-select-option>
             </ion-select>
            </ion-chip>

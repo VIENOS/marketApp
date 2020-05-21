@@ -13,12 +13,16 @@ export class TiendaService {
   public tiendas: Tienda[] = [];
   constructor(private http: HttpClient) { }
 
-  getTiendaRecomendada(){
-    return this.http.get<any>("assets/tiendas0.json");
+  
+
+  getSubCategorias(id:any,idzona:any){
+    //  return this.http.get<any>(environment.urlServicios + "tiendas/subcategorias/"+idzona+"/"+id);
+    return this.http.get<any>(environment.urlServicios + "subcategorias.json");
   }
 
-  getSugeridos(){
-    return this.http.get<any>("assets/subcategorias.json");
+  getSubCategoriasSugeridos(){
+    //  return this.http.get<any>(environment.urlServicios + "tiendas/sugeridos/subcategorias);
+    return this.http.get<any>(environment.urlServicios + "subcategorias.json");
   }
   
 
@@ -26,9 +30,9 @@ export class TiendaService {
     return this.http.get<any>("assets/tiendas1.json");
   }
 
-  getTienda(){
+  getTienda(idsubcategoria_sugerido){
     let promesa = new Promise( (resolve, reject) => {
-      //let url = environment.urlServicios+"tiendas"+ this.pagina;
+    //  let url = environment.urlServicios+"tiendas/sugeridos/listar/"+idsubcategoria_sugerido+"/"+ this.pagina;
       let url = "assets/tiendas"+ this.pagina+".json";
       this.http.get(url).subscribe( 
           data => { 
@@ -48,10 +52,7 @@ export class TiendaService {
   }
 
 
-  getZonas(): Observable<any>{
-    //return this.http.get<any>(environment.urlServicios+"lstcategorias");
-    return this.http.get<any>("assets/zonas.json");
-  }
+
 
 
 }

@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ensalada Francesa",
+    "precio": 215,
+    "descripcion": "zapatilla baja de la marca nikea",
+    "imagen": "ensaladafrancesa.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Ensalada Rusa",
+    "precio": 215,
+    "descripcion": "zapatilla baja de la marca adas",
+    "imagen": "ensaladarusa.jpg"
+  }
+]

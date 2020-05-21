@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, LoadingController } from '@ionic/angular';
 import { RecadeoService } from 'src/app/services/recadeo/recadeo.service';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 declare var google;
 @Component({
   selector: 'app-mapa',
@@ -22,19 +23,26 @@ export class MapaPage implements OnInit {
   latitudFin:any;
   longitudFin:any;
   distanciaKm:any;
+  mapEle:HTMLElement;
   
-  constructor(public viewCtrl: ModalController, private navParams: NavParams, public _recadeoService: RecadeoService) {
+  constructor(
+    public geo: Geolocation,
+    public viewCtrl: ModalController, private navParams: NavParams, public _recadeoService: RecadeoService,
+    private loadCtrl:LoadingController) {
        this.ingresarInicio = false;
        this.ingresarFin = false;
   }
 
   ngOnInit() {
     //para cargar el mapa 
+  
+    this.map=null;
     this.loadMap(this.navParams.get('latitud'), this.navParams.get('longitud'));
 
 
-    this.metodo2();
   }
+
+
   
   calcularDistancia(myLatlng, myLatlng2) {
     let distance = google.maps.geometry.spherical.computeDistanceBetween(myLatlng, myLatlng2);
@@ -45,21 +53,60 @@ export class MapaPage implements OnInit {
    
   }
 
-  loadMap(latitud: any, longitud: any) {
+   loadMap(latitud: any, longitud: any) {
+    
     // create a new map by passing HTMLElement
-    const mapEle: HTMLElement = document.getElementById('map_canvas');
+    this.mapEle = document.getElementById('map');
     // create LatLng object
-    const myLatLng = { lat: latitud, lng: longitud };
+    let myLatLng = { lat: -10.0000000, lng: -76.0000000 };
     // create map
-    this.map = new google.maps.Map(mapEle, {
+    this.map = new google.maps.Map( this.mapEle, {
       center: myLatLng,
-      zoom: 11
+      zoom: 12
     });
     //metodo para mostar el mapa
-    mapEle.classList.add('show-map');
-
+   // 
+  /* google.maps.event.addListenerOnce(this.map, 'idle', () => {
+        loading.dismiss();
+    // mapEle.classList.add('show-map');
+    });*/
+    this.getPosition();
+    
   }
 
+
+  async getPosition() {
+    const loading =  await this.loadCtrl.create();
+    loading.present();
+    this.geo.getCurrentPosition().then(resp => {
+        this.setCenter(resp);
+        loading.dismiss(); 
+    }).catch((error) => {
+      let mapElee: HTMLElement = document.getElementById('map');
+      let myLatLngs = { lat: -10.0000000, lng: -76.0000000 };
+      this.map = new google.maps.Map(mapElee, {
+          center: myLatLngs,
+          zoom: 12
+      });
+      loading.dismiss();
+    })
+  }
+
+  setCenter(position: Geoposition) {
+    let myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
+    this.map = new google.maps.Map(this.mapEle , {
+      center: myLatLng,
+      zoom: 12
+    });
+  
+    google.maps.event.addListenerOnce(this.map, 'idle', () => {
+       // this.map.classList.add('show-map');
+       this.mapEle.classList.add('show-map');
+    });
+    this.metodo2();
+  }
+
+  
   addMarkerInicio(posicion: any, titulo: any) {
     return new google.maps.Marker({
       position: posicion,

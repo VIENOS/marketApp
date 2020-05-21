@@ -58,7 +58,7 @@ export class CarritoPage implements OnInit {
     this._servcio_producto.getListTipoPagos().subscribe(
       res=>{
          this.lstTipoPago = res;
-         this.tipoPago = this.lstTipoPago[0];
+       //  this.tipoPago = this.lstTipoPago[0];
         console.log(res);
      }   
     );

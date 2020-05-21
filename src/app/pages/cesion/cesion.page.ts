@@ -18,10 +18,9 @@ export class CesionPage implements OnInit {
 
 
 
-
   contactForm : FormGroup;
   constructor(private router:Router, public viewCtrl: ModalController,public alertController: AlertController) {
-    
+   
    }
 
    
@@ -31,6 +30,7 @@ export class CesionPage implements OnInit {
   //  this.contacto.celular=933853399;
  //   this.contacto.fecha="1995-02-15";
     this.contactForm = this.createFormGroup();
+
 
   }
 

@@ -50,14 +50,14 @@ openModal() {
 
 openPorCategoria(){
   //this.router.navigate(["/categorias/",categoria.id]);
-  this.abrirModalCategorias(this.idTienda);
+  this.abrirModalCategorias(this.tienda.zona.id,this.tienda.nomcategoria,this.tienda.subcategoria.id,this.tienda.id);
 }
 
 
-async abrirModalCategorias(ids){
+async abrirModalCategorias(idzona,idRubroTienda,idsubcategoria,idtienda){
 const myModal = await this.viewCtrl.create({
   component:CategoriasPage,
-  componentProps:{id:ids,nombre:this.tienda.nombre}});
+  componentProps:{idzona:idzona,idRubroTienda:idRubroTienda,idsubcategoria:idsubcategoria,idtienda:idtienda}});
 await myModal.present();
 }
 

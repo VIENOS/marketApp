@@ -90,17 +90,20 @@ export class PedidoPage implements OnInit {
 
   geolocalizacion(){
     console.log("PETICION DE GEOLOCALIZACION")
-    this.ubicacion ="Ubicacion obtenida"
+    let lat:any = -10.0000000;
+    let long:any = -76.0000000;
+    this.abrirModalMapaGoogle(lat,long);
    
-    this.geolocation.getCurrentPosition().then((resp) => {
+   /* this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       // resp.coords.longitude
+      this.ubicacion ="Ubicacion obtenida"
       const coords = resp.coords.latitude + "," + resp.coords.longitude;
       this.abrirModalMapaGoogle( resp.coords.latitude ,resp.coords.longitude);
       console.log(coords)
      }).catch((error) => {
        console.log('Error getting location', error);
-     });
+     });*/
   }
 
 

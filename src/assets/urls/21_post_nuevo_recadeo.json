@@ -1,0 +1,19 @@
+{
+ "datosPersonales":{
+    "nombre" : "JUAN JOSE",
+    "email" : "jsds@ggmail.com",
+    "celular" : "933856522",
+    "fechanacimiento" : "2020-11-10"
+ },
+ "coordenadasInicio":{
+    "latitud" : -45545,
+    "longitud" : -545454
+ },	
+ "coordenadasFinal":{
+    "latitud" : -45545,
+    "longitud" : -545454
+ },
+ "distanciakm" : 42.50,
+ "numPaquetes" : 5,	
+
+}

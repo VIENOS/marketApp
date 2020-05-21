@@ -12,6 +12,7 @@ import { TiendaService } from 'src/app/services/tienda/tienda.service';
 import { TiendaDetallePage } from '../tienda-detalle/tienda-detalle.page';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { CarritoPage } from '../carrito/carrito.page';
+import { ProductoService } from 'src/app/services/producto/producto.service';
 
 @Component({
   selector: 'app-inicio',
@@ -19,7 +20,6 @@ import { CarritoPage } from '../carrito/carrito.page';
   styleUrls: ['./inicio.page.scss'],
 })
 export class InicioPage implements OnInit {
-  public recomendados:any;
   public lstCategoria: Categoria[]=[];
   public lstProductos: Producto[]=[];
   public inicio : any;
@@ -33,40 +33,51 @@ export class InicioPage implements OnInit {
   };;
 
   
-  constructor(public _service_tienda:TiendaService,private _service_inicio:InicioService,private router:Router, public viewCtrl: ModalController,private popoverCrrl:PopoverController,private _service_categoria:CategoriasService,public service_carrito:CarritoService) { }
+  constructor(private _service_producto:ProductoService,
+    public _service_tienda:TiendaService,private _service_inicio:InicioService,private router:Router,
+     public viewCtrl: ModalController,private popoverCrrl:PopoverController,private _service_categoria:CategoriasService,
+     public service_carrito:CarritoService) {
+  
+      this.service_carrito.longCarrito();
+
+      }
 
   ngOnInit() {
    //this.loadList();+
    this.getInicio();
-   this.recomendadosList();
-   this.listzonas();
-   this.getTiendaRecomendada();
+
    console.log(new Date());
+   this.listzonas();
   }
 
+  listzonas(){
+    this._service_inicio.getZonas().subscribe(
+        res=>{
+           this.lstzonas = res;
+           console.log("zonas"+JSON.stringify(res));
+           this.zona = this.lstzonas[0]; 
+           console.log("zona"+JSON.stringify(this.zona));
+           this.getTiendaRecomendada(this.zona.id);
+        }
+    );
+  }
 
-  getTiendaRecomendada(){
-    this._service_tienda.getTiendaRecomendada().subscribe(
+  getTiendaRecomendada(idzona:any){
+    this._service_inicio.getTiendaRecomendada(idzona).subscribe(
         res=>{
            this.lstTiendaRecomendad = res;
-           this._service_tienda.getTiendaRecomendada1().subscribe(
-            res=>{
-              this.lstTiendaRecomendad.push( ...res); 
-            }
-        );
+           
         }
     );
   }
   
-  listzonas(){
-    this._service_tienda.getZonas().subscribe(
-        res=>{
-          console.log("zonas"+res);
-           this.lstzonas = res;
-           this.zona = this.listzonas.length>0 ? this.listzonas[0]:undefined; 
-        }
-    );
+  cambioZona(item:any){
+    this.zona =item;
+    console.log("zona elegida"+JSON.stringify(this.zona));
+    this.getTiendaRecomendada(this.zona.id);
   }
+
+
 
   getInicio(){
     this._service_inicio.getInicio().subscribe(
@@ -78,23 +89,8 @@ export class InicioPage implements OnInit {
   }
 
 
-  recomendadosList(){
-    this._service_inicio.getRecomendados().subscribe(
-      res=>{
-         this.recomendados = res;
-     }   
-    );
-  }
 
-  loadList(){
-    this._service_inicio.getLista().subscribe(
-      res=>{
-         this.lstCategoria = res;
-         this.lstProductos = this.lstCategoria[0].producto;
-        console.log(res);
-     }   
-    );
-  }
+ 
 
   find(ev: any) {
    let valor = ev.target.value;
@@ -102,7 +98,7 @@ export class InicioPage implements OnInit {
     if(valor===undefined || valor === null || valor === ""){
       this.cancelFind();
     }else{
-      this._service_inicio.getFiltroProducto(valor).subscribe(
+      this._service_producto.getFiltroProducto(valor).subscribe(
         res=>{
             this.lstCategoria = res as Categoria[];
 
@@ -122,23 +118,21 @@ export class InicioPage implements OnInit {
   }
 
   cancelFind(){
-    this.loadList();
+    //this.loadList();
   }
 
 
 
-  openRubro(rubro:any){
- 
-    
-    console.log("ROBRU = "+rubro.id)
-    this.abrirModalRubro(rubro.id);
+  openRubro(i:any){
+    console.log("ROBRU = "+i)
+    this.abrirModalRubro(i);
   }
 
 
   async abrirModalRubro(ids){
     const myModal = await this.viewCtrl.create({
       component:RubroTiendasPage,
-      componentProps:{id:ids}});
+      componentProps:{id:ids,idzona:this.zona.id}});
     await myModal.present();
   }
   
@@ -176,9 +170,6 @@ export class InicioPage implements OnInit {
   }
 
   
-  verOfertas(){
-
-  }
 
   openCarrito(){
     this.abrirModalCarrito();

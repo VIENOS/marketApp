@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ContactoDetallePage } from '../contacto-detalle/contacto-detalle.page';
 import { ModalController } from '@ionic/angular';
 import { CarritoPage } from '../carrito/carrito.page';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
 @Component({
   selector: 'app-contactos',
   templateUrl: './contactos.page.html',
@@ -19,7 +20,9 @@ export class ContactosPage implements OnInit {
 
    public listpedido:any;
 
-  constructor( public viewCtrl: ModalController) {
+  constructor( public viewCtrl: ModalController,  public service_carrito:CarritoService) {
+  
+    this.service_carrito.longCarrito();
   
    }
 

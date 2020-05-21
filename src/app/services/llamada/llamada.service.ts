@@ -13,7 +13,7 @@ export class LlamadaService {
 
   getOfertas(){
     let promesa = new Promise( (resolve, reject) => {
-      //let url = environment.urlServicios+"tiendas"+ this.pagina;
+      //let url = environment.urlServicios+"ofertas/"+idzona+"/"+ this.pagina;
       let url = "assets/ofertas"+ this.paginaofe+".json";
       this.http.get(url).subscribe( 
           data => { 

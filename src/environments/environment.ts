@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  apiKey:"1cac98eb8212b4dde5088cdc3091c0b6",
-  urlServicios : " http://localhost:3000/",
-  //imgPath : "https://image.tmdb.org/t/p"
+  urlServicios : "assets/",
   imgPath : "../assets/imgs/"
 };
 

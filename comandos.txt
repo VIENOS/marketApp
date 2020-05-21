@@ -13,6 +13,8 @@ npm install validator
 plugins vscode
 JSON to TS
 
+ionic cordova plugin add cordova-sqlite-storage
+npm install --save @ionic/storage
 
 usuario:Observable<any>
 

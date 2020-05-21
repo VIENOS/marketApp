@@ -13,23 +13,28 @@ export class InicioService {
 
   getLista(){
     //return this.http.get<Categoria[]>(environment.urlServicios+"categoria");
-    return this.http.get<Categoria[]>("assets/categoria.json");
+    return this.http.get<Categoria[]>(environment.urlServicios+"categoria.json");
     
   }
   
-  getFiltroProducto(termino:string){
-    //return this.http.get<any>(environment.urlServicios+"categoria");
-    return this.http.get<Categoria[]>("assets/categoria.json");
-  }
-
 
   getInicio(){
     //return this.http.get<any>(environment.urlServicios+"categoria");
     return this.http.get<any>("assets/inicio.json");
   }
 
-  getRecomendados(): Observable<any>{
-    //return this.http.get<any>(environment.urlServicios+"lstcategorias");
-    return this.http.get<any>("assets/recomendadosini.json");
+
+
+
+  ///*********************URL REALES***********************
+  getZonas(){
+    //return this.http.get<any>(environment.urlServicios+"inicio/zonas");
+    return this.http.get<any>(environment.urlServicios+"zonas.json");
   }
+
+  getTiendaRecomendada(idzona:any){
+    // return this.http.get<any>(environment.urlServicios+"inicio/tiendasrecomendadas/"+idzona);
+    return this.http.get<any>(environment.urlServicios+"tiendasrecomendadas.json");
+  }
+
 }

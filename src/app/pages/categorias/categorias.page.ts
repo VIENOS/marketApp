@@ -6,6 +6,8 @@ import { CategoriasService } from 'src/app/services/categorias/categorias.servic
 import { ProductoPage } from '../producto/producto.page';
 import { ModalController, NavParams } from '@ionic/angular';
 import { CarritoPage } from '../carrito/carrito.page';
+import { ProductoService } from 'src/app/services/producto/producto.service';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
 
 @Component({
   selector: 'app-categorias',
@@ -20,6 +22,11 @@ export class CategoriasPage implements OnInit {
   public idCategoria:number;
   public idTienda:number;
   public nomTienda:any;
+  public idzona:any;
+  public idRubroTienda:any;
+  public idsubcategoria:any;
+  public verFiltros:boolean;
+
 
 
   public slideOpts={
@@ -34,12 +41,14 @@ export class CategoriasPage implements OnInit {
 
   
 
-  constructor(private _service_inicio:InicioService,private activatedRoute: ActivatedRoute,private _service_categoria:CategoriasService,private router:Router, public viewCtrl: ModalController,private navParams: NavParams) {
-      this.idCategoria = this.navParams.get('id');
+  constructor(public service_carrito:CarritoService, private _service_inicio:InicioService,private activatedRoute: ActivatedRoute,private _service_categoria:CategoriasService,private router:Router, public viewCtrl: ModalController,private navParams: NavParams
+    ,private _serviceProducto:ProductoService) {
+      this.idzona = this.navParams.get('idzona');
+      this.idRubroTienda = this.navParams.get('idRubroTienda');
+      this.idsubcategoria = this.navParams.get('idsubcategoria');
       this.idTienda =   this.navParams.get('idtienda');
-      if(this.idTienda!=undefined){
-          this.nomTienda =this.navParams.get('nombre');
-      }
+      this.verFiltros=true;
+     
     //this.idCategoria = this.activatedRoute.snapshot.params.id;
 
    /* if(this.activatedRoute.snapshot.params.idtienda!=undefined || this.activatedRoute.snapshot.params.idtienda!=null ){
@@ -47,18 +56,23 @@ export class CategoriasPage implements OnInit {
       console.log("ID TIENDA= "+this.idTienda);
     }*/
    
-    console.log("ID = "+this.idCategoria);
-    console.log("idtienda = "+this.idTienda);
+    console.log("ZONA  = "+this.idzona);
+    console.log("RUBRO TIENDA = "+this.idRubroTienda);
+    console.log("SUBCATEGORIA = "+this.idsubcategoria);
+    console.log("TIENDA = "+this.idTienda);
+    console.log("CARRITO LON = "+ this.service_carrito.longCarrito())
+    this.service_carrito.longCarrito();
+
    }
 
   ngOnInit() {
-   this.loadList();
+  
    this.getListaCategorias();
    this.recomendadosList();
   }
 
   recomendadosList(){
-    this._service_categoria.getRecomendados().subscribe(
+    this._service_categoria.getRecomendados(this.idTienda).subscribe(
       res=>{
          this.recomendados = res;
      }   
@@ -67,10 +81,9 @@ export class CategoriasPage implements OnInit {
 
 
   loadList(){
-    this._service_inicio.getLista().subscribe(
+    this._service_categoria.getListaProductos(this.idTienda,this.categoriaSelect.id).subscribe(
       res=>{
-        let productos= res[0].producto;
-        //console.log(res);
+        let productos= res;
         this.cargarProductosConContador(productos);
      }   
     );
@@ -82,7 +95,7 @@ export class CategoriasPage implements OnInit {
       productoCont.cantidad = 1;
       productoCont.producto = p;
       this.lstProductos.push(productoCont); 
-  }); 
+      }); 
   console.log(this.lstProductos);       
   }
   
@@ -106,17 +119,15 @@ export class CategoriasPage implements OnInit {
     if(valor===undefined || valor === null || valor === ""){
       this.cancelFind();
     }else{
-      this._service_inicio.getFiltroProducto(valor).subscribe(
+      this._serviceProducto.getFiltroProducto(valor).subscribe(
         res=>{
-            this.lstCategoria = res as Categoria[];
-            let busqueda = valor;
-            let expresion = new RegExp(`${busqueda}.*`, "i");
-            let mascotasFiltradas = this.lstCategoria.filter(entidad => expresion.test(entidad.nombre));
-            this.lstCategoria =  mascotasFiltradas;
-            console.log(res);
+          let productos= res;
+          this.verFiltros=false;
+          this.lstProductos=[];
+          this.cargarProductosConContador(productos);
         },
         error=>{
-  
+          this.verFiltros=true;
         }
       );
     }
@@ -124,19 +135,24 @@ export class CategoriasPage implements OnInit {
   }
 
   cancelFind(){
+    this.verFiltros=true;
     this.loadList();
   }
 
-
+cambioCategorias(item:any){
+  this.categoriaSelect =item;
+  console.log("zona elegida"+JSON.stringify(this.categoriaSelect));
+}
 
   /********metodos del select */
   getListaCategorias(){
     console.log("IDee = "+this.idCategoria)
-    this._service_categoria.getListaCategorias().subscribe(
+    this._service_categoria.getListaCategorias(this.idTienda).subscribe(
       res=>{
          this.lstCategoria = res as Categorias[];
          if(this.lstCategoria.length>0){
            this.categoriaSelect = this.lstCategoria[0];
+           this.loadList();
          }
         // let lstCategoriaFiltrado = this.lstCategoria.filter(entidad => entidad.id == this.idCategoria);
         // this.categoriaSelect = lstCategoriaFiltrado[0];
@@ -172,8 +188,9 @@ export class CategoriasPage implements OnInit {
   }
 
 
-  addCarrito(value:any){
-    console.log("add carrito " + value)
+  addCarrito(item:ProductoCont){
+    console.log("add carrito " + JSON.stringify(item))
+    this.service_carrito.guardarCarrito(item);   
   }
 
 
@@ -189,4 +206,8 @@ export class CategoriasPage implements OnInit {
     await myModal.present();
   }
   
+
+  
+
+
 }

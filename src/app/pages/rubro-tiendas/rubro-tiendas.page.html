@@ -14,13 +14,14 @@
       color="redtrasnparente"
       (ionInput)="find($event)"
       placeholder="Buscar tienda.."
+ 
       >
     
       </ion-searchbar>
  
       <ion-buttons slot="end" >
-        <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="openCarrito()">
-          <ion-badge mode="ios" slot="end" color="verdino" >4</ion-badge>
+        <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" *ngIf="service_carrito.long_carrito!=undefined" (click)="openCarrito()">
+          <ion-badge mode="ios" slot="end" color="verdino" >{{service_carrito.long_carrito}}</ion-badge>
           <ion-icon name="cart-outline"></ion-icon>
         </ion-button>
        <!--<ion-back-button text="" defaulHref="/"></ion-back-button>--> 
@@ -29,8 +30,8 @@
 
   </ion-toolbar>
 
-  <ion-segment  [(ngModel)]="sugerido"  mode="md" color="redtrasnparente" scrollable="true"  value="favorite">  
-    <ion-segment-button *ngFor="let item of lstsugeridos" [value]="item">
+  <ion-segment  *ngIf="verFiltros"  [(ngModel)]="subcategoria"  mode="md" color="redtrasnparente" scrollable="true"  value="favorite">  
+    <ion-segment-button *ngFor="let item of lstsubcategorias" [value]="item" (click)="cambioSubCategorias(segments.value)" #segments name="segments">
       <ion-label>{{item.nombre}}</ion-label>
     </ion-segment-button>
   </ion-segment>
