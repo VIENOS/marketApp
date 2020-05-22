@@ -1,18 +1,18 @@
 [
   {
     "id": 1,
-    "nombre": "pedido - compra",
+    "nombre": "Pedido Tienda Olivares",
   },
   {
     "id": 2,
-    "nombre": "pedido - recadeo",
+    "nombre": "Pedido Tienda Olivares",
   },
   {
     "id": 3,
-    "nombre": "pedido - compra",
+    "nombre": "Pedido Tienda Olivares",
   },
   {
     "id": 4,
-    "nombre": "pedido - compra",
+    "nombre": "Recadeo",
   }
 ]

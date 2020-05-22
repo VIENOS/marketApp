@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+  <form [formGroup]="contactForm" (ngSubmit)="onSaveForm()" *ngIf="contactForm" >
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>Datos personales</ion-card-subtitle>
@@ -26,22 +26,25 @@
             <ion-label color="rojo"  position="stacked">Nombres:</ion-label>
             <ion-input type="text" placeholder="Ingresar nombres" formControlName="nombre" ></ion-input>
           </ion-item>
+          <ion-label color="verdino" size="small" position="stacked" *ngIf="nombre.errors?.required" > Nombres requerido</ion-label>
           <ion-item>
             <ion-label color="rojo"  position="stacked">Email:</ion-label>
             <ion-input type="email" placeholder="Ingresar correo electronico" formControlName="email" ></ion-input>
           </ion-item>
-          <ion-label color="danger" size="small" position="stacked" *ngIf="email.invalid" >Email invalido</ion-label>
-          <ion-label color="danger" size="small" position="stacked" *ngIf="email.invalid && email.errors.required" >Email requerido</ion-label>
+          <ion-label color="verdino" size="small" position="stacked" *ngIf="email.invalid" > Email invalido  </ion-label>
+          <ion-label color="verdino" size="small" position="stacked" *ngIf="email.errors?.required" > Email requerido</ion-label>
           <ion-item>
             <ion-label color="rojo"  position="stacked">Celular:</ion-label>
             <ion-input type="number" placeholder="Ingresar numero de celular" formControlName="celular" ></ion-input>
           </ion-item>
-          <ion-label color="danger" size="small" position="stacked" *ngIf="celular.invalid" >Celular invalido</ion-label>
+          <ion-label color="verdino" size="small" position="stacked" *ngIf="celular.invalid" > Celular invalido</ion-label>
+          <ion-label color="verdino" size="small" position="stacked" *ngIf="email.errors?.required" > Celular requerido</ion-label>
           <ion-item>
             <ion-label color="rojo"  position="stacked">Fecha Cumpleaños:</ion-label>
             <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccionar fecha de cumpleaños"  formControlName="fecha" done-text="Aceptar" cancel-text="Cancelar"> </ion-datetime>
            
           </ion-item>
+          <ion-label color="verdino" size="small" position="stacked" *ngIf="fecha.errors?.required" >Fecha de cumpleaños requerido</ion-label>
         </ion-list>
         <ion-button type="submit" color="verdino" fill="outline" expand="full"  ><ion-label color="rojo">Guardar</ion-label></ion-button>
       </ion-card-content>

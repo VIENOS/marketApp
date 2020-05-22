@@ -60,15 +60,13 @@ export class CarritoService {
 
   longCarrito(){
     this.storage.get('carrito')
-     .then(item => {
-            if(item){
-              this.carrito = item;
+     .then(items => {
+            if(items){
+              this.carrito = items;
               console.log("CARRITO = "+JSON.stringify(this.carrito))
               this.calcularTotalCantidadCarrito(  this.carrito);
               console.log("longitud = "+this.long_carrito)
             } 
-           
-           
      });
   }
 
@@ -88,5 +86,22 @@ export class CarritoService {
     });
     toast.present();
   }
+
+
+  editarCarrito(carrito:ProductoCont[]){
+    this.carrito = carrito;
+    this.storage.set('carrito',this.carrito);
+    
+  }
+
+  borrarItemDeCarrito(id){
+    const posicion = this.carrito.findIndex(item=> item.producto.id === id);
+    console.log("LA POSICION ES = "+posicion);
+    this.carrito.splice(posicion, 1);
+    this.storage.set('carrito',this.carrito);
+    this.avisoCarrito('Se elimino producto del carrito');
+    this.calcularTotalCantidadCarrito( this.carrito);
+    console.log("FIN BORRAR ITEM ");
+ }
 
 }

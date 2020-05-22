@@ -4,7 +4,7 @@
       <h1>Carrito</h1>
     </ion-title>
     <ion-buttons slot="end" >
-      <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="close()"  >
+      <ion-button id="cerrarcarro" #cerrarcarro menuToggle slot="icon-only" fill="clear" (click)="close()"  >
       
         <ion-icon name="close-circle-outline"></ion-icon>
       </ion-button>
@@ -17,12 +17,12 @@
  
   <ion-list-header>
     <ion-label>
-      <h5>Usted tiene 5 items en el carrito</h5>
+      <h5>Usted tiene {{_servicio_carrito.long_carrito}} items en el carrito</h5>
     </ion-label>
   </ion-list-header>
 
   <ion-list #list>
-    <ion-item-sliding *ngFor="let item of lstproduct" >
+    <ion-item-sliding *ngFor="let item of _servicio_carrito.carrito" >
       <ion-item>
         <ion-thumbnail slot="start">
           <ion-img [src]="item.producto.imagen | imagen"></ion-img>
@@ -82,7 +82,7 @@
     </ion-item>  
   </ion-list>
 </ion-card>
-<p id="cupon" [ngStyle]="cuponValido ? {'color':'#8ff02d'} :  {'color':'#fb941b'}" *ngIf="msgxCupon!=undefined" >{{msgxCupon}}</p>
+<p id="cupon" [ngStyle]="cuponValido ? {'color':'#8ff02d'} :  {'color':'#fb941b'}" *ngIf="msgxCupon!=undefined " >{{msgxCupon}}</p>
 
   <ion-grid>
     <ion-row>
@@ -92,7 +92,7 @@
         </ion-row> 
         <ion-row>
           <ion-label>
-            S/.1075.00
+            S/. {{montoPedido}}
           </ion-label>
         </ion-row> 
         <ion-row >
@@ -100,7 +100,7 @@
       </ion-row> 
       <ion-row>
         <ion-label>
-          S/.3.50
+          S/. {{montoDelivery}}
         </ion-label>
       </ion-row> 
       <ion-row  id="monto-total" >
@@ -108,7 +108,7 @@
       </ion-row> 
       <ion-row id="monto-total">
         <ion-label>
-          S/.1,078.5‬
+          S/.{{montoTotal}}
         </ion-label>
       </ion-row> 
       </ion-col>

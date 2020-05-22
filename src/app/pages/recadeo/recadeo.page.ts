@@ -6,6 +6,9 @@ import { CarritoPage } from '../carrito/carrito.page';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
+import { CesionService } from 'src/app/services/cesion/cesion.service';
+import { RecadeoService } from 'src/app/services/recadeo/recadeo.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recadeo',
@@ -18,9 +21,12 @@ export class RecadeoPage implements OnInit {
   politica :any;
   numrecadeos:any;
   distancia:any;
-
-  constructor( private geolocation: Geolocation,public viewCtrl: ModalController,public alertController: AlertController 
-    , public service_carrito:CarritoService) {
+  latitudInicio : any;
+  latitudFin:any;
+  longitudInicio:any;
+  longitudFin:any;
+  constructor( public router:Router,public _servicio_cesion:CesionService  ,private geolocation: Geolocation,public viewCtrl: ModalController,public alertController: AlertController 
+    , public service_carrito:CarritoService,private _service_recadeo:RecadeoService) {
   
     this.service_carrito.longCarrito();
     this.ubicacionMsg ="Click en el boton gps"
@@ -50,24 +56,35 @@ export class RecadeoPage implements OnInit {
        console.log('Error getting location', error);
        this.ubicacionMsg ="Active su GPS"
      });*/
-     -76.0000000
+ 
    
   }
 
   onSaveForm(){
     console.log("SE GUARDA  ? " +this.distancia)
     if(this.distancia!=undefined && this.numrecadeos!=undefined){
-      this.presentAlertConfirm('Politicas de envio',this.politica);
+      this.verificarSiExisteDatosDeUsuario();
     }else{
       if(this.distancia===undefined){
-        this.presentAlertConfirm('Error','No ingreso los puntos de partida y llegada para el recadeo, Ingreselos dando click en el boton de gps del campo UBICACION DE PARTIDA Y LLEGADA');
+        this.presentAlertConfirm('Error','No ingreso los puntos de partida y llegada para el recadeo, Ingreselos dando click en el boton de gps del campo UBICACION DE PARTIDA Y LLEGADA',false);
       }else{
-        this.presentAlertConfirm('Error','No ingreso el numero de paquetes a enviar');
+        this.presentAlertConfirm('Error','No ingreso el numero de paquetes a enviar',false);
       }
     }
     
   }
 
+
+  
+  async verificarSiExisteDatosDeUsuario(){
+    this._servicio_cesion.datos = await  this._servicio_cesion.cargarCesion();
+    if(this._servicio_cesion.datos){
+      this.presentAlertConfirm('Politicas de envio',this.politica,true);
+    }else{
+      this.presentAlertConfirm('Error','Ingrese datos de Usuario en la seccion Datos Personales',false);
+
+    }
+  }
     
 openCesion(){
   //this.router.navigate(["/categorias/",categoria.id]);
@@ -83,7 +100,7 @@ await myModal.present();
 
 }
 
-async presentAlertConfirm(header,message) {
+async presentAlertConfirm(header,message,save) {
   const alert = await this.alertController.create({
     mode:'ios',
     header: header,
@@ -99,7 +116,10 @@ async presentAlertConfirm(header,message) {
         text: 'Aceptar',
         handler: () => {
           console.log('Confirm Okay');
-          this.guardarRecadeo();
+          if(save){
+            this.guardarRecadeo();
+          }
+          
         }
       }
     ]
@@ -110,7 +130,42 @@ async presentAlertConfirm(header,message) {
 
 
 guardarRecadeo(){
- 
+
+  console.log("GUARDAR")
+  let coordenadasInicio= {
+    "latitud": this.latitudInicio,
+    "longitud" : this.longitudInicio
+  }
+  let coordenadasFinal= {
+    "latitud": this.latitudFin,
+    "longitud" : this.longitudFin
+  }
+  
+  let request = {
+    "datosPersonales" : this._servicio_cesion.datos,
+    "coordenadasInicio" : coordenadasInicio,
+    "coordenadasFinal" : coordenadasFinal,
+    "distanciakm" : this.distancia,
+    "numPaquetes" : this.numrecadeos
+  };
+
+  console.log("REQUEST RECADEO = "+JSON.stringify(request))
+   this._service_recadeo.nuevoRecadeo(request).subscribe(
+   res => {
+        //
+        
+        this.latitudFin = undefined;
+        this.latitudInicio =undefined;
+        this.longitudFin = undefined;
+        this.longitudInicio = undefined;
+        this.router.navigate(["/tabs/inicio"]);
+   },
+   error => {
+    
+      this.presentAlertConfirm('Error','Revise su conexion a internet',false);
+       
+   }
+ );
 }
 
 
@@ -144,7 +199,10 @@ async abrirModalMapaGoogle(latitud,longitud){
       console.log("DISTANCIAA = "+this.distancia);
       this.ubicacionMsg ="Ubicaciones obtenidas";
   }
-  
+  this.latitudFin = data["latitudFin"]
+  this.latitudInicio = data["latitudInicio"]
+  this.longitudFin = data["longitudFin"]
+  this.longitudInicio = data["longitudInicio"]
   }
 
 openCarrito(){

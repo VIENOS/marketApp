@@ -28,7 +28,7 @@ export class MapaTiendaPage implements OnInit {
 ngOnInit() {
  //para cargar el mapa 
  this.map=null;
- this.loadMap(this.navParams.get('latitud'), this.navParams.get('longitud'));
+ this.loadMap();
 
 
 }
@@ -43,7 +43,7 @@ calcularDistancia(myLatlng, myLatlng2) {
 
 }
 
- loadMap(latitud: any, longitud: any) {
+ loadMap() {
 
  // create a new map by passing HTMLElement
  this.mapEle = document.getElementById('mapita');
@@ -119,7 +119,7 @@ guardar() {
  //  console.log("GUARDAR = "+this.marker.position)
    let myLatlng = new google.maps.LatLng(this.latitud, this.longitud);
    // Longitud y latitud de tienda
-   let myLatlng2 = new google.maps.LatLng(-12.0210517,-77.0120473);
+   let myLatlng2 = new google.maps.LatLng(this.navParams.get('latitudtienda'), this.navParams.get('longitudtienda'));
 
    this.calcularDistancia(myLatlng,myLatlng2);
 

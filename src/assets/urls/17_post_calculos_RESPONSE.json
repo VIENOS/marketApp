@@ -2,6 +2,7 @@
   {
     "totalPedido" : "1000.50",
   	 "totalDelivery" : "3.50",
-  	 "montoTotal" : "1004.00"
+  	 "montoTotal" : "1004.00",
+  	 "cuponValido" : true
   }
 

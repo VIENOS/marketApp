@@ -28,9 +28,13 @@ https//...../productos/listar/{idtienda}/{categoria};
 
 8 @Get
 https//...../tiendas/sugeridos/subcategorias
+cambios
+https//...../tiendas/sugeridos/subcategorias/{nombres_contacto}/{numero_celular_contacto}/{correo_electronico}/{fecha_cumpleaños}
 
 9 @Get 
 https//...../tiendas/sugeridos/listar/{idsubcategoria_sugerido}/{pagina0}
+cambios
+https//...../tiendas/sugeridos/subcategorias/listar/{idsubcategoria_sugerido}/{pagina0}/{nombres_contacto}/{numero_celular_contacto}/{correo_electronico}/{fecha_cumpleaños}
 
 10 @Get 
 https//...../tiendas/detalle-tienda/{idtienda}
@@ -52,6 +56,7 @@ https//...../pedidos/{nombres_contacto}/{numero_celular_contacto}/{correo_electr
 
 16 @Get *
 https//...../pedidos/detalle-pedido/{idpedido}
+//cambio el json
 
 17 @Post *
 https//...../carrito/calculos

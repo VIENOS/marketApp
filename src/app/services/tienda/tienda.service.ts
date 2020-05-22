@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tienda } from 'src/app/interfaces/interfaces';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,20 @@ export class TiendaService {
 
 
 
+  getValidarTiendaTraerCoordenadas(request): Observable<any>{
+    return this.http.post<any>(
+      //environment.urlServicios+'carrito/validacion/obtener-coordenadas-tienda'
+      "assets/coordenadas.json" ,
+      JSON.stringify(request),).pipe(map((response: any) => response),
+      catchError(e => {
+        if (e.status == 400) {
+          return throwError(e);
+        }
+        return throwError(e);
+      }
+     )
+    );
+}
 
 
 }

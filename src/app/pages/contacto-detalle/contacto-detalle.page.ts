@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, AlertController } from '@ionic/angular';
 import { ContactosService } from 'src/app/services/contactos/contactos.service';
 
 @Component({
@@ -19,10 +19,14 @@ export class ContactoDetallePage implements OnInit {
   public pintado5:boolean;
   public value:any;
   public comentario:string;
-  constructor(private _service_contactos :ContactosService ,private router:Router, public viewCtrl: ModalController,private navParams: NavParams) {
+  public idPedido:any;
+  constructor(public alertController: AlertController,private _service_contactos :ContactosService ,private router:Router, public viewCtrl: ModalController,private navParams: NavParams) {
+     this.comentario ="";
     this.x=0;
     this.pintado=false;
     this.value=0;
+     this.idPedido  = this.navParams.get('id');
+     console.log("ID PEDIDO = "+this.idPedido)
    }
 
   ngOnInit() {
@@ -31,7 +35,8 @@ export class ContactoDetallePage implements OnInit {
 
   
   getMotorizado(){
-    this._service_contactos.getMotorizado().subscribe(
+    console.log("ILLAMADNDO PEDIDO = ")
+    this._service_contactos.getMotorizado(this.idPedido).subscribe(
       res=>{
            this.item= res;
      }   
@@ -67,6 +72,59 @@ export class ContactoDetallePage implements OnInit {
   finalizar(){
     console.log("VALUE FINAL = "+this.value)
     console.log("COMENTARIO = "+this.comentario)
+    
+    let pedido= {
+      "id": this.item.id,
+      "nombre" : this.item.nombre,
+      "nombreMotorizado": this.item.nombreMotorizado
+    }
+
+    let request = {
+      "pedido" : pedido,
+      "valoracion" : this.value,
+      "comentario" : this.comentario
+    };
+  
+    console.log("REQUEST RECADEO = "+JSON.stringify(request))
+     this._service_contactos.finalizarPedido(request).subscribe(
+     res => {
+        
+          this.close();
+
+     },
+     error => {
+      
+        this.presentAlertConfirm('Error','Revise su conexion a internet');
+         
+     }
+   );
+
+  }
+
+
+  async presentAlertConfirm(header,message) {
+    const alert = await this.alertController.create({
+      mode:'ios',
+      header: header,
+      message: message,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Okay');
+         
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }

@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, NavParams, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CesionPage } from '../cesion/cesion.page';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { MapaTiendaPage } from '../mapa-tienda/mapa-tienda.page';
+import { PedidoService } from 'src/app/services/pedido/pedido.service';
+import { CesionService } from 'src/app/services/cesion/cesion.service';
+import { Storage } from '@ionic/storage';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
 
 @Component({
   selector: 'app-pedido',
@@ -21,51 +25,123 @@ export class PedidoPage implements OnInit {
   public gps : any;
   public distancia:any;
   public ubicacionMsg:any;
+  public latitud:any;
+  public longitud:any;
+  public longTienda:any;
+  public latTienda:any;
+  public tipopago:any;
+  public totalpedido:any;
+  public totaldelivery: any;
+  public montoTotal : any;
+  public cupon:any;
 
-  constructor(private geolocation: Geolocation,private router:Router, public viewCtrl: ModalController,public alertController: AlertController) {
+  constructor(public service_carrito:CarritoService ,private navCtrl:NavController,private _servicio_pedido:PedidoService, public _servicio_cesion:CesionService,private storage:Storage,
+    private geolocation: Geolocation,private router:Router, public viewCtrl: ModalController,public alertController: AlertController,private navParams: NavParams) {
       this.ubicacion ="Click en el boton gps"
+      this.latTienda = this.navParams.get('latitudtienda');
+      this.longTienda = this.navParams.get('longitudtienda');
+      this.tipopago = this.navParams.get('tipopago');
+      this.totalpedido = this.navParams.get('totalpedido');
+      this.totaldelivery = this.navParams.get('totaldelivery');
+      this.montoTotal =  this.navParams.get('montoTotal');
+      this.cupon =  this.navParams.get('cupon');
    }
 
   ngOnInit() {
-    this.politica = "Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería enDebes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería enDebes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería enDebes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería enDebes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería enDebes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en el empaque no reciba el producto ni firme la guía, si firmas sin revisar perderás el derecho de reclamación.En el caso de los televisores se deben encender durante las 24 horas siguientes después de la entrega para revisar que la pantalla no esté quebrada o tenga golpes.Para que la reclamación sea válida debes conservar los empaques originales, los accesorios y manuales; además de no evidenciar uso.Si compras artículos de gran dimensión como electrodomésticos, muebles o colchones y tu residencia es en un edificio, la entrega se realizará en la puerta de tu apartamento siempre y cuando se pueda acceder por ascensor. Si el acceso es por las escalas y el producto cabe, sólo se sube hasta el quinto piso. Después del quinto piso y sin ascensor, es su responsabilidad contratar personal capacitado para desplazar el producto hasta tu casa; además debes firmar la guía en el primer piso, antes de subir el producto.Si compras un nevecón y se requiere desmonte de puertas, se debe solicitar con anticipación el servicio técnico de la marca, el valor es asumido por el cliente y no está incluido en el valor pagado por el producto. En caso que el producto requiera instalación (Estufas, Nevecones, Secadoras y Aires Acondicionados), se debe contactar a la marca y el cliente debe asumir este valor.Tenga en cuenta que debe contactar a la línea de Servicio al Cliente 018000112858 dentro de las 24 horas siguientes a la entrega, donde debe brindar la información completa y clara, el asesor le solicitará evidencia fotográfica de los empaques y del producto donde tendrá un máximo de 7 días calendario para enviar las fotografías; de lo contrario no se aceptará la reclamación. fin"
   }
 
+
+
   close(){
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss({
+      cerrar: false,
+    });
   }
 
 
   onSaveForm() {
-    this.openPolitica();
-    if(true){
+   
+    if(this.direccion && this.latitud && this.longitud){
       //llama servicio post
-    
+      this.verificarSiExisteDatosDeUsuario();
     }else{
       console.log("NO VALIDO")
-        this.openPolitica();
+      this.presentAlertConfirm('Error','No ingreso direccion de casa o no ingreso la ubicacion de destino',false);
     }
    
   }
 
 
-  setRestSave(){
+
+  async verificarSiExisteDatosDeUsuario(){
+    this._servicio_cesion.datos = await  this._servicio_cesion.cargarCesion();
+    if(this._servicio_cesion.datos){
+        this.openPolitica();
+    }else{
+      this.presentAlertConfirm('Error','Ingrese datos de Usuario en la seccion Datos Personales',false);
+
+    }
+  }
+
+
+  async setRestSave(){
+    const getCarrito = await this.storage.get('carrito');
     console.log("GUARDAR")
-    
+    let coordeandas= {
+      "latitud": this.latitud,
+      "longitud" : this.longitud
+    }
+    let request = {
+      "datosPersonales" : this._servicio_cesion.datos,
+      "coordenadas" : coordeandas,
+      "distanciakm" : this.distancia,
+      "direccion" : this.direccion,
+      "tipoPago" : this.tipopago,
+      "totalPedido" : this.totalpedido,
+      "totalDelivery" : this.totaldelivery,
+      "montoTotal" : this.montoTotal,	
+      "cupon" : this.cupon,
+      "carrito" : getCarrito
+    };
+  
+    console.log("REQUEST CON CUPON = "+JSON.stringify(request))
+     this._servicio_pedido.nuevoPedido(request).subscribe(
+     res => {
+          //this.router.navigate(["/tabs/inicio"]);
+          this.service_carrito.resetCarrito();
+          this.viewCtrl.dismiss({
+            cerrar: true,
+           
+          });
+     },
+     error => {
+   
+      this.presentAlertConfirm('Error','Revise su conexion a internet',false);
+         
+     }
+   );
+  
     
   }
 
 
 
   openPolitica(){
-    this.presentAlertConfirm();
+    
+    this._servicio_pedido.getPolitica().subscribe(
+      res=>{
+          this.politica = res.mensaje;
+          this.presentAlertConfirm('Politicas de envio',this.politica,true);
+      }
+    );
 }
 
 
-  async presentAlertConfirm() {
+  async presentAlertConfirm(header,message,save) {
     const alert = await this.alertController.create({
       mode:'ios',
-      header: 'Politicas de envio',
-      message: this.politica,
+      header: header,
+      message: message,
       buttons: [
         {
           text: 'Cancelar',
@@ -77,7 +153,9 @@ export class PedidoPage implements OnInit {
           text: 'Aceptar',
           handler: () => {
             console.log('Confirm Okay');
-            this.setRestSave();
+            if(save){
+              this.setRestSave();
+            }
           }
         }
       ]
@@ -90,9 +168,9 @@ export class PedidoPage implements OnInit {
 
   geolocalizacion(){
     console.log("PETICION DE GEOLOCALIZACION")
-    let lat:any = -10.0000000;
-    let long:any = -76.0000000;
-    this.abrirModalMapaGoogle(lat,long);
+  //  let lat:any = -10.0000000;
+   // let long:any = -76.0000000;
+    this.abrirModalMapaGoogle(this.latTienda,this.longTienda);
    
    /* this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
@@ -124,9 +202,11 @@ await myModal.present();
 
 
 async abrirModalMapaGoogle(latitud,longitud){
+    this.latitud = undefined;
+     this.longitud = undefined;
   const myModal = await this.viewCtrl.create({
     component:MapaTiendaPage,
-    componentProps:{latitud:latitud,longitud:longitud}
+    componentProps:{latitudtienda:latitud,longitudtienda:longitud}
   });
   await myModal.present();
   const {data} = await myModal.onDidDismiss();
@@ -134,8 +214,11 @@ async abrirModalMapaGoogle(latitud,longitud){
   if(data["distanciaKm"]!=null && data["distanciaKm"]!=undefined){
       this.distancia = data["distanciaKm"];
       console.log("DISTANCIAA = "+this.distancia);
-      this.ubicacionMsg ="Ubicaciones obtenidas";
+      this.ubicacion ="Ubicaciones obtenidas";
   }
+  this.latitud = data["latitud"];
+  this.longitud = data["longitud"];
+
   }
   
 

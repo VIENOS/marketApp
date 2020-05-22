@@ -41,3 +41,11 @@ export class ProductoCont {
   producto:Producto;
   cantidad: number;
  }
+
+
+ export class Datos {
+  nombre:any;
+  email: any;
+  celular:any
+  fechanacimiento:any;
+ }

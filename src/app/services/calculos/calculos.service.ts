@@ -7,18 +7,13 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ContactosService {
+export class CalculosService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getMotorizado(id:any){
-    //return this.http.get<any>(environment.urlServicios+"pedidos/detalle-pedido/"+datos.nombre+"/"+id);
-     return this.http.get<any>("assets/pedido.json");
-  }
-
-  finalizarPedido(request): Observable<any>{
+  calculosMontosCarrito(request): Observable<any>{
     return this.http.post<any>(
-      environment.urlServicios+'pedidos/finalizar-pedido',
+      environment.urlServicios+'carrito/calculos',
       JSON.stringify(request),).pipe(map((response: any) => response),
       catchError(e => {
         if (e.status == 400) {
@@ -29,5 +24,5 @@ export class ContactosService {
      )
     );
 }
-  
+
 }
