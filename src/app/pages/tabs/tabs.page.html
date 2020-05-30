@@ -12,7 +12,7 @@
       </ion-tab-button>
 
       <ion-tab-button tab="llamada">
-        <ion-icon ></ion-icon>
+    
        
       </ion-tab-button>
 
@@ -28,10 +28,12 @@
       </ion-tab-button>
     </ion-tab-bar>
     
-   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button color="rojo" (click)="gotoLlamada()" mode="md">
-      <ion-icon src="../assets/menu/promocion.svg"></ion-icon>
-    </ion-fab-button>
-   </ion-fab>
+  
 
 </ion-tabs>
+
+<ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab-button color="rojo" (click)="gotoLlamada()">
+    <ion-icon src="../assets/menu/promocion.svg"></ion-icon>
+  </ion-fab-button>
+ </ion-fab>
