@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlServicios : "assets/",
+  // urlServicios : "assets/",
+  urlServicios : "http://reportes.elvisalcantara.com/index.php/deliveriando/",
   imgPath : "../assets/imgs/"
 };
 

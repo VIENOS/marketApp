@@ -62,14 +62,12 @@
     <div *ngIf="showHorario" id="horario">
       <img src="../assets/imgs/time.png" height="15px" alt="" class="nuevo" (click)="cerrar()" style="margin-right: 20px;">
       <div class="segundo animated fadeInDown" >
-        <div *ngFor="let item of tienda?.horario" >
+        <div  >
           <ion-row (click)="cerrar()">
-            <ion-col size="3">
-              {{item.d}}
+            <ion-col size="9">
+              {{tienda.horario}}
             </ion-col>
-            <ion-col >
-              {{item.o}} a.m. a {{item.t}} p.m
-            </ion-col>
+         
         </ion-row>
         </div>
       </div>

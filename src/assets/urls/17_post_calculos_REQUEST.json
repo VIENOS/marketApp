@@ -1,4 +1,5 @@
 {
+ "distanciakm" : "1500",	
  "cupon" : "ds4545",
  "carrito": [
 		 {
@@ -9,6 +10,7 @@
 		    "descripcion": "zapatilla baja de la marca nike",
 		    "imagen": "ensaladaarequipeña.jpg",
 		    "oferta" : 200,
+
 		    "categoria": {
 		      "id": 1,
 		      "nombre": "postres"

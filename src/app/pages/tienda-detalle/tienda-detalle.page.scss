@@ -77,11 +77,13 @@ ion-list{
                 text-decoration: underline;
             }
             #horario{
+             
                 width: 100%;
                 margin-bottom: 10px;
                 ion-row{
                     ion-col{
-                        padding:0;
+                        padding-top: 6px;
+                        //padding:0;
                         font-weight: 200;
                         text-decoration: none;
                     }

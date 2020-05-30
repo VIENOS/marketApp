@@ -20,21 +20,25 @@ export class RubroTiendasPage implements OnInit {
   public subcategoria:any;
   public idzona:any;
   public verFiltros:any;
+  public valor : any;
 
-  constructor(public _service_rubro_tienda:RubroTiendasService, private router:Router, public viewCtrl: ModalController,private navParams: NavParams,
+  constructor(public _service_rubro_tienda:RubroTiendasService, private router:Router, public viewCtrl: ModalController,
+    private navParams: NavParams,
     public _service_tienda:TiendaService,  public service_carrito:CarritoService) {
   
       this.service_carrito.longCarrito();
-    this.idRubroTienda = this.navParams.get('id');
-    this.idzona = this.navParams.get('idzona');
-    console.log("ID NAME = "+this.idRubroTienda);
-    this._service_rubro_tienda.paginax=0;
-    this.verFiltros=true;
+   
     
   }
 
   ngOnInit() {
-    this.listSubCategorias(this.idzona,this.idRubroTienda);
+    this.idRubroTienda = this.navParams.get('id');
+    this.idzona = this.navParams.get('idzona');
+    console.log("ID categoria = "+this.idRubroTienda);
+    console.log("ID ZONA = "+this.idzona);
+    this._service_rubro_tienda.paginax=0;
+    this.verFiltros=true;
+    this.listSubCategorias(this.idRubroTienda,this.idzona);
  
    
   }
@@ -46,7 +50,7 @@ export class RubroTiendasPage implements OnInit {
            if(this.lstsubcategorias.length>0){
               this.subcategoria = this.lstsubcategorias[0];  
               console.log("zona elegida"+JSON.stringify(this.subcategoria));  
-              this.cargarTiendas(this.idzona.id,this.idRubroTienda,this.subcategoria.id);
+              this.cargarTiendas(this.idzona,this.idRubroTienda,this.subcategoria.id);
            }else{
              console.log("no hay subcategorias")
              this.subcategoria=0;
@@ -70,16 +74,23 @@ export class RubroTiendasPage implements OnInit {
   }
 
   siguiente_pagina(infinite){
-    this._service_rubro_tienda.getTienda(this.idzona,this.idRubroTienda, this.subcategoria.id).then(()=> {
-      infinite.target.complete();
-    });
+    if(this.valor==="" || this.valor===undefined){
+      console.log(" NEXT")
+      this._service_rubro_tienda.getTienda(this.idzona,this.idRubroTienda, this.subcategoria.id).then(()=> {
+        infinite.target.complete();
+      });
+    }else{
+      console.log("SEARCH NEXT ")
+     
+    }
+  
   }
 
 
   openTienda(tienda:any){
     console.log("TIENDA = "+tienda.id)
     this.idzona = tienda.zona.id;
-    this.idRubroTienda= tienda.nomcategoria;
+    this.idRubroTienda= this.idRubroTienda;
     this.subcategoria= tienda.subcategoria;
     this.abrirModalProducto(this.idzona,this.idRubroTienda,this.subcategoria.id,tienda.id);
   }
@@ -90,6 +101,12 @@ export class RubroTiendasPage implements OnInit {
       component:CategoriasPage,
       componentProps:{idzona:idzona,idRubroTienda:idRubroTienda,idsubcategoria:idsubcategoria,idtienda:idtienda}});
     await myModal.present();
+    const {data} = await myModal.onDidDismiss();
+    console.log("SOLO ES BANDERA = ")
+    this._service_rubro_tienda.paginax=0;
+    this._service_rubro_tienda.tiendas = [] ;
+    this.listSubCategorias(this.idRubroTienda,this.idzona);
+  
   }
 
 
@@ -100,21 +117,27 @@ export class RubroTiendasPage implements OnInit {
   }
 
 find(ev: any) {
+  this.valor = ev.target.value;
+  if(this.valor==="" || this.valor===undefined){
+    this.verFiltros=true;
+     this.cancelFind();
+     
+   }else{
     this.verFiltros=false;
-     let valor = ev.target.value;
-     console.log(valor);
-     this.cargarTiendasSearch(this.idzona,this.idRubroTienda,valor);
-     if(valor===""){
-       this.cancelFind();
-       this.verFiltros=true;
-     }
+  
+    console.log(this.valor);
+    this.cargarTiendasSearch(this.idzona,this.idRubroTienda,this.valor);
+   }
+  
+  
  }
 
  cancelFind(){
    console.log("CANCELADO")
    this._service_rubro_tienda.paginax=0;
    this._service_rubro_tienda.tiendas = [];
-   this._service_rubro_tienda.getTienda(this.idzona,this.idRubroTienda, this.subcategoria.id);
+   this.cargarTiendas(this.idzona,this.idRubroTienda,this.subcategoria.id);
+   
 }
 
 close(){

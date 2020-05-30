@@ -76,7 +76,8 @@ export class ContactoDetallePage implements OnInit {
     let pedido= {
       "id": this.item.id,
       "nombre" : this.item.nombre,
-      "nombreMotorizado": this.item.nombreMotorizado
+      "nombreMotorizado": this.item.nombreMotorizado,
+      "monto":this.item.monto 
     }
 
     let request = {

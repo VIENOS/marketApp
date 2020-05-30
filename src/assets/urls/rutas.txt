@@ -1,3 +1,9 @@
+1 -> restaurantes 
+2 -> cafeterías 
+3 -> market 
+4-> farmacias 
+5-> otros
+6-> ropa y calzados
 
 {idzona} > Referencia al id de las zonas como Tingo Maria, Jaen, etc
 {nomcategoria} > Son los siguientes ('restaurantes','cafeterias','bar','farmacias','markets','boutique')
@@ -13,6 +19,7 @@ https//...../inicio/tiendasrecomendadas/{idzona}
 
 3 @Get
 https//...../tiendas/subcategorias/{idzona}/{nomcategoria}
+//cambio https//...../tiendas/subcategorias/{idsubcategoria}
 
 4 @Get 												
 https//...../tiendas/{idzona}/{nomcategoria}/{idsubcategoria}/{pagina0};
@@ -22,6 +29,8 @@ https//...../productos/recomendados/{idtienda};
 
 6 @Get
 https//...../productos/categorias/{idtienda};
+//cambios
+https//...../productos/subcategoria/{idsubcategoria};
 
 7 @Get
 https//...../productos/listar/{idtienda}/{categoria};
@@ -45,6 +54,9 @@ https//...../tiendas/search/{idzona}/{nomcategoria}/{term}/{pagina0}
 12 @Get
 https//...../productos/search/{termino}
 
+//cambios ultimo
+https//...../productos/search/{idtienda}/{termino}
+
 13 @Get
 https//...../productos/detalle/{idproducto}
 
@@ -54,12 +66,18 @@ https//...../ofertas/{idzona}/{pagina0}
 15 @Get *
 https//...../pedidos/{nombres_contacto}/{numero_celular_contacto}/{correo_electronico}/{fecha_cumpleaños}
 
+//cambios
+https//...../pedidos/{numero_celular_contacto}/{correo_electronico}/
+
+
 16 @Get *
 https//...../pedidos/detalle-pedido/{idpedido}
 //cambio el json
 
 17 @Post *
 https//...../carrito/calculos
+//cambio el json
+
 
 18 @Post *
 https//...../carrito/nuevo-pedido
@@ -75,6 +93,9 @@ https//...../recadeo/nuevo-recadeo
 
 22 @Post *
 https//...../pedidos/finalizar-pedido
+
+23 @Post *
+https//...../recadeo/calculo
 
 
 

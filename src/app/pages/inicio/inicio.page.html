@@ -16,7 +16,7 @@
        <!--<ion-back-button text="" defaulHref="/"></ion-back-button>--> 
       </ion-buttons>
   </ion-toolbar>
-  <ion-segment  [(ngModel)]="zona"  mode="md" color="redtrasnparente" scrollable="true"  >  
+  <ion-segment  [(ngModel)]="zona"  mode="md" color="redtrasnparente" scrollable="true"  *ngIf="!activeSearch">  
     <ion-segment-button *ngFor="let item of lstzonas" [value]="item"  (click)="cambioZona(segment.value)" #segment name="segment">
       <ion-label>{{item.nombre}}</ion-label>
     </ion-segment-button>
@@ -26,7 +26,8 @@
 <ion-content [style.background-image]="'url(../../assets/imgs/fondo.jpg)'" 
 [style.background-size]="'cover'" 
 [style.background-repeat]="'no-repeat'" >
-  <div id="recomendados">
+ 
+<div id="recomendados" *ngIf="!activeSearch">
     <ion-slides [options]="slideOpts">
       <ion-slide *ngFor="let producto of lstTiendaRecomendad">
         <ion-card mode="md" > 
@@ -48,17 +49,17 @@
   </div>
 
   
-  <div id="inicio">
+  <div id="inicio" *ngIf="!activeSearch">
     <ion-grid>
       <ion-row id="row1">
         <ion-col id="one">
-          <img src="../assets/inicio/restaurante.png"  (click)="openRubro('restaurantes')">
+          <img src="../assets/inicio/restaurante.png"  (click)="openRubro(1)">
         </ion-col>
         <ion-col>
-          <img src="../assets/inicio/cafeteria.png"  (click)="openRubro('cafeterias')">
+          <img src="../assets/inicio/cafeteria.png"  (click)="openRubro(2)">
         </ion-col>
         <ion-col id="two">
-          <img  src="../assets/inicio/bar.png"  (click)="openRubro('bar')">
+          <img  src="../assets/inicio/bar.png"  (click)="openRubro(5)">
         </ion-col>
       </ion-row>
       <ion-row>
@@ -76,19 +77,61 @@
       </ion-row>
       <ion-row id="row3">
         <ion-col id="three">
-          <img  src="../assets/inicio/farmacia.png"  (click)="openRubro('farmacias')">
+          <img  src="../assets/inicio/farmacia.png"  (click)="openRubro(4)">
         </ion-col>
         <ion-col>
-          <img  src="../assets/inicio/market.png"  (click)="openRubro('markets')">
+          <img  src="../assets/inicio/market.png"  (click)="openRubro(3)">
         </ion-col>
         <ion-col id="four">
-          <img  src="../assets/inicio/boutique.png" (click)="openRubro('boutique')">
+          <img  src="../assets/inicio/boutique.png" (click)="openRubro(6)">
         </ion-col>
       </ion-row>
   </ion-grid>
 
   </div>
 
+
+
+  <div id="search" #search *ngIf="activeSearch" >
+     <span *ngIf="listTiendas?.codigo" ><ion-item>{{listTiendas.msg}}</ion-item></span>
+     <span  *ngIf="!listTiendas?.codigo">
+
+    <ion-card *ngFor="let item of listTiendas" (click)="openTienda(item)" >
+      <img [src]="item?.imagen | imagen">
+      <div id="logo">
+       <img [src]="item?.imagenlogo | imagen">
+      </div>
+      <ion-card-content>
+       <ion-list id="time">
+         <ion-item>              
+           <div  id="horario">
+             <!--<img src="../assets/imgs/time.png" height="15px" alt="" class="nuevo"  style="margin-right: 20px;">-->
+             <div class="segundo" >
+                 <ion-row>
+                   <ion-col size="9">
+                     <span *ngIf="item.horario==1" >
+                      <ion-button  expand="block"  fill="outline" color="verdino" >
+                        <ion-label color="verdino"><b>TIENDA ABIERTA</b>  </ion-label>
+                      </ion-button>
+                     </span>
+                     <span *ngIf="item.horario==0" >
+                      <ion-button  expand="block"  fill="outline" color="rojo" >
+                        <ion-label color="rojo"><b>TIENDA CERRADA</b>  </ion-label>
+                      </ion-button>
+                     </span>
+                    
+                   </ion-col>
+               </ion-row>
+               </div>
+             </div>
+         </ion-item>
+       </ion-list>
+       <!-- <h4 class="card-title">{{item?.nombre}}</h4>
+        <p>{{item?.direccion}}</p>-->
+      </ion-card-content>
+    </ion-card> 
+  </span>
+  </div>
 
 <!--<div  *ngFor="let categoria of lstCategoria">
 

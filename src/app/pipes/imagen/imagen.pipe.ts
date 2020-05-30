@@ -18,6 +18,6 @@ export class ImagenPipe implements PipeTransform {
     if(!img){
       return '../assets/no-image.jpg';
     }
-    return "../../assets/imgs/"+img;
+    return img;
   }
 }

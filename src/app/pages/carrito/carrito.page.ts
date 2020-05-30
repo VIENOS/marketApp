@@ -47,12 +47,14 @@ export class CarritoPage implements OnInit {
   getCalculos(carrito:ProductoCont[],cupon:any){
      let request = {
        "cupon" : cupon,
+       "distanciakm" : '',
        "carrito" : carrito
      };
 
      console.log("REQUEST = "+JSON.stringify(request))
     this._servicioCalculos.calculosMontosCarrito(request).subscribe(
       res => {
+           console.log("RESPONSE CALUCL CARRITO = "+JSON.stringify(res))
             this.montoPedido = res.totalPedido;
             this.montoDelivery = res.totalDelivery;
             this.montoTotal = res.montoTotal;
@@ -91,12 +93,14 @@ cuponValidar(){
     
   let request = {
     "cupon" : this.cupon,
+    "distanciakm" : '',
     "carrito" : this._servicio_carrito.carrito
   };
 
   console.log("REQUEST CON CUPON = "+JSON.stringify(request))
    this._servicioCalculos.calculosMontosCarrito(request).subscribe(
    res => {
+    console.log("RESPONSE CALUCL CARRITO = "+JSON.stringify(res))
         this.montoPedido = res.totalPedido;
         this.montoDelivery = res.totalDelivery;
         this.montoTotal = res.montoTotal;
@@ -111,20 +115,19 @@ cuponValidar(){
      
    }
  );
-
-  
 }
 
 openPedido(){
   //this.router.navigate(["/categorias/",categoria.id]);
   let request = {
     "cupon" : this.cupon,
+    "distanciakm" : '',
     "carrito" : this._servicio_carrito.carrito
   };
 
   this._servicio_tienda.getValidarTiendaTraerCoordenadas(request).subscribe(
     res => {
-          
+          console.log("corrdeandas tienda = "+JSON.stringify(res))
          this.abrirModalPedido(res.latitud,res.longitud);
     },
     error => {

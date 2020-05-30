@@ -39,7 +39,7 @@ ion-card{
         }
         ion-card-subtitle{
             h6{
-                font-size: 10px;
+                font-size: 13px;
                 margin-top: 2px;
                 font-weight: bold;
                 text-align: left;
@@ -105,6 +105,9 @@ ion-card{
       
     }
     ion-label{
+        h2{
+            font-size: 12px;
+        }
         h6{
             color: #fb941b;
             font-weight: bold;

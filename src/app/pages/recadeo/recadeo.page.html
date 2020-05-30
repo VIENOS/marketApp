@@ -57,7 +57,7 @@
       <ion-label color="rojo"  position="stacked">Número de paquetes:</ion-label>
       <ion-item>
         
-        <ion-input type="number" placeholder="Ingresar # de paquetes"  [(ngModel)]="numrecadeos"></ion-input>
+        <ion-input type="number" placeholder="Ingresar # de paquetes"  [(ngModel)]="numrecadeos"  (keyup)="verificarPaquetes()"></ion-input>
       </ion-item>
 
       <ion-label color="rojo"  position="stacked">Ubicacion de partida y llegada</ion-label>
@@ -74,6 +74,24 @@
       <ion-item>
         <ion-input style="color: #1f1e1e;" readonly type="text" [(ngModel)]="distancia"  > </ion-input>
       </ion-item>
+
+      <ion-label color="rojo"  position="stacked">Monto Recadeo : </ion-label>
+
+      <ion-item>
+        <ion-input style="color: #1f1e1e;" readonly type="text"  >S/{{montoTotal}} </ion-input>
+      </ion-item>
+
+      <ion-label color="rojo"  position="stacked">Tipo de Pago : </ion-label>
+
+      <ion-item>
+        <ion-select [(ngModel)]="tipoPago" (ionChange)="OnChange($event)" placeholder="Elegir Tipo Pago" ok-text="Aceptar" cancel-text="Cancelar">
+          <ion-select-option *ngFor="let item of lstTipoPago" [value]="item" >
+              {{item.nombre}}
+          </ion-select-option>
+        </ion-select>
+       
+      </ion-item>
+    
     </span> 
      <!-- <ion-label color="rojo"  position="stacked">Ubicacion de llegada </ion-label>
 
@@ -85,7 +103,7 @@
       </ion-item>--> 
       
     </ion-list>
-    <ion-button type="submit" color="verdino" fill="outline" expand="full"  (click)="onSaveForm()" ><ion-label color="rojo"  >Relizar proceso</ion-label></ion-button>
+    <ion-button  *ngIf="habilitarpago" type="submit" color="verdino" fill="outline" expand="full"  (click)="onSaveForm()" ><ion-label color="rojo"  >Relizar proceso</ion-label></ion-button>
   </ion-card-content>
 </ion-card>
 

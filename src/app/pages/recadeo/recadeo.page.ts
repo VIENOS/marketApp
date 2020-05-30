@@ -4,11 +4,14 @@ import { ModalController, AlertController } from '@ionic/angular';
 import { MapaPage } from '../mapa/mapa.page';
 import { CarritoPage } from '../carrito/carrito.page';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { CesionService } from 'src/app/services/cesion/cesion.service';
 import { RecadeoService } from 'src/app/services/recadeo/recadeo.service';
 import { Router } from '@angular/router';
+import { PedidoService } from 'src/app/services/pedido/pedido.service';
+import { ProductoService } from 'src/app/services/producto/producto.service';
+import { LlamadaService } from 'src/app/services/llamada/llamada.service';
 
 @Component({
   selector: 'app-recadeo',
@@ -25,17 +28,25 @@ export class RecadeoPage implements OnInit {
   latitudFin:any;
   longitudInicio:any;
   longitudFin:any;
+  montoTotal:any;
+  kmNopermitidos:any;
+  tipoPago:any;
+  lstTipoPago:any;
+  habilitarpago:any;
+  messagepago:any;
+  errormensaje:any;
   constructor( public router:Router,public _servicio_cesion:CesionService  ,private geolocation: Geolocation,public viewCtrl: ModalController,public alertController: AlertController 
-    , public service_carrito:CarritoService,private _service_recadeo:RecadeoService) {
+    , public service_carrito:CarritoService,private _service_recadeo:RecadeoService,private _servicio_pedido:PedidoService,private _servcio_producto:ProductoService,public _service:LlamadaService) {
   
     this.service_carrito.longCarrito();
     this.ubicacionMsg ="Click en el boton gps"
-
+    this.kmNopermitidos=false;
+    this.habilitarpago=false;
   }
 
   ngOnInit() {
-    this.politica = "Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería enDebes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería enDebes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería enDebes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería enDebes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería enDebes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en Debes revisar muy bien los empaques y verificar que estén en perfecto estado en compañía del transportador antes de firmar la guía. En caso de evidenciar una avería en el empaque no reciba el producto ni firme la guía, si firmas sin revisar perderás el derecho de reclamación.En el caso de los televisores se deben encender durante las 24 horas siguientes después de la entrega para revisar que la pantalla no esté quebrada o tenga golpes.Para que la reclamación sea válida debes conservar los empaques originales, los accesorios y manuales; además de no evidenciar uso.Si compras artículos de gran dimensión como electrodomésticos, muebles o colchones y tu residencia es en un edificio, la entrega se realizará en la puerta de tu apartamento siempre y cuando se pueda acceder por ascensor. Si el acceso es por las escalas y el producto cabe, sólo se sube hasta el quinto piso. Después del quinto piso y sin ascensor, es su responsabilidad contratar personal capacitado para desplazar el producto hasta tu casa; además debes firmar la guía en el primer piso, antes de subir el producto.Si compras un nevecón y se requiere desmonte de puertas, se debe solicitar con anticipación el servicio técnico de la marca, el valor es asumido por el cliente y no está incluido en el valor pagado por el producto. En caso que el producto requiera instalación (Estufas, Nevecones, Secadoras y Aires Acondicionados), se debe contactar a la marca y el cliente debe asumir este valor.Tenga en cuenta que debe contactar a la línea de Servicio al Cliente 018000112858 dentro de las 24 horas siguientes a la entrega, donde debe brindar la información completa y clara, el asesor le solicitará evidencia fotográfica de los empaques y del producto donde tendrá un máximo de 7 días calendario para enviar las fotografías; de lo contrario no se aceptará la reclamación. fin"
     console.log("SE EJECTUA?")
+    this.loadListPagos();
   }
 
   abrirMapa(){
@@ -66,7 +77,7 @@ export class RecadeoPage implements OnInit {
       this.verificarSiExisteDatosDeUsuario();
     }else{
       if(this.distancia===undefined){
-        this.presentAlertConfirm('Error','No ingreso los puntos de partida y llegada para el recadeo, Ingreselos dando click en el boton de gps del campo UBICACION DE PARTIDA Y LLEGADA',false);
+        this.presentAlertConfirm('Error','No ingreso los puntos de partida y llegada para el recadeo, ingréselos dando click en el boton de gps del campo UBICACION DE PARTIDA Y LLEGADA',false);
       }else{
         this.presentAlertConfirm('Error','No ingreso el numero de paquetes a enviar',false);
       }
@@ -79,12 +90,26 @@ export class RecadeoPage implements OnInit {
   async verificarSiExisteDatosDeUsuario(){
     this._servicio_cesion.datos = await  this._servicio_cesion.cargarCesion();
     if(this._servicio_cesion.datos){
-      this.presentAlertConfirm('Politicas de envio',this.politica,true);
+      this._servicio_pedido.getPolitica().subscribe(
+        res=>{
+            this.politica = res.mensaje;
+            if(this.kmNopermitidos){
+              this.presentAlertConfirm('Error',this.errormensaje,false);
+            }else{
+              this.presentAlertConfirm('Politicas de envio',this.politica,true);
+
+            }
+            
+        }
+      );
+      
     }else{
       this.presentAlertConfirm('Error','Ingrese datos de Usuario en la seccion Datos Personales',false);
 
     }
   }
+
+
     
 openCesion(){
   //this.router.navigate(["/categorias/",categoria.id]);
@@ -140,13 +165,16 @@ guardarRecadeo(){
     "latitud": this.latitudFin,
     "longitud" : this.longitudFin
   }
-  
+  console.log("ZONA = "+ this._service.zonaId)
   let request = {
+    "id_zona" : this._service.zonaId,
+    "montoTotal" : this.montoTotal,
     "datosPersonales" : this._servicio_cesion.datos,
     "coordenadasInicio" : coordenadasInicio,
     "coordenadasFinal" : coordenadasFinal,
     "distanciakm" : this.distancia,
-    "numPaquetes" : this.numrecadeos
+    "numPaquetes" : this.numrecadeos,
+    "tipoPago" : this.tipoPago.nombre
   };
 
   console.log("REQUEST RECADEO = "+JSON.stringify(request))
@@ -158,7 +186,13 @@ guardarRecadeo(){
         this.latitudInicio =undefined;
         this.longitudFin = undefined;
         this.longitudInicio = undefined;
-        this.router.navigate(["/tabs/inicio"]);
+        this.ubicacionMsg ="Click en el boton gps"
+        this.kmNopermitidos=false;
+        this.habilitarpago=false;
+        this.montoTotal=0.00;
+        this.distancia=undefined;
+
+        this.presentAlertConfirmGuardado('Avso','El recadeo se guardo exitosamente');
    },
    error => {
     
@@ -196,6 +230,7 @@ async abrirModalMapaGoogle(latitud,longitud){
   //console.log("DATA = "+JSON.stringify(data))
   if(data["distanciaKm"]!=null && data["distanciaKm"]!=undefined){
       this.distancia = data["distanciaKm"];
+      this.distancia = this.distancia.toString().replace(/\./g,',');
       console.log("DISTANCIAA = "+this.distancia);
       this.ubicacionMsg ="Ubicaciones obtenidas";
   }
@@ -203,6 +238,52 @@ async abrirModalMapaGoogle(latitud,longitud){
   this.latitudInicio = data["latitudInicio"]
   this.longitudFin = data["longitudFin"]
   this.longitudInicio = data["longitudInicio"]
+  this.calculo();
+
+  }
+
+  calculo(){
+    console.log("GUARDAR")
+    let coordenadasInicio= {
+      "latitud": this.latitudInicio,
+      "longitud" : this.longitudInicio
+    }
+    let coordenadasFinal= {
+      "latitud": this.latitudFin,
+      "longitud" : this.longitudFin
+    }
+    
+    let request = {
+      "datosPersonales" : this._servicio_cesion.datos,
+      "coordenadasInicio" : coordenadasInicio,
+      "coordenadasFinal" : coordenadasFinal,
+      "distanciakm" : this.distancia,
+      "numPaquetes" : this.numrecadeos
+    };
+  
+  console.log("REQUEST RECADEO = "+JSON.stringify(request))
+  this._service_recadeo.recadeoCaluclo(request).subscribe(
+  res => {
+        console.log("MONTO "+JSON.stringify(res))
+      if(res.montoTotal){
+        this.kmNopermitidos=false;
+        this.montoTotal =  res.montoTotal;
+      }else{
+        this.montoTotal = 0.00;
+        this.errormensaje = res.mensaje;
+        this.kmNopermitidos=true;
+      } 
+
+      
+  },
+  error => {
+   
+    // this.presentAlertConfirm('Error','Revise su conexion a internet',false);
+      
+  }
+);
+
+
   }
 
 openCarrito(){
@@ -219,4 +300,58 @@ async abrirModalCarrito(){
 
 
 
+OnChange($event){
+  if(this.tipoPago!==undefined && this.tipoPago.id===0){
+    this.habilitarpago = false;
+
+    return;
+  }
+
+  if(this.tipoPago.id===1){
+       this.messagepago="Debe asegurarse tener el dinero exacto por medidas de precaucion"
+  }else{
+    if(this.tipoPago.id===2){
+      this.messagepago="el motorizado llevara la maquina procesadora de tarjetas"
+    }
+  }
+  this.habilitarpago = true;
+ this.presentAlertConfirm('Aviso',this.messagepago,false);
+}
+
+loadListPagos(){
+  this._servcio_producto.getListTipoPagos().subscribe(
+    res=>{
+       this.lstTipoPago = res;
+     //  this.tipoPago = this.lstTipoPago[0];
+      console.log(res);
+   }   
+  );
+}
+
+verificarPaquetes(){
+  console.log("NUM RECADEO = "+this.numrecadeos)
+  this.numrecadeos = this.numrecadeos>4  ? 4 : this.numrecadeos; 
+  this.calculo();
+}
+
+
+async presentAlertConfirmGuardado(header,message) {
+  const alert = await this.alertController.create({
+    mode:'ios',
+    header: header,
+    message: message, 
+    buttons: [
+       {
+        text: 'Aceptar',
+        handler: () => {
+          console.log('Confirm Okay');
+          this.router.navigate(["/tabs/inicio"]);
+          
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
 }

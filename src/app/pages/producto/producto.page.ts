@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import { Producto } from 'src/app/interfaces/interfaces';
 import { ModalController, NavParams } from '@ionic/angular';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
 
 @Component({
   selector: 'app-producto',
@@ -14,7 +15,7 @@ export class ProductoPage implements OnInit {
   public idProducto:number;
   public producto:Producto;
 
-  constructor(private _servcio_producto:ProductoService,private activatedRoute: ActivatedRoute,private router:Router,private modalCtrl: ModalController,private navParams: NavParams) { }
+  constructor(public service_carrito:CarritoService, private _servcio_producto:ProductoService,private activatedRoute: ActivatedRoute,private router:Router,private modalCtrl: ModalController,private navParams: NavParams) { }
 
   ngOnInit() {
     this.idProducto = this.navParams.get('id');
@@ -37,6 +38,15 @@ export class ProductoPage implements OnInit {
     this.modalCtrl.dismiss();
   }
 
+
+  addProducto(){
+    console.log("add carrito " + JSON.stringify(this.producto))
+    let productoCarrito = {
+      "cantidad" : 1,
+      "producto" : this.producto
+    };
+    this.service_carrito.guardarCarrito(productoCarrito);   
+  }
  
 
 }

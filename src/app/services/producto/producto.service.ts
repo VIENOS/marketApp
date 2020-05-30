@@ -10,8 +10,8 @@ export class ProductoService {
   constructor(private http: HttpClient) { }
 
   getProducto(idproducto:number): Observable<any>{
-    //return this.http.get<any>(environment.urlServicios+"productos/detalle/"+idproducto);
-    return this.http.get<any>("assets/productoOne.json");
+    return this.http.get<any>(environment.urlServicios+"productos/detalleProducto/"+idproducto);
+    //return this.http.get<any>("assets/productoOne.json");
   }
 
   getListProductos(): Observable<any>{
@@ -22,9 +22,9 @@ export class ProductoService {
     return this.http.get<any>("assets/tipopago.json");
   }
 
-  getFiltroProducto(termino:string){
-    //return this.http.get<any>(environment.urlServicios+"productos/search/"+termino);
-    return this.http.get<any>("assets/producto.json");
+  getFiltroProducto(termino:string,idtienda:any){
+    return this.http.get<any>(environment.urlServicios+"productos/searchTienda/"+idtienda+"/"+termino);
+    //return this.http.get<any>("assets/producto.json");
   }
 
 

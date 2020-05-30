@@ -26,7 +26,7 @@ export class CategoriasPage implements OnInit {
   public idRubroTienda:any;
   public idsubcategoria:any;
   public verFiltros:boolean;
-
+  public error404:boolean;
 
 
   public slideOpts={
@@ -74,7 +74,15 @@ export class CategoriasPage implements OnInit {
   recomendadosList(){
     this._service_categoria.getRecomendados(this.idTienda).subscribe(
       res=>{
-         this.recomendados = res;
+        console.log("PRODUCTOS RECOMENDADOS =  "+JSON.stringify(res))
+         let recom = res;
+         this.recomendados=[]
+         recom.forEach(p => {
+           let productoCont = new ProductoCont();
+           productoCont.cantidad = 1;
+           productoCont.producto = p;
+           this.recomendados.push(productoCont); 
+           }); 
      }   
     );
   }
@@ -84,12 +92,20 @@ export class CategoriasPage implements OnInit {
     this._service_categoria.getListaProductos(this.idTienda,this.categoriaSelect.id).subscribe(
       res=>{
         let productos= res;
-        this.cargarProductosConContador(productos);
+        if(productos.codigo){
+                this.error404=true;
+        }else{
+          console.log("PRODUCTOS "+JSON.stringify(res))
+            this.error404=false;
+           this.cargarProductosConContador(productos);
+        }
+        
      }   
     );
   }
 
   cargarProductosConContador(productos:any){
+    this.lstProductos=[]
     productos.forEach(p => {
       let productoCont = new ProductoCont();
       productoCont.cantidad = 1;
@@ -115,11 +131,11 @@ export class CategoriasPage implements OnInit {
 
   find(ev: any) {
    let valor = ev.target.value;
-    console.log(valor);
+    console.log("VALOR= "+valor);
     if(valor===undefined || valor === null || valor === ""){
       this.cancelFind();
     }else{
-      this._serviceProducto.getFiltroProducto(valor).subscribe(
+      this._serviceProducto.getFiltroProducto(valor,this.idTienda).subscribe(
         res=>{
           let productos= res;
           this.verFiltros=false;
@@ -142,12 +158,13 @@ export class CategoriasPage implements OnInit {
 cambioCategorias(item:any){
   this.categoriaSelect =item;
   console.log("zona elegida"+JSON.stringify(this.categoriaSelect));
+  this.loadList();
 }
 
   /********metodos del select */
   getListaCategorias(){
-    console.log("IDee = "+this.idCategoria)
-    this._service_categoria.getListaCategorias(this.idTienda).subscribe(
+    console.log("IDee SUB= "+this.idsubcategoria)
+    this._service_categoria.getListaCategorias(this.idsubcategoria).subscribe(
       res=>{
          this.lstCategoria = res as Categorias[];
          if(this.lstCategoria.length>0){
@@ -171,8 +188,8 @@ cambioCategorias(item:any){
 
   openProducto(producto:any){
 
-    console.log("PRODUCTO = "+producto.id)
-    this.abrirModal(producto.id);
+    console.log("PRODUCTO = "+producto.producto.id)
+    this.abrirModal(producto.producto.id);
   }
 
 

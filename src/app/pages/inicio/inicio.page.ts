@@ -13,6 +13,8 @@ import { TiendaDetallePage } from '../tienda-detalle/tienda-detalle.page';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { CarritoPage } from '../carrito/carrito.page';
 import { ProductoService } from 'src/app/services/producto/producto.service';
+import { Storage } from '@ionic/storage';
+import { LlamadaService } from 'src/app/services/llamada/llamada.service';
 
 @Component({
   selector: 'app-inicio',
@@ -27,19 +29,22 @@ export class InicioPage implements OnInit {
   public lstzonas:any;
   public zona:any;
   public lstTiendaRecomendad:any;
+  public listTiendas:any;
+  public activeSearch:any;
+  public error:any;
   public slideOpts={
     slidesPerView: 4.0,
     freeMode:true
   };;
 
   
-  constructor(private _service_producto:ProductoService,
+  constructor(private _service_producto:ProductoService,private storage:Storage,public _service:LlamadaService,
     public _service_tienda:TiendaService,private _service_inicio:InicioService,private router:Router,
      public viewCtrl: ModalController,private popoverCrrl:PopoverController,private _service_categoria:CategoriasService,
      public service_carrito:CarritoService) {
   
       this.service_carrito.longCarrito();
-
+      this.activeSearch=false;
       }
 
   ngOnInit() {
@@ -58,6 +63,7 @@ export class InicioPage implements OnInit {
            this.zona = this.lstzonas[0]; 
            console.log("zona"+JSON.stringify(this.zona));
            this.getTiendaRecomendada(this.zona.id);
+           this.saveOfertasZona();
         }
     );
   }
@@ -75,8 +81,28 @@ export class InicioPage implements OnInit {
     this.zona =item;
     console.log("zona elegida"+JSON.stringify(this.zona));
     this.getTiendaRecomendada(this.zona.id);
+    this.saveOfertasZona();
   }
 
+
+  find(ev:any){
+    let valor = ev.target.value;
+    console.log(valor);
+    if(valor===undefined || valor === null || valor === ""){
+      this.cancelFind();
+    }else{
+    this._service_inicio.getSearchTiendas(valor,this.zona.id).subscribe(
+      res=>{
+        this.activeSearch=true;
+         this.listTiendas = res;
+         console.log(res);
+      },
+      erro=>{
+         
+      }
+     );
+    }
+  }
 
 
   getInicio(){
@@ -92,7 +118,7 @@ export class InicioPage implements OnInit {
 
  
 
-  find(ev: any) {
+/*  find(ev: any) {
    let valor = ev.target.value;
     console.log(valor);
     if(valor===undefined || valor === null || valor === ""){
@@ -115,9 +141,11 @@ export class InicioPage implements OnInit {
       );
     }
  
-  }
+  }*/
 
   cancelFind(){
+    this.activeSearch=false;
+    
     //this.loadList();
   }
 
@@ -182,5 +210,14 @@ export class InicioPage implements OnInit {
       });
     await myModal.present();
   }
+
+
+  saveOfertasZona(){     
+    this._service.lstofertas = [];
+    this._service.paginaofe = 0;
+    this._service.zonaId=this.zona.id;
+    this._service.getOfertas(this.zona.id);
+  }
+
 
 }

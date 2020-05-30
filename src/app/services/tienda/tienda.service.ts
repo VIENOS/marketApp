@@ -11,19 +11,19 @@ import { catchError, map } from 'rxjs/operators';
 export class TiendaService {
   
   pagina:number=0;
-  public tiendas: Tienda[] = [];
+  public tiendas: any[] = [];
   constructor(private http: HttpClient) { }
 
   
 
   getSubCategorias(id:any,idzona:any){
-    //  return this.http.get<any>(environment.urlServicios + "tiendas/subcategorias/"+idzona+"/"+id);
-    return this.http.get<any>(environment.urlServicios + "subcategorias.json");
+      return this.http.get<any>(environment.urlServicios + "tienda/subcategorias/"+id);
+    //return this.http.get<any>(environment.urlServicios + "subcategorias.json");
   }
 
   getSubCategoriasSugeridos(){
-    //  return this.http.get<any>(environment.urlServicios + "tiendas/sugeridos/subcategorias);
-    return this.http.get<any>(environment.urlServicios + "subcategorias.json");
+     return this.http.get<any>(environment.urlServicios + "tienda/subcategoriasLista");
+   // return this.http.get<any>(environment.urlServicios + "subcategorias.json");
   }
   
 
@@ -33,16 +33,21 @@ export class TiendaService {
 
   getTienda(idsubcategoria_sugerido){
     let promesa = new Promise( (resolve, reject) => {
-    //  let url = environment.urlServicios+"tiendas/sugeridos/listar/"+idsubcategoria_sugerido+"/"+ this.pagina;
-      let url = "assets/tiendas"+ this.pagina+".json";
+      let url = environment.urlServicios+"tienda/tiendasSugeridos/"+idsubcategoria_sugerido+"/"+ this.pagina;
+     // let url = "assets/tiendas"+ this.pagina+".json";
       this.http.get(url).subscribe( 
-          data => { 
+        (data:any)  => { 
+             if(!data.msg){
               console.log(data)
-              let lsttiendas = data as Tienda[]
+              let lsttiendas = data as any;
               this.tiendas.push( ...lsttiendas);  
               console.log(this.tiendas)
               this.pagina = this.pagina+1;
             resolve();
+             }else{
+              resolve();
+             }
+            
           } ,
           error=>{
             resolve();
@@ -56,8 +61,8 @@ export class TiendaService {
 
   getValidarTiendaTraerCoordenadas(request): Observable<any>{
     return this.http.post<any>(
-      //environment.urlServicios+'carrito/validacion/obtener-coordenadas-tienda'
-      "assets/coordenadas.json" ,
+      environment.urlServicios+'carrito/coordenadasTienda',
+     // "assets/coordenadas.json" ,
       JSON.stringify(request),).pipe(map((response: any) => response),
       catchError(e => {
         if (e.status == 400) {

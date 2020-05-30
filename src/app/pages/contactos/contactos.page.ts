@@ -21,10 +21,13 @@ export class ContactosPage implements OnInit {
   
     this.service_carrito.longCarrito();
 
-     this.verificarSiExisteDatosDeUsuario();
+   
    
    }
 
+ ngOnInit(){
+
+ }
 
    async verificarSiExisteDatosDeUsuario(){
     console.log("VERIFICA")
@@ -37,8 +40,9 @@ export class ContactosPage implements OnInit {
     }
   }
 
-  ngOnInit() {
-
+  ionViewWillEnter () {
+    console.log("ENTRO AL WILL ENTER")
+    this.verificarSiExisteDatosDeUsuario();
   }
 
    listarPedidos(){
@@ -68,6 +72,9 @@ export class ContactosPage implements OnInit {
       component:ContactoDetallePage,
       componentProps:{id:ids}});
     await myModal.present();
+    const {data} = await myModal.onDidDismiss();
+    console.log("ATRAS")
+    this.verificarSiExisteDatosDeUsuario();
   }
 
   openCarrito(){

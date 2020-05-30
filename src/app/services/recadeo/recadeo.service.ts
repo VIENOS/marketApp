@@ -65,7 +65,7 @@ export class RecadeoService {
 
     nuevoRecadeo(request): Observable<any>{
       return this.http.post<any>(
-        environment.urlServicios+'recadeo/nuevo-recadeo',
+        environment.urlServicios+'recadeo/nuevoRecadeo',
         JSON.stringify(request),).pipe(map((response: any) => response),
         catchError(e => {
           if (e.status == 400) {
@@ -76,6 +76,22 @@ export class RecadeoService {
        )
       );
   }
+
+  
+  recadeoCaluclo(request): Observable<any>{
+    return this.http.post<any>(
+      environment.urlServicios+'recadeo/calculo',
+      JSON.stringify(request),).pipe(map((response: any) => response),
+      catchError(e => {
+        if (e.status == 400) {
+          return throwError(e);
+        }
+        return throwError(e);
+      }
+     )
+    );
+}
+
 
 
 

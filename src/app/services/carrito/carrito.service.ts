@@ -91,6 +91,7 @@ export class CarritoService {
   editarCarrito(carrito:ProductoCont[]){
     this.carrito = carrito;
     this.storage.set('carrito',this.carrito);
+    this.calcularTotalCantidadCarrito( this.carrito);
     
   }
 

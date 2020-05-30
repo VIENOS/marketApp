@@ -17,13 +17,12 @@ export class LlamadaPage implements OnInit {
     public service_carrito:CarritoService) {
   
     this.service_carrito.longCarrito();
-    this._service.lstofertas = [];
+    //this._service.lstofertas = [];
    }
 
 
   ngOnInit() {
-   
-    this._service.getOfertas();
+     
   }
 
 
@@ -45,7 +44,7 @@ export class LlamadaPage implements OnInit {
 
 
   siguiente_pagina(event){
-     this._service.getOfertas().then(()=> {
+     this._service.getOfertas( this._service.zonaId).then(()=> {
          event.target.complete();
     });
   }

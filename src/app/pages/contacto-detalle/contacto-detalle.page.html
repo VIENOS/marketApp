@@ -44,13 +44,29 @@
             </p>
 
             <ion-label position="stacked">
+              <h6 class="card-title">Estado</h6>
+            </ion-label>
+            <ion-item>
+              <ion-input  name="moto" readonly> {{item?.estado}}
+              </ion-input>
+            </ion-item>
+            <br>
+            <ion-label position="stacked">
+              <h6 class="card-title">Monto Pedido</h6>
+            </ion-label>
+            <ion-item>
+              <ion-input  name="moto" readonly> S/. {{item?.monto}}
+              </ion-input>
+            </ion-item>
+            <br>
+            <ion-label position="stacked">
               <h6 class="card-title">Comentario o queja del pedido</h6>
             </ion-label>
             <ion-item>
               <ion-textarea [(ngModel)]="comentario" name="comentario">
               </ion-textarea>
             </ion-item>
-
+        
           </form>
         </ion-label>
       </ion-card-content>
@@ -75,6 +91,6 @@
     <ion-title>
       <h5>Pedido en proceso</h5>
     </ion-title>
-
+    
   </ion-toolbar>
 </ion-footer>

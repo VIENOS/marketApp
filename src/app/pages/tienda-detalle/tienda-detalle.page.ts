@@ -3,6 +3,7 @@ import { ModalController, NavParams } from '@ionic/angular';
 import { TiendaDetalleService } from 'src/app/services/tienda-detalle/tienda-detalle.service';
 import { CategoriasPage } from '../categorias/categorias.page';
 import { Router } from '@angular/router';
+import { LlamadaService } from 'src/app/services/llamada/llamada.service';
 
 @Component({
   selector: 'app-tienda-detalle',
@@ -14,7 +15,7 @@ export class TiendaDetallePage implements OnInit {
   public idTienda:any;
   public tienda:any;
   showHorario : boolean = false;
-  constructor(private _service_det:TiendaDetalleService, public viewCtrl: ModalController,private navParams: NavParams,private router:Router) {
+  constructor(public _service:LlamadaService,private _service_det:TiendaDetalleService, public viewCtrl: ModalController,private navParams: NavParams,private router:Router) {
     this.idTienda = this.navParams.get('id');
    }
 
@@ -50,6 +51,10 @@ openModal() {
 
 openPorCategoria(){
   //this.router.navigate(["/categorias/",categoria.id]);
+  if( this.tienda!=undefined){
+    this._service.zonaId=  this.tienda.zona.id;
+  }
+
   this.abrirModalCategorias(this.tienda.zona.id,this.tienda.nomcategoria,this.tienda.subcategoria.id,this.tienda.id);
 }
 

@@ -9,6 +9,7 @@ import { PedidoService } from 'src/app/services/pedido/pedido.service';
 import { CesionService } from 'src/app/services/cesion/cesion.service';
 import { Storage } from '@ionic/storage';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
+import { CalculosService } from 'src/app/services/calculos/calculos.service';
 
 @Component({
   selector: 'app-pedido',
@@ -34,17 +35,27 @@ export class PedidoPage implements OnInit {
   public totaldelivery: any;
   public montoTotal : any;
   public cupon:any;
+  public habilitarEnviar:any;
+  public errorDistancia:any;
 
-  constructor(public service_carrito:CarritoService ,private navCtrl:NavController,private _servicio_pedido:PedidoService, public _servicio_cesion:CesionService,private storage:Storage,
-    private geolocation: Geolocation,private router:Router, public viewCtrl: ModalController,public alertController: AlertController,private navParams: NavParams) {
+  constructor(public service_carrito:CarritoService ,private navCtrl:NavController,private _servicio_pedido:PedidoService, public _servicio_cesion:CesionService,private storage:Storage,public _servicio_carrito:CarritoService,
+    private geolocation: Geolocation,private router:Router, public viewCtrl: ModalController,public alertController: AlertController,private navParams: NavParams,private _servicioCalculos:CalculosService) {
       this.ubicacion ="Click en el boton gps"
       this.latTienda = this.navParams.get('latitudtienda');
+      //this.latTienda = -9.02218986119934;
+      console.log("LATITUD TIENDA = "+ this.latTienda)
+     
+
       this.longTienda = this.navParams.get('longitudtienda');
+      //this.longTienda =-78.614022731781;
+      console.log("LONGITUD TIENDA = "+ this.longTienda)
       this.tipopago = this.navParams.get('tipopago');
       this.totalpedido = this.navParams.get('totalpedido');
       this.totaldelivery = this.navParams.get('totaldelivery');
       this.montoTotal =  this.navParams.get('montoTotal');
       this.cupon =  this.navParams.get('cupon');
+      this.habilitarEnviar = false;
+      this.errorDistancia = true;
    }
 
   ngOnInit() {
@@ -57,7 +68,9 @@ export class PedidoPage implements OnInit {
       cerrar: false,
     });
   }
-
+  ionViewWillEnter () {
+  
+  }
 
   onSaveForm() {
    
@@ -109,10 +122,7 @@ export class PedidoPage implements OnInit {
      res => {
           //this.router.navigate(["/tabs/inicio"]);
           this.service_carrito.resetCarrito();
-          this.viewCtrl.dismiss({
-            cerrar: true,
-           
-          });
+         this.presentAlertConfirmFinPedido('Aviso','Su pedido esta en proceso')
      },
      error => {
    
@@ -213,14 +223,68 @@ async abrirModalMapaGoogle(latitud,longitud){
   //console.log("DATA = "+JSON.stringify(data))
   if(data["distanciaKm"]!=null && data["distanciaKm"]!=undefined){
       this.distancia = data["distanciaKm"];
+      this.distancia= this.distancia + "";
+      this.distancia = this.distancia.toString().replace(/\./g,',');
       console.log("DISTANCIAA = "+this.distancia);
       this.ubicacion ="Ubicaciones obtenidas";
   }
   this.latitud = data["latitud"];
   this.longitud = data["longitud"];
+  this.calculos(this.distancia);
 
   }
   
+
+  calculos(distancia){
+    
+    let request = {
+      "cupon" : this.cupon,
+      "distanciakm" : distancia,
+      "carrito" : this._servicio_carrito.carrito
+    };
+  
+    console.log("REQUEST CON CUPON = "+JSON.stringify(request))
+     this._servicioCalculos.calculosMontosCarrito(request).subscribe(
+     res => {
+      console.log("RESPONSE CALUCL CARRITO = "+JSON.stringify(res))
+          this.totalpedido = res.totalPedido;
+          this.totaldelivery = res.totalDelivery;
+          this.montoTotal = res.montoTotal;
+          
+          if(res.mensaje){
+            this.presentAlertConfirm('Aviso',res.mensaje,false);
+            this.habilitarEnviar=false;
+          }else{
+            this.habilitarEnviar=true;
+          }
+     },
+     error => {
+       
+     }
+   );
+  }
+  
+  async presentAlertConfirmFinPedido(header,message) {
+    const alert = await this.alertController.create({
+      mode:'ios',
+      header: header,
+      message: message,
+      buttons: [
+        {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.viewCtrl.dismiss({
+              cerrar: true,
+             
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
 
 

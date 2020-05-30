@@ -28,13 +28,19 @@ export class InicioService {
 
   ///*********************URL REALES***********************
   getZonas(){
-    //return this.http.get<any>(environment.urlServicios+"inicio/zonas");
-    return this.http.get<any>(environment.urlServicios+"zonas.json");
+    return this.http.get<any>(environment.urlServicios+"inicio/zonas");
+   // return this.http.get<any>(environment.urlServicios+"zonas.json");
   }
 
   getTiendaRecomendada(idzona:any){
-    // return this.http.get<any>(environment.urlServicios+"inicio/tiendasrecomendadas/"+idzona);
-    return this.http.get<any>(environment.urlServicios+"tiendasrecomendadas.json");
+     return this.http.get<any>(environment.urlServicios+"inicio/tiendasrecomendadas/"+idzona);
+   // return this.http.get<any>(environment.urlServicios+"tiendasrecomendadas.json");
   }
+
+  getSearchTiendas(term:string,idzona:any){
+    return this.http.get<any>(environment.urlServicios+"tienda/searchGeneral/"+idzona+"/"+term);
+   // return this.http.get<any>("assets/inicio.json");
+  }
+
 
 }

@@ -35,6 +35,8 @@ ngOnInit() {
 
 
 calcularDistancia(myLatlng, myLatlng2) {
+  console.log("TIENDA = "+myLatlng2)
+  console.log("YO = "+myLatlng)
  let distance = google.maps.geometry.spherical.computeDistanceBetween(myLatlng, myLatlng2);
  // distancees un valor en metros
  this.distanciaKm = this._recadeoService.round((distance / 1000) ,2);
@@ -117,6 +119,7 @@ addMarkerInicio(posicion: any, titulo: any) {
 guardar() {
  if(this.marker!==undefined && this.marker!=null){
  //  console.log("GUARDAR = "+this.marker.position)
+ 
    let myLatlng = new google.maps.LatLng(this.latitud, this.longitud);
    // Longitud y latitud de tienda
    let myLatlng2 = new google.maps.LatLng(this.navParams.get('latitudtienda'), this.navParams.get('longitudtienda'));

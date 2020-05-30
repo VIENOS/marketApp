@@ -16,6 +16,8 @@
         </ion-header>
     </div>
       
+    <span *ngIf="_service.lstofertas.length<1" ><ion-item>No hay ofertas disponibles</ion-item></span>
+
     <ion-row *ngFor="let pares of _service.lstofertas | pares">
         <ion-col size="6" *ngFor="let producto of pares">
             

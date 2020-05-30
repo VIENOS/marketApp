@@ -12,7 +12,19 @@ export class TiendaDetalleService {
 
   
   getTienda(idtienda:number): Observable<any>{
-    //return this.http.get<any>(environment.urlServicios+"tiendaOne");
-    return this.http.get<any>("assets/tiendaOne.json");
+    return this.http.get<any>(environment.urlServicios+"tienda/detalleTienda/"+idtienda);
+    //return this.http.get<any>("assets/tiendaOne.json");
+  }
+
+
+  getIdRubroTienda(){
+    switch(name){
+      case 'Restaurantes': return 1;
+      case 'Cafeterías': return 2;
+      case 'Market' : return 3;
+      case 'Farmacias' : return 4;
+      case 'Otros' : return 5;
+      case 'Ropa y Calzado' : return 6;
+    }
   }
 }

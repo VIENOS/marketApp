@@ -11,6 +11,7 @@ export interface Producto {
   descripcion: string;
   imagen: string;
   oferta:number;
+  bolsa:any;
 }
 
 export interface Categorias {
@@ -25,8 +26,10 @@ export interface Tienda {
   direccion: string;
   imagen: string;
   imagenlogo:string;
-  horario:Horario[];
-
+  horario:any;
+  zona:any;
+  nomcategoria:any;
+  subcategoria:any;
 }
 
 export interface Horario{

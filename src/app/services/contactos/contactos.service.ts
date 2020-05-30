@@ -12,13 +12,13 @@ export class ContactosService {
   constructor(private http:HttpClient) { }
 
   getMotorizado(id:any){
-    //return this.http.get<any>(environment.urlServicios+"pedidos/detalle-pedido/"+datos.nombre+"/"+id);
-     return this.http.get<any>("assets/pedido.json");
+    return this.http.get<any>(environment.urlServicios+"pedidos/detallePedidos/"+id);
+    // return this.http.get<any>("assets/pedido.json");
   }
 
   finalizarPedido(request): Observable<any>{
     return this.http.post<any>(
-      environment.urlServicios+'pedidos/finalizar-pedido',
+      environment.urlServicios+'pedidos/finalizarPedido',
       JSON.stringify(request),).pipe(map((response: any) => response),
       catchError(e => {
         if (e.status == 400) {
