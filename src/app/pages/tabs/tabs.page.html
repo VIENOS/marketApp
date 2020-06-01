@@ -6,19 +6,19 @@
         <ion-label>Inicio</ion-label>
       </ion-tab-button>
       
-      <ion-tab-button tab="tienda">
+      <ion-tab-button tab="ofertas">
         <ion-icon src="../assets/menu/destacado.svg"></ion-icon>
-        <ion-label>Sugeridos</ion-label>
+        <ion-label>Ofertas</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="llamada">
-    
+        <ion-icon ></ion-icon>
        
       </ion-tab-button>
 
-      <ion-tab-button tab="recadeo">
-        <ion-icon src="../assets/menu/recadeo3.svg"></ion-icon>
-        <ion-label>Recadeo</ion-label>
+      <ion-tab-button tab="carrito">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-label>Carrito</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="contactos">
@@ -28,12 +28,10 @@
       </ion-tab-button>
     </ion-tab-bar>
     
-  
+   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button color="success" (click)="call()" >
+      <ion-icon name="call"></ion-icon>
+    </ion-fab-button>
+   </ion-fab>
 
 </ion-tabs>
-
-<ion-fab vertical="bottom" horizontal="center" slot="fixed">
-  <ion-fab-button color="rojo" (click)="gotoLlamada()">
-    <ion-icon src="../assets/menu/promocion.svg"></ion-icon>
-  </ion-fab-button>
- </ion-fab>

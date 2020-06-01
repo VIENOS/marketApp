@@ -108,7 +108,8 @@ export class InicioPage implements OnInit {
   getInicio(){
     this._service_inicio.getInicio().subscribe(
       res=>{
-           this.inicio= res;
+           this.lstCategoria= res;
+           //this.inicio= res;
            console.log(res);
      }   
     );

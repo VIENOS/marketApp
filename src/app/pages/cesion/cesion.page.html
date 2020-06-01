@@ -1,11 +1,11 @@
 <ion-header no-border >
-  <ion-toolbar>
+  <ion-toolbar  color="danger">
     <ion-title>
-      <b>Datos Contacto</b>
+      Datos Contacto
     </ion-title>
     <ion-buttons slot="start">
       <ion-button menuToggle slot="icon-only" fill="clear" (click)="close()">
-        <ion-icon  name="chevron-back-outline" color="rojo"></ion-icon>
+        <ion-icon  name="chevron-back-outline" color="light"></ion-icon>
       </ion-button>
     </ion-buttons>
 
@@ -44,9 +44,9 @@
             <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccionar fecha de cumpleaños"  formControlName="fecha" done-text="Aceptar" cancel-text="Cancelar"> </ion-datetime>
            
           </ion-item>
-          <ion-label color="verdino" size="small" position="stacked" *ngIf="fecha.errors?.required" >Fecha de cumpleaños requerido</ion-label>
+          <ion-label color="danger" size="small" position="stacked" *ngIf="fecha.errors?.required" >Fecha de cumpleaños requerido</ion-label>
         </ion-list>
-        <ion-button type="submit" color="verdino" fill="outline" expand="full"  ><ion-label color="rojo">Guardar</ion-label></ion-button>
+        <ion-button type="submit" color="danger" fill="outline" expand="full"  ><ion-label color="danger">Guardar</ion-label></ion-button>
       </ion-card-content>
     </ion-card>
   

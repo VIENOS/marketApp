@@ -48,6 +48,7 @@ export class CategoriasPage implements OnInit {
       this.idsubcategoria = this.navParams.get('idsubcategoria');
       this.idTienda =   this.navParams.get('idtienda');
       this.verFiltros=true;
+      this.idCategoria = this.navParams.get('id');
      
     //this.idCategoria = this.activatedRoute.snapshot.params.id;
 
@@ -60,7 +61,8 @@ export class CategoriasPage implements OnInit {
     console.log("RUBRO TIENDA = "+this.idRubroTienda);
     console.log("SUBCATEGORIA = "+this.idsubcategoria);
     console.log("TIENDA = "+this.idTienda);
-    console.log("CARRITO LON = "+ this.service_carrito.longCarrito())
+    console.log("CARRITO LON = "+ this.service_carrito.longCarrito());
+    console.log("ID CATEGORÍA :: " + this.idCategoria);
     this.service_carrito.longCarrito();
 
    }
@@ -69,6 +71,7 @@ export class CategoriasPage implements OnInit {
   
    this.getListaCategorias();
    this.recomendadosList();
+   this._serviceProducto.getProductosPorCategoria(this.idCategoria);
   }
 
   recomendadosList(){

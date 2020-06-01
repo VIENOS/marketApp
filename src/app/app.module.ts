@@ -14,6 +14,8 @@ import { environment } from '../environments/environment';
 import {Geolocation} from  '@ionic-native/geolocation/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 
+import { CallNumber } from "@ionic-native/call-number/ngx";
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -28,7 +30,8 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     Geolocation,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    CallNumber
   ],
   bootstrap: [AppComponent]
 })

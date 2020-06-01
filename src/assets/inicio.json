@@ -1,35 +1,62 @@
-{
-  "logoempresa": "logo.png",
-  "rubros": [
-    {
-      "id": 1,
-      "nombre": "farmacia",
-      "imagen": "farmacia.jpg"
-    },
-    {
-      "id": 2,
-      "nombre": "restaurantes",
-      "imagen": "restaurant.jpg"
-    },
-    {
-      "id": 3,
-      "nombre": "cafeterias",
-      "imagen": "cafeteria.jpg"
-    },
-    {
-      "id": 4,
-      "nombre": "minimarkets",
-      "imagen": "minimarket.jpg"
-    },
-    {
-      "id": 5,
-      "nombre": "ropas y calzado",
-      "imagen": "ropa.jpg"
-    },
-    {
-      "id": 6,
-      "nombre": "otros",
-      "imagen": "otros.png"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "nombre": "Whisky Whisky",
+    "imagen": "whisky.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Vino",
+    "imagen": "vino.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Cerveza",
+    "imagen": "cerveza.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Pisco",
+    "imagen": "pisco.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Whisky",
+    "imagen": "whisky.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Vino",
+    "imagen": "vino.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "Vino",
+    "imagen": "vino.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "Whisky",
+    "imagen": "whisky.jpg"
+  },
+  {
+    "id": 9,
+    "nombre": "Vino",
+    "imagen": "vino.jpg"
+  },
+  {
+    "id": 10,
+    "nombre": "Vino",
+    "imagen": "vino.jpg"
+  },
+  {
+    "id": 11,
+    "nombre": "Cerveza",
+    "imagen": "cerveza.jpg"
+  },
+  {
+    "id": 12,
+    "nombre": "Vino",
+    "imagen": "vino.jpg"
+  }
+]

@@ -22,31 +22,40 @@ ion-buttons.buttons-first-slot.sc-ion-buttons-ios-h.sc-ion-buttons-ios-s.ios.hyd
     margin-bottom: -10px;
 }
 
-ion-card{
-    margin-left: 8px;
-    margin-right: 2px;
 
+
+ion-card{
+    background-color: #fff;
+    
     ion-card-header{
-        padding: 0px 2px 5px 2px;
+        background-color: grey;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-right: 0;
+        padding-right: 0;
+        height: 20px;
+
         ion-card-title{
+            margin-right: 7px;
+            margin-top: -20px;
             h6{
-                font-size: 13px;
-                margin-top: 2px;
+                color: #fff;
+                font-size: 15px;
                 font-weight: bold;
-                text-align: left;       
-                margin-bottom: 1px;
+                text-align: right;
             }
         }
-        ion-card-subtitle{
-            h6{
-                font-size: 13px;
-                margin-top: 2px;
-                font-weight: bold;
-                text-align: left;
-                margin-bottom: 0px;
-                color: #fb941b;
-            }
-        }
+        
+    }
+    ion-card-content{
+        background-color: #fff;
+        height: 40px;
+        overflow: scroll;
+        align-content: center;
+        text-align: left;
+        color: grey;
+        vertical-align: middle;
+       
     }
 }
 
@@ -105,9 +114,6 @@ ion-card{
       
     }
     ion-label{
-        h2{
-            font-size: 12px;
-        }
         h6{
             color: #fb941b;
             font-weight: bold;

@@ -1,189 +1,47 @@
-<ion-header no-border >
-  <ion-toolbar  color="danger">
-      
-    <ion-buttons slot="start">
-      <ion-button menuToggle slot="icon-only" fill="clear" (click)="close()">
-        <ion-icon  name="chevron-back-outline" color="light"></ion-icon>
-      </ion-button>
-     <!--<ion-back-button text="" defaulHref="/"></ion-back-button>--> 
-    </ion-buttons>
-
-      <ion-searchbar 
-      class="searchbar-sin-icono"
-      type="text"
-      color="redtrasnparente"
-      (ionInput)="find($event)"
-      placeholder="Buscar producto.."
-      >
-    
-      </ion-searchbar>
-      <ion-buttons slot="end" >
-        <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" *ngIf="service_carrito.long_carrito!=undefined" (click)="openCarrito()">
-          <ion-badge mode="ios" slot="end" color="verdino" >{{service_carrito.long_carrito}}</ion-badge>
-          <ion-icon name="cart-outline"></ion-icon>
-        </ion-button>
-       <!--<ion-back-button text="" defaulHref="/"></ion-back-button>--> 
-      </ion-buttons>
-  </ion-toolbar>
-
-</ion-header>
-
 <ion-content>
-    
-    <div class="ini" *ngIf="verFiltros && !recomendados?.codigo" >
-     <p>
-          <ion-chip  color="redtrasnparente"  >
-            <ion-icon name="star-outline"></ion-icon>
-            <ion-label>Productos Recomendados</ion-label>
-          </ion-chip>
-   
-       
-          <!--<ion-chip  color="secondary"  >
-            <ion-icon name="pricetag-outline"></ion-icon>
-            <ion-label>Cajamarca</ion-label>
-          </ion-chip>-->
-        </p>
-    </div>
+  <div id="categoriaSelect">
+    <ion-header no-border>
+      <ion-toolbar color="danger">
+        <ion-buttons slot="start">
+          <ion-button (click)="close()" expand="block" fill="clear" shape="round">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>
+          Productos
+        </ion-title>
+        <!--<ion-buttons slot="end">
+          <ion-button id="carrito" menuToggle slot="icon-only" fill="clear" (click)="openCarrito()"
+            *ngIf="service_carrito.long_carrito!=undefined">
+            <ion-badge mode="ios" slot="end" color="success">{{service_carrito.long_carrito}} </ion-badge>
+            <ion-icon name="cart-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>-->
+      </ion-toolbar>
+    </ion-header>
+  </div>
 
-    <ion-row *ngIf="verFiltros">
- 
-      <ion-col size="6" *ngFor="let producto of recomendados">
-          
-        <ion-card>
-          <img class="poster" [src]="producto.producto.imagen | imagen" (click)="openProducto(producto)">
-          <ion-card-header>
-            <ion-card-title>
-              <h6 class="card-title"> {{producto.producto.nombre}}</h6>
-            </ion-card-title>
-            <ion-card-subtitle>
-              <div *ngIf="producto.producto.oferta>0 == true else blockeifRE">
-                <h6 >S/.{{producto.producto.oferta | number: '.2'}} </h6>
-                <del > <h6 style="color:#9d9d9d;font-weight: bold;">S/.{{producto.producto.precio | number: '.2'}} </h6></del>
-              </div>
-             
-              <ng-template #blockeifRE>
-                   <h6  class="card-subtitle" >S/.{{producto.producto.precio | number: '.2'}} </h6>
-              </ng-template>
-            </ion-card-subtitle>
-            <ion-button fill="outline" expand="block"  size="small" color="redtrasnparente" (click)="addCarrito(producto)" > 
-                  <ion-icon name="cart-outline"></ion-icon>
-            </ion-button>
-          </ion-card-header>
-        </ion-card>
-  
-      </ion-col>
-    </ion-row>
-   <!-- <ion-slides [options]="slideOpts">
-      <ion-slide *ngFor="let producto of recomendados">
-        <ion-card>
-            <img class="poster" [src]="producto?.imagen | imagen" (click)="openProducto(producto)">
-            <ion-card-header>
-            <ion-card-title>
-              <h6 class="card-title"> {{producto?.nombre}}</h6>
-            </ion-card-title>
-            <ion-card-subtitle>
-              <h6 class="card-subtitle"> S/.{{producto?.precio | number: '.2'}}</h6>
-            </ion-card-subtitle>
-            <ion-button fill="outline" expand="block"  size="small" color="redtrasnparente">
-              <ion-icon name="cart-outline"></ion-icon>
-              </ion-button>
-          </ion-card-header>
-        </ion-card>
-      </ion-slide>
-    </ion-slides>-->
- 
-<!--<ion-slides [options]="slideOpts">
-  <ion-slide *ngFor="let item of lstCategoria">
-    <ion-chip  color="redtrasnparente">
-      <ion-select [(ngModel)]="categoriaSelect" (ionChange)="OnChange($event)"  >
-        <ion-select-option *ngFor="let item of lstCategoria" [value]="item" >
-          {{item.nombre}}
-        </ion-select-option>
-      </ion-select>
-    </ion-chip>
-    
-  </ion-slide>
-</ion-slides>-->
-
-<div id="categoriaSelect">
-<!--  <ion-progress-bar color="redtrasnparente" value="1">
-  </ion-progress-bar>-->
-      <ion-segment  *ngIf="verFiltros"  [(ngModel)]="categoriaSelect"  mode="md" color="redtrasnparente" scrollable="true" >  
-        <ion-segment-button *ngFor="let item of lstCategoria" [value]="item" (click)="cambioCategorias(segmentss.value)" #segmentss name="segmentss">
-          <ion-label>{{item.nombre}}</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-
-      <ion-item *ngIf="error404" >No hay productos</ion-item>
-      <ion-list #list>
-        <ion-item-sliding *ngFor="let item of lstProductos" >
-          <ion-item>
-            <ion-thumbnail slot="start">
-              <ion-img [src]="item.producto.imagen | imagen"  (click)="openProducto(item)"></ion-img>
-            </ion-thumbnail>
-            <ion-label (click)="openProducto(item)">
-              <h2>{{item.producto.nombre}} </h2>
-              <div *ngIf="item.producto.oferta>0 == true else blockeif">
-                <h6 >S/.{{item.producto.oferta | number: '.2'}}
-           
-                </h6>
-                <del > <h6 style="color:#9d9d9d;font-weight: bold;">S/.{{item.producto.precio | number: '.2'}} </h6></del>
-              </div>
-             
-              <ng-template #blockeif>
-                   <h6>S/.{{item.producto.precio | number: '.2'}}
-                   
-                  </h6>
-              </ng-template>
-              
-            </ion-label >
-            
-        
-            <ion-button  mode="ios" id="resta" slot="end"   fill="outline"  (click)="restarCantidad(item.producto.id)"  expand="block"  size="small" color="redtrasnparente" >
-              <ion-icon name="remove-circle-outline"></ion-icon>
-            </ion-button>
-            <ion-button   mode="ios" id="suma" slot="end"   fill="outline" (click)="sumarCantidad(item.producto.id)"  expand="block"  size="small" color="redtrasnparente" >
-               <ion-icon name="add-circle-outline"></ion-icon>
-            </ion-button>
-            <ion-button   slot="end"  expand="block"  size="small" id="cantidad" color="empresa">
-              <ion-input mode="md" id="contador" name="contador" readonly [(ngModel)]="item.cantidad"  #contador type="number"  ></ion-input>
-            </ion-button>
-            <ion-button slot="end" id="carrito" expand="block"  size="small" color="redtrasnparente" (click)="addCarrito(item)" >
-              <ion-icon name="cart-outline"></ion-icon>
-
-            </ion-button>
-          </ion-item>
-        </ion-item-sliding>
-      </ion-list>
-</div>
-
-<!--
-
-  <ion-row *ngFor="let pares of lstProductos | pares">
+  <ion-row *ngFor="let pares of _serviceProducto.lstProductos | pares">
     <ion-col size="6" *ngFor="let producto of pares">
-        
       <ion-card>
-        <img class="poster" [src]="producto.imagen | imagen" (click)="openProducto(producto)">
+        <img class="posterProduct" [src]="producto.imagen | imagen" (click)="openProducto(producto)">
         <ion-card-header>
           <ion-card-title>
-            <h6 class="card-title"> {{producto.nombre}}</h6>
+            <h6>S/.{{producto.precio | number: '.2'}} </h6>
           </ion-card-title>
-          <ion-card-subtitle>
-            <h6 class="card-subtitle"> S/.{{producto.precio | number: '.2'}}</h6>
-          </ion-card-subtitle>
-          <ion-button fill="outline" expand="block"  size="small" color="redtrasnparente">
-                <ion-icon name="cart-outline"></ion-icon>
-          </ion-button>
         </ion-card-header>
+        <ion-card-content>
+          <h6> {{producto.nombre}}</h6>
+        </ion-card-content>
+        <ion-button fill="outline" expand="block" size="small" color="danger" (click)="guardarCarrito(producto)">
+          <ion-icon name="cart-outline"></ion-icon>
+        </ion-button>
       </ion-card>
-
     </ion-col>
   </ion-row>
-     
-      
--->
 
-
-
-
+  <ion-infinite-scroll (ionInfinite)="siguiente_pagina($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando mas ofertas...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

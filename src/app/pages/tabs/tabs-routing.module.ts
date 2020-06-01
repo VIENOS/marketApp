@@ -21,11 +21,11 @@ const routes: Routes = [
         loadChildren: () => import('../contactos/contactos.module').then( m => m.ContactosPageModule)
       },
       {
-        path: 'recadeo',
-        loadChildren: () => import('../recadeo/recadeo.module').then( m => m.RecadeoPageModule)
+        path: 'carrito',
+        loadChildren: () => import('../carrito/carrito.module').then( m => m.CarritoPageModule)
       },
       {
-        path: 'llamada',
+        path: 'ofertas',
         loadChildren: () => import('../llamada/llamada.module').then( m => m.LlamadaPageModule)
       }
     ]

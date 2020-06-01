@@ -1,7 +1,8 @@
 <ion-content fullscreen>
   <div id="fixed-menu-button" #fixedMenuButton>
-    <ion-button menuToggle slot="icon-only" fill="clear" (click)="close()">
-        <ion-icon  name="chevron-back-outline" color="redtrasnparente"></ion-icon>
+    <ion-button slot="end" menuToggle slot="icon-only" fill="clear" (click)="close()">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+        <!--<ion-icon  name="chevron-back-outline" color="redtrasnparente"></ion-icon>-->
       </ion-button>
   </div>
  
@@ -16,18 +17,19 @@
         {{producto?.descripcion}}
       </ion-card-content>
       <ion-card-subtitle>
-        <div *ngIf="producto?.oferta>0 == true else blockeif">
+        <h6 class="card-subtitle">S/.{{producto?.precio | number: '.2'}}  </h6>
+        <!--<div *ngIf="producto?.oferta>0 == true else blockeif">
           <h6 class="card-subtitle">S/.{{producto?.oferta | number: '.2'}} </h6>
           <del > <h6 style="color:#9d9d9d;font-weight: bold;">S/.{{producto?.precio | number: '.2'}} </h6></del>
         </div>
         <ng-template #blockeif>
           <h6 class="card-subtitle">S/.{{producto?.precio | number: '.2'}}  </h6>
-         </ng-template>
+         </ng-template>-->
        
       </ion-card-subtitle>
-      <ion-button fill="outline" expand="block"  color="verdino" (click)="addProducto()" >
-            <ion-icon color="redtrasnparente" slot="end" name="cart-outline"></ion-icon>
-            <ion-label  color="redtrasnparente"> Añadir a carrito</ion-label>
+      <ion-button fill="outline" expand="block"  color="danger" (click)="guardarCarrito(producto)">
+            <ion-icon color="danger" slot="end" name="cart-outline"></ion-icon>
+            <ion-label  color="danger"> Añadir a carrito</ion-label>
       </ion-button>
     </ion-card-header>
    

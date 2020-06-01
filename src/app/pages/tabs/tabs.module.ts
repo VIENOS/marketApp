@@ -8,12 +8,17 @@ import { TabsPageRoutingModule } from './tabs-routing.module';
 
 import { TabsPage } from './tabs.page';
 
+import { CallNumber } from "@ionic-native/call-number/ngx";
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     TabsPageRoutingModule
+  ],
+  providers: [
+    CallNumber
   ],
   declarations: [TabsPage]
 })
