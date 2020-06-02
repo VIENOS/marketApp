@@ -45,6 +45,11 @@ export class LlamadaService {
 
   }
 
+
+  getNumCelular(){
+    //return this.http.get<any>(environment.urlServicios+"numeroCelular");
+    return this.http.get<any>("assets/numeroCelular.json");
+  }
  
 
 }
