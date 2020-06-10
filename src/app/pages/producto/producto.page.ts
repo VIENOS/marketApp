@@ -40,7 +40,7 @@ export class ProductoPage implements OnInit {
 
 
   addProducto(){
-    console.log("add carrito " + JSON.stringify(this.producto))
+    console.log("add carrito " + JSON.stringify(this.producto));
     let productoCarrito = {
       "cantidad" : 1,
       "producto" : this.producto

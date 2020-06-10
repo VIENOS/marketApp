@@ -23,20 +23,20 @@ export class TabsPage implements OnInit {
 
   call(){
     console.log("entró a llamar()");
-    this.callNumber.callNumber(this.numeroCel[0].celular,true);
+    this.callNumber.callNumber(this.numeroCel,true);
     console.log("salió de llamar()");
     
   }
 
   gotoLlamada(){
-    this.router.navigateByUrl('/tabs/llamada')
+    this.router.navigateByUrl('/tabs/pedido');
   }
 
   getNumeroCel(){
     this.llamadaService.getNumCelular().subscribe(
       res => {
         this.numeroCel = res;
-        console.log("numero CEL: " + JSON.stringify(this.numeroCel[0].celular));
+        console.log("numero CEL: " + JSON.stringify(this.numeroCel));
         
       }
     );

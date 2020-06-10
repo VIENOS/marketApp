@@ -10,28 +10,31 @@ import { Producto } from 'src/app/interfaces/interfaces';
 export class ProductoService {
 
   paginaofe:number=0;
-  public lstProductos: Producto[] = [];
+  public lstProductos: any[] = [];
 
   constructor(private http: HttpClient) { }
 
   //lista los productos por id categoria
   getProductosPorCategoria(idCategoria:number){
     let promesa = new Promise( (resolve, reject) => {
+      //console.log("entrando a getProductosPorCategoria:: "+JSON.stringify(this.lstProductos));
       //let url = environment.urlServicios+"ofertas/"+idzona+"/"+ this.pagina;
-      let url = "assets/ofertas"+ this.paginaofe+".json";
-      //let url = environment.urlServicios+"producto/"+idCategoria+"/"+this.paginaofe;
+      //let url = "assets/ofertas"+ this.paginaofe+".json";
+      let url = environment.urlServicios+"productos/producto/"+idCategoria+"/"+this.paginaofe;
+      console.log(":::URL:::::" + url);
+      
       this.http.get(url).subscribe( 
           data => { 
-              console.log(data)
-              let lst = data as Producto[]
+              console.log(data);
+              let lst = data as any[];
               const arrTemp = [ ...this.lstProductos, ...lst];
               this.lstProductos = arrTemp; 
-              console.log(":: "+JSON.stringify(this.lstProductos));
+              console.log("saliendo de getProductosPorCategoria:: "+JSON.stringify(this.lstProductos));
               this.paginaofe = this.paginaofe+1;
-            resolve();
+            resolve(this.lstProductos);
           } ,
           error=>{
-            resolve();
+            reject();
           }
           );
     });
@@ -39,7 +42,9 @@ export class ProductoService {
   }
 
   getProducto(idproducto:number): Observable<any>{
-    return this.http.get<any>(environment.urlServicios+"productos/detalleProducto/"+idproducto);
+    let url = environment.urlServicios+"productos/detalleProducto/"+idproducto;
+    console.log("detalle producto: " + "idProducto: " + idproducto + " URL: " + url);
+    return this.http.get<any>(url);
     //return this.http.get<any>("assets/productoOne.json");
   }
 
@@ -51,8 +56,8 @@ export class ProductoService {
     return this.http.get<any>("assets/tipopago.json");
   }
 
-  getFiltroProducto(termino:string,idtienda:any){
-    return this.http.get<any>(environment.urlServicios+"productos/searchTienda/"+idtienda+"/"+termino);
+  getFiltroProducto(termino:string,idcategoria:any){
+    return this.http.get<any>(environment.urlServicios+"productos/search/"+idcategoria+"/"+termino);
     //return this.http.get<any>("assets/producto.json");
   }
 

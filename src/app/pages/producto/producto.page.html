@@ -13,7 +13,7 @@
       <ion-card-title>
         <h6 class="card-title"> {{producto?.nombre}}</h6>
       </ion-card-title>
-      <ion-card-content >
+      <ion-card-content>
         {{producto?.descripcion}}
       </ion-card-content>
       <ion-card-subtitle>
@@ -27,7 +27,7 @@
          </ng-template>-->
        
       </ion-card-subtitle>
-      <ion-button fill="outline" expand="block"  color="danger" (click)="guardarCarrito(producto)">
+      <ion-button fill="outline" expand="block"  color="danger" (click)="addProducto(producto)">
             <ion-icon color="danger" slot="end" name="cart-outline"></ion-icon>
             <ion-label  color="danger"> Añadir a carrito</ion-label>
       </ion-button>

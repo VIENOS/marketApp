@@ -27,6 +27,7 @@ export class CategoriasPage implements OnInit {
   public idsubcategoria:any;
   public verFiltros:boolean;
   public error404:boolean;
+  public lstProducto: Producto[]=[];
 
 
   public slideOpts={
@@ -42,7 +43,7 @@ export class CategoriasPage implements OnInit {
   
 
   constructor(public service_carrito:CarritoService, private _service_inicio:InicioService,private activatedRoute: ActivatedRoute,private _service_categoria:CategoriasService,private router:Router, public viewCtrl: ModalController,private navParams: NavParams
-    ,private _serviceProducto:ProductoService) {
+    ,public _serviceProducto:ProductoService) {
       this.idzona = this.navParams.get('idzona');
       this.idRubroTienda = this.navParams.get('idRubroTienda');
       this.idsubcategoria = this.navParams.get('idsubcategoria');
@@ -57,24 +58,34 @@ export class CategoriasPage implements OnInit {
       console.log("ID TIENDA= "+this.idTienda);
     }*/
    
-    console.log("ZONA  = "+this.idzona);
-    console.log("RUBRO TIENDA = "+this.idRubroTienda);
-    console.log("SUBCATEGORIA = "+this.idsubcategoria);
-    console.log("TIENDA = "+this.idTienda);
-    console.log("CARRITO LON = "+ this.service_carrito.longCarrito());
+    //console.log("ZONA  = "+this.idzona);
+    //console.log("RUBRO TIENDA = "+this.idRubroTienda);
+    //console.log("SUBCATEGORIA = "+this.idsubcategoria);
+    //console.log("TIENDA = "+this.idTienda);
+    //console.log("CARRITO LON = "+ this.service_carrito.longCarrito());
     console.log("ID CATEGORÍA :: " + this.idCategoria);
-    this.service_carrito.longCarrito();
+    //this.service_carrito.longCarrito();
 
    }
 
   ngOnInit() {
   
-   this.getListaCategorias();
-   this.recomendadosList();
-   this._serviceProducto.getProductosPorCategoria(this.idCategoria);
+   //this.getListaCategorias();
+   //this.recomendadosList();
+   //this._serviceProducto.getProductosPorCategoria(this.idCategoria);
+   this.getProductosPorCategoria();
   }
 
-  recomendadosList(){
+  getProductosPorCategoria(){
+     this._serviceProducto.getProductosPorCategoria(this.idCategoria).then(res =>{
+       this.lstProducto = res as Producto[];
+       console.log("this.lstProducto: " + JSON.stringify(this.lstProducto));
+     }).catch(error =>{
+       console.log("error no hay lstProducto");
+     });
+  }
+
+  /*recomendadosList(){
     this._service_categoria.getRecomendados(this.idTienda).subscribe(
       res=>{
         console.log("PRODUCTOS RECOMENDADOS =  "+JSON.stringify(res))
@@ -88,10 +99,10 @@ export class CategoriasPage implements OnInit {
            }); 
      }   
     );
-  }
+  }*/
 
 
-  loadList(){
+  /*loadList(){
     this._service_categoria.getListaProductos(this.idTienda,this.categoriaSelect.id).subscribe(
       res=>{
         let productos= res;
@@ -105,18 +116,8 @@ export class CategoriasPage implements OnInit {
         
      }   
     );
-  }
+  }*/
 
-  cargarProductosConContador(productos:any){
-    this.lstProductos=[]
-    productos.forEach(p => {
-      let productoCont = new ProductoCont();
-      productoCont.cantidad = 1;
-      productoCont.producto = p;
-      this.lstProductos.push(productoCont); 
-      }); 
-  console.log(this.lstProductos);       
-  }
   
 
   sumarCantidad(id:any){
@@ -138,12 +139,14 @@ export class CategoriasPage implements OnInit {
     if(valor===undefined || valor === null || valor === ""){
       this.cancelFind();
     }else{
-      this._serviceProducto.getFiltroProducto(valor,this.idTienda).subscribe(
+      this._serviceProducto.getFiltroProducto(valor,this.idCategoria).subscribe(
         res=>{
-          let productos= res;
+          //let productos= res;
           this.verFiltros=false;
-          this.lstProductos=[];
-          this.cargarProductosConContador(productos);
+          //this.lstProducto=[];
+          //.cargarProductosConContador(productos);
+          this.lstProducto = res;
+          console.log("PRODUCTOS BUSCADOR: "+JSON.stringify(res));
         },
         error=>{
           this.verFiltros=true;
@@ -152,20 +155,31 @@ export class CategoriasPage implements OnInit {
     }
  
   }
+  
+  cargarProductosConContador(productos:any){
+    this.lstProductos=[]
+    productos.forEach(p => {
+      let productoCont = new ProductoCont();
+      productoCont.cantidad = 1;
+      productoCont.producto = p;
+      this.lstProductos.push(productoCont); 
+      }); 
+  console.log(this.lstProductos);       
+  }
 
   cancelFind(){
     this.verFiltros=true;
-    this.loadList();
+    //this.loadList();
   }
 
 cambioCategorias(item:any){
   this.categoriaSelect =item;
   console.log("zona elegida"+JSON.stringify(this.categoriaSelect));
-  this.loadList();
+  //this.loadList();
 }
 
   /********metodos del select */
-  getListaCategorias(){
+  /*getListaCategorias(){
     console.log("IDee SUB= "+this.idsubcategoria)
     this._service_categoria.getListaCategorias(this.idsubcategoria).subscribe(
       res=>{
@@ -181,7 +195,7 @@ cambioCategorias(item:any){
         console.log(this.categoriaSelect );
      }   
     );
-  }
+  }*/
 
 
   OnChange(event){
@@ -191,8 +205,8 @@ cambioCategorias(item:any){
 
   openProducto(producto:any){
 
-    console.log("PRODUCTO = "+producto.producto.id)
-    this.abrirModal(producto.producto.id);
+    console.log("PRODUCTO = "+producto.id);
+    this.abrirModal(producto.id);
   }
 
 
@@ -204,13 +218,21 @@ cambioCategorias(item:any){
   }
 
   close(){
+    this._serviceProducto.lstProductos = [];
+    this._serviceProducto.paginaofe = 0;
     this.viewCtrl.dismiss();
   }
 
 
-  addCarrito(item:ProductoCont){
+  /*addCarrito(item:ProductoCont){
     console.log("add carrito " + JSON.stringify(item))
     this.service_carrito.guardarCarrito(item);   
+  }*/
+  guardarCarrito(pruducto:any){
+    let item = new ProductoCont();
+    item.producto = pruducto;
+    item.cantidad = 1;
+    this.service_carrito.guardarCarrito(item); 
   }
 
 
@@ -226,8 +248,10 @@ cambioCategorias(item:any){
     await myModal.present();
   }
   
-
-  
-
+  siguiente_pagina(event){
+    this._serviceProducto.getProductosPorCategoria(this.idCategoria).then(()=> {
+        event.target.complete();
+   });
+ }
 
 }

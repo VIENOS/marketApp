@@ -26,22 +26,23 @@ export class ContactosPage implements OnInit {
    }
 
  ngOnInit(){
-
+  //this.listarPedidos();
+  this.ionViewWillEnter();
  }
 
    async verificarSiExisteDatosDeUsuario(){
-    console.log("VERIFICA")
+    console.log("VERIFICA");
     this._servicio_cesion.datos = await  this._servicio_cesion.cargarCesion();
     if(this._servicio_cesion.datos){
-      console.log("SI HAY DATA")
+      console.log("SI HAY DATA");
        this.listarPedidos();
     }else{
-      console.log("NO HAY DATA")
+      console.log("NO HAY DATA");
     }
   }
 
-  ionViewWillEnter () {
-    console.log("ENTRO AL WILL ENTER")
+  ionViewWillEnter() {
+    console.log("ENTRO AL WILL ENTER");
     this.verificarSiExisteDatosDeUsuario();
   }
 
@@ -49,7 +50,7 @@ export class ContactosPage implements OnInit {
     this.servicio_pedidos.getListPedidos(this._servicio_cesion.datos).subscribe(
       res => {
            this.listpedido = res;
-           console.log(JSON.stringify(this.listpedido))
+           console.log(JSON.stringify(this.listpedido));
       },
       error => {
         console.log("NO HAY DATA ERROR "+error.status)

@@ -52,10 +52,10 @@ export class InicioPage implements OnInit {
    this.getInicio();
 
    console.log(new Date());
-   this.listzonas();
+   //this.listzonas();
   }
 
-  listzonas(){
+  /*listzonas(){
     this._service_inicio.getZonas().subscribe(
         res=>{
            this.lstzonas = res;
@@ -66,7 +66,7 @@ export class InicioPage implements OnInit {
            this.saveOfertasZona();
         }
     );
-  }
+  }*/
 
   getTiendaRecomendada(idzona:any){
     this._service_inicio.getTiendaRecomendada(idzona).subscribe(
@@ -81,7 +81,7 @@ export class InicioPage implements OnInit {
     this.zona =item;
     console.log("zona elegida"+JSON.stringify(this.zona));
     this.getTiendaRecomendada(this.zona.id);
-    this.saveOfertasZona();
+    //this.saveOfertasZona();
   }
 
 
@@ -213,12 +213,12 @@ export class InicioPage implements OnInit {
   }
 
 
-  saveOfertasZona(){     
+  /*saveOfertasZona(){     
     this._service.lstofertas = [];
     this._service.paginaofe = 0;
     this._service.zonaId=this.zona.id;
     this._service.getOfertas(this.zona.id);
-  }
+  }*/
 
 
 }

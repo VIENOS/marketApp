@@ -27,20 +27,11 @@
         </ion-thumbnail>
         <ion-label>
           <h2>{{item.producto.nombre}}</h2>
-          <div *ngIf="item.producto.oferta>0 == true else blockeif">
-            <h6>S/.{{item.producto.oferta | number: '.2'}}
-
+          <div>
+            <h6>
+              S/.{{item.producto.precio | number: '.2'}}
             </h6>
-            <del>
-              <h6 style="color:#9d9d9d;font-weight: bold;">S/.{{item.producto.precio | number: '.2'}} </h6>
-            </del>
           </div>
-
-          <ng-template #blockeif>
-            <h6>S/.{{item.producto.precio | number: '.2'}}
-
-            </h6>
-          </ng-template>
         </ion-label>
         <ion-button mode="ios" id="resta" slot="end" fill="outline" (click)="restarCantidad(item.producto.id)"
           expand="block" size="small" color="redtrasnparente">
@@ -76,13 +67,13 @@
 
   <ion-card mode="md">
     <ion-list>
-      <ion-item>
+      <!--<ion-item>
         <ion-input placeholder="Ingresar cupon" type="text" [(ngModel)]="cupon"></ion-input>
         <ion-button color="rojo" (click)="cuponValidar()">
           <ion-icon name="checkmark-circle-outline"></ion-icon>
 
         </ion-button>
-      </ion-item>
+      </ion-item>-->
     </ion-list>
   </ion-card>
   <p id="cupon" [ngStyle]="cuponValido ? {'color':'#8ff02d'} :  {'color':'#fb941b'}" *ngIf="msgxCupon!=undefined ">

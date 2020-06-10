@@ -165,9 +165,9 @@ guardarRecadeo(){
     "latitud": this.latitudFin,
     "longitud" : this.longitudFin
   }
-  console.log("ZONA = "+ this._service.zonaId)
+  //console.log("ZONA = "+ this._service.zonaId)
   let request = {
-    "id_zona" : this._service.zonaId,
+    //"id_zona" : this._service.zonaId,
     "montoTotal" : this.montoTotal,
     "datosPersonales" : this._servicio_cesion.datos,
     "coordenadasInicio" : coordenadasInicio,

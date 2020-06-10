@@ -19,8 +19,8 @@ export class InicioService {
   
 
   getInicio(){
-    //return this.http.get<any>(environment.urlServicios+"categoria");
-    return this.http.get<any>("assets/inicio.json");
+    return this.http.get<any>(environment.urlServicios+"inicio/categoria");
+    //return this.http.get<any>("assets/inicio.json");
   }
 
 

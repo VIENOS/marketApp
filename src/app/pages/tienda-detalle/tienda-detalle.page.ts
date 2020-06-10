@@ -52,7 +52,7 @@ openModal() {
 openPorCategoria(){
   //this.router.navigate(["/categorias/",categoria.id]);
   if( this.tienda!=undefined){
-    this._service.zonaId=  this.tienda.zona.id;
+    //this._service.zonaId=  this.tienda.zona.id;
   }
 
   this.abrirModalCategorias(this.tienda.zona.id,this.tienda.nomcategoria,this.tienda.subcategoria.id,this.tienda.id);

@@ -19,9 +19,12 @@
         </ion-buttons>-->
       </ion-toolbar>
     </ion-header>
+    <ion-searchbar class="searchbar-transparente" type="text" color="" (ionInput)="find($event)"
+      placeholder="¿Que buscas hoy?">
+    </ion-searchbar>
   </div>
 
-  <ion-row *ngFor="let pares of _serviceProducto.lstProductos | pares">
+  <ion-row *ngFor="let pares of lstProducto | pares">
     <ion-col size="6" *ngFor="let producto of pares">
       <ion-card>
         <img class="posterProduct" [src]="producto.imagen | imagen" (click)="openProducto(producto)">

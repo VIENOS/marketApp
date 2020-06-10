@@ -22,13 +22,13 @@ export class LlamadaPage implements OnInit {
 
 
   ngOnInit() {
-     
+     this._service.getOfertas();
   }
 
 
   openProducto(producto:any){
 
-    console.log("PRODUCTO = "+producto.id)
+    console.log("PRODUCTO = "+producto.id);
     this.abrirModal(producto.id);
   }
 
@@ -44,7 +44,7 @@ export class LlamadaPage implements OnInit {
 
 
   siguiente_pagina(event){
-     this._service.getOfertas( this._service.zonaId).then(()=> {
+     this._service.getOfertas().then(()=> {
          event.target.complete();
     });
   }
@@ -65,6 +65,23 @@ export class LlamadaPage implements OnInit {
 
    guardarCarrito(pruducto:any){
      let item = new ProductoCont();
+     var idProductoString = pruducto.id;
+     var idProductoNumber: number = +idProductoString;
+
+     var precioString = pruducto.precio;
+     var precioNumber: number = +precioString;
+
+     var ofertaString = pruducto.oferta;
+     var ofertaNumber: number = +ofertaString;
+
+     pruducto.id = idProductoNumber;
+     pruducto.precio = precioNumber;
+     pruducto.oferta = ofertaNumber;
+
+     console.log("tipo id oferta:: " + typeof(pruducto.id));
+     console.log("tipo precio:: " + typeof(pruducto.precio));
+     console.log("tipo oferta:: " + typeof(pruducto.oferta));
+
      item.producto = pruducto;
      item.cantidad = 1;
       this.service_carrito.guardarCarrito(item);   

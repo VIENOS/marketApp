@@ -11,15 +11,15 @@ import { Storage } from '@ionic/storage';
 export class LlamadaService {
   paginaofe:number=0;
   public lstofertas: any[] = [];
-  public zonaId :any;
+  //public zonaId :any;
   constructor(private storage:Storage,private http:HttpClient) { }
 
-  getOfertas(idzona:any){
+  getOfertas(){
     console.log("OFERTAS")
    
     let promesa = new Promise( (resolve, reject) => {
-      console.log("ofertas/ofertas/"+idzona+"/"+ this.paginaofe)
-      let url = environment.urlServicios+"ofertas/ofertas/"+idzona+"/"+ this.paginaofe;
+      //console.log("ofertas/ofertas/"+idzona+"/"+ this.paginaofe)
+      let url = environment.urlServicios+"ofertas/ofertas/"+ this.paginaofe;
       //let url = "assets/ofertas"+ this.paginaofe+".json";
       this.http.get(url).subscribe( 
           (data:any) => { 
@@ -47,8 +47,8 @@ export class LlamadaService {
 
 
   getNumCelular(){
-    //return this.http.get<any>(environment.urlServicios+"numeroCelular");
-    return this.http.get<any>("assets/numeroCelular.json");
+    return this.http.get<any>(environment.urlServicios+"carrito/numeroCelular");
+    //return this.http.get<any>("assets/numeroCelular.json");
   }
  
 

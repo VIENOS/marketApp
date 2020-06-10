@@ -19,7 +19,7 @@ export class PedidoService {
 
   nuevoPedido(request): Observable<any>{
     return this.http.post<any>(
-      environment.urlServicios+'carrito/nuevoPedido',
+      environment.urlServicios+"carrito/nuevoPedido",
       JSON.stringify(request),).pipe(map((response: any) => response),
       catchError(e => {
         if (e.status == 400) {

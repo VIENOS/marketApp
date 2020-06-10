@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, NavParams, AlertController } from '@ionic/angular';
 import { ContactosService } from 'src/app/services/contactos/contactos.service';
+import { ContactosPage } from "../contactos/contactos.page";
 
 @Component({
   selector: 'app-contacto-detalle',
@@ -20,6 +21,7 @@ export class ContactoDetallePage implements OnInit {
   public value:any;
   public comentario:string;
   public idPedido:any;
+  public mensaje:any;
   constructor(public alertController: AlertController,private _service_contactos :ContactosService ,private router:Router, public viewCtrl: ModalController,private navParams: NavParams) {
      this.comentario ="";
     this.x=0;
@@ -89,9 +91,10 @@ export class ContactoDetallePage implements OnInit {
     console.log("REQUEST RECADEO = "+JSON.stringify(request))
      this._service_contactos.finalizarPedido(request).subscribe(
      res => {
-        
+          this.mensaje = res.mensaje;
+          console.log("mensaje respuesta: " + this.mensaje);
+          //this.abrirPedidos(this.mensaje);
           this.close();
-
      },
      error => {
       
@@ -100,6 +103,15 @@ export class ContactoDetallePage implements OnInit {
      }
    );
 
+  }
+
+  async abrirPedidos(msj: any) {
+    const myModal = await this.viewCtrl.create({
+      component: ContactosPage,
+      componentProps: { msj: msj }
+    });
+    await myModal.present();
+    console.log("abrirPedidos");
   }
 
 

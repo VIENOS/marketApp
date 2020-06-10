@@ -82,11 +82,14 @@ export class CesionPage implements OnInit {
       console.log(this.contactForm.value)
       let contacto = this.contactForm.value;
       let datePipe = new DatePipe('en-US');
+      let numeroCel = contacto.celular;
+      //console.log("tipo numero:: " + typeof(numeroCel));
       contacto.fecha = datePipe.transform(contacto.fecha, 'yyyy-MM-dd');
       let datos = new Datos();
       datos.nombre = contacto.nombre;
       datos.email = contacto.email;
-      datos.celular = contacto.celular;
+      datos.celular = numeroCel.toString();
+      //console.log("tipo num convertido:: " + typeof(datos.celular) );
       datos.fechanacimiento = contacto.fecha;
       this._service_cesion.saveStorageCesion(datos);
       console.log("VALIDO")
