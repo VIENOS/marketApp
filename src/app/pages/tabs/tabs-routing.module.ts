@@ -13,8 +13,8 @@ const routes: Routes = [
         loadChildren: () => import('../inicio/inicio.module').then( m => m.InicioPageModule)
       },
       {
-        path: 'tienda',
-        loadChildren: () => import('../tienda/tienda.module').then( m => m.TiendaPageModule)
+        path: 'llamar',
+        loadChildren: () => import('../inicio/inicio.module').then( m => m.InicioPageModule)
       },
       {
         path: 'contactos',

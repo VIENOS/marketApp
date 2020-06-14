@@ -1,27 +1,67 @@
-/*#tab-button-llamada {
-    overflow: visible !important;
-
-    ion-icon {
-        -webkit-transform: translate3d(0, 0px, 0);
-        transform: translate3d(0, 0px, 0);
-        background: #ff313f;
-        padding: 16px !important;
-        border-radius: 50% !important;
-        width: 35px !important;
-        height: 35px !important;
-        //margin-top: -65px !important;
-        box-shadow: 0 0 0 11px white;
-    }
-}*/
-
-ion-tab-bar  {
-    border: 0px;
-  
-    
+ion-tabs{
+    background: white;
 }
 
+ion-tab-bar  {
+    background: white;
+    //width: 90% !important;
+    //max-width: 400px !important;
+    //border-radius: 30px;
+    //margin: 5px 0px 5px 5% !important;
+    max-height: 56px;
+    height: 95px;
+    max-height: 95px;
+    border: unset;
+}
 
-/*.ios.fab-horizontal-center.fab-vertical-bottom.hydrated{
-    margin-bottom: 25px;
-}*/
+.tab-selected ion-icon{
+    //color: white;
+    color: #8ff02d;
+    //filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
 
+#tab-button-inicio,
+#tab-button-ofertas,
+#tab-button-llamar,
+#tab-button-carrito,
+#tab-button-contactos {
+    background: #990099;
+    max-height: 50px;
+    margin-top: 39px;
+    color: white;
+    width: 100%;
+}
+
+#tab-button-inicio,
+#tab-button-ofertas,
+#tab-button-carrito,
+#tab-button-contactos {
+    border: 2px solid #990099;
+    box-shadow: 0px 20px #990099;
+}
+
+ion-tab-button:hover {
+    ion-icon, ion-label {
+        color: white !important;
+        --ion-color-base: white !important;
+    }
+}
+
+#tab-button-llamar {
+    overflow: visible !important;
+    max-height: 110px !important;
+    height: 110px !important;
+    border-top-left-radius: 50px 48px;
+    border-top-right-radius: 50px 48px;
+
+    ion-icon {
+        transform: translate3d(0, 0px, 0);
+        background: #990099;
+        padding: 10px !important;
+        border-radius: 50% !important;
+        width: 30px !important;
+        height: 30px !important;
+        margin-top: -45px !important;
+        box-shadow: 0 0 0 18px #990099; //fonde de abajo de la llamada
+    }
+}

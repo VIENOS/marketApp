@@ -1,19 +1,24 @@
 <ion-tabs>
-  <ion-tab-bar slot="bottom" color="danger">
+  <ion-tab-bar slot="bottom" [style.background-image]="'url(../../assets/imgs/fondo.jpg)'" [style.background-size]="'cover'"
+  [style.background-repeat]="'no-repeat'">
      
       <ion-tab-button tab="inicio">
-        <ion-icon src="../assets/menu/inicio.svg"></ion-icon>
+        <ion-icon name=home></ion-icon>
         <ion-label>Inicio</ion-label>
       </ion-tab-button>
       
       <ion-tab-button tab="ofertas">
-        <ion-icon src="../assets/menu/destacado.svg"></ion-icon>
+        <ion-icon name="ribbon-outline"></ion-icon>
         <ion-label>Ofertas</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="llamada">
+      <!--<ion-tab-button tab="llamada">
         <ion-icon ></ion-icon>
-       
+      </ion-tab-button>-->
+
+
+      <ion-tab-button tab="llamar" (click)="call()" id="tabCall">
+        <ion-icon name="call"></ion-icon>
       </ion-tab-button>
 
       <ion-tab-button tab="carrito">
@@ -23,15 +28,15 @@
 
       <ion-tab-button tab="contactos">
         <!--<ion-icon name="people-circle-outline"></ion-icon>-->
-        <ion-icon src="../assets/menu/pedidos.svg"></ion-icon>
+        <ion-icon name="newspaper-outline"></ion-icon>
         <ion-label>Pedidos</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
     
-   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+   <!--<ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button color="success" (click)="call()" >
       <ion-icon name="call"></ion-icon>
     </ion-fab-button>
-   </ion-fab>
+   </ion-fab>-->
 
 </ion-tabs>
