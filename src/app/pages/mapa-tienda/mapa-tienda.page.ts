@@ -105,8 +105,8 @@ addMarkerInicio(posicion: any, titulo: any) {
    position: posicion,
    map: this.map,
    animation: google.maps.Animation.DROP,
-   title: titulo
-   //draggable: true
+   title: titulo,
+   draggable: true
    //label: "Partida"
  });
 
@@ -117,9 +117,13 @@ addMarkerInicio(posicion: any, titulo: any) {
 
 
 guardar() {
+// console.log(this.marker.position) 
+ console.log("LATITUD FIN  "+this.latitud)
+ console.log("LONGITUD FIN  "+this.longitud)
+
  if(this.marker!==undefined && this.marker!=null){
  //  console.log("GUARDAR = "+this.marker.position)
- 
+   
    let myLatlng = new google.maps.LatLng(this.latitud, this.longitud);
    // Longitud y latitud de tienda
    let myLatlng2 = new google.maps.LatLng(this.navParams.get('latitudtienda'), this.navParams.get('longitudtienda'));
@@ -150,14 +154,35 @@ metodo2() {
      if (this.marker === undefined || this.marker === null) {
        // this.markers.push(this.addMarkerFin(e.latLng,"Inicio",this.pinImage))
        this.marker = this.addMarkerInicio(e.latLng, "Inicio");
-       console.log("LATITUD INICIO = "+e.latLng.lat())
+       console.log("LATITUD  = "+e.latLng.lat())
        this.latitud = e.latLng.lat();
-       console.log("LONGITUD INICIO = "+e.latLng.lng())
+       console.log("LONGITUD  = "+e.latLng.lng())
        this.longitud = e.latLng.lng();
+    //
+       this.metodoDrog();
     }
    
  });
+
 }
+
+
+metodoDrog(){
+
+  google.maps.event.addListener(this.marker, 'dragend', e=>{
+    //var latLng = e.latLng; 
+    if (this.marker != undefined || this.marker != null) {
+    console.log("LATITUD  = "+e.latLng.lat())
+    this.latitud = e.latLng.lat();
+    console.log("LONGITUD  = "+e.latLng.lng())
+    this.longitud = e.latLng.lng();
+    //currentLatitude = latLng.lat();
+    //currentLongitude = latLng.lng();
+  }
+  }); 
+}
+
+
 
 ubicacionRango(){
   this.getPosition();

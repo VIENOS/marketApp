@@ -17,6 +17,7 @@
   }
 
 ion-card{
+ text-align: center;
  margin: 0 0 0 0;
  box-shadow: rgba(255, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.14) 0px 0px 0px 0px, rgba(0, 0, 0, 0.12) 0px 0px 0px 0px;
  ion-card-header{
@@ -47,6 +48,6 @@ ion-card{
 }
 
 #imgcard{
-    width: 100% !important;
-   height: auto !important;
+    height: 250px;
+    max-width: 100%;
 }

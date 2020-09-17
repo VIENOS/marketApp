@@ -25,11 +25,12 @@ export class ProductoService {
       
       this.http.get(url).subscribe( 
           data => { 
+              console.log("data de la URL:");
               console.log(data);
               let lst = data as any[];
               const arrTemp = [ ...this.lstProductos, ...lst];
               this.lstProductos = arrTemp; 
-              console.log("saliendo de getProductosPorCategoria:: "+JSON.stringify(this.lstProductos));
+              console.log("this.lstProductos Service:: "+JSON.stringify(this.lstProductos));
               this.paginaofe = this.paginaofe+1;
             resolve(this.lstProductos);
           } ,

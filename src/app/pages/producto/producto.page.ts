@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto/producto.service';
-import { Producto } from 'src/app/interfaces/interfaces';
+import { Producto, ProductoCont } from 'src/app/interfaces/interfaces';
 import { ModalController, NavParams } from '@ionic/angular';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 
@@ -39,13 +39,32 @@ export class ProductoPage implements OnInit {
   }
 
 
-  addProducto(){
-    console.log("add carrito " + JSON.stringify(this.producto));
+  addProducto(pruducto:any){
+   /* console.log("add carrito " + JSON.stringify(this.producto));
     let productoCarrito = {
       "cantidad" : 1,
       "producto" : this.producto
     };
-    this.service_carrito.guardarCarrito(productoCarrito);   
+    this.service_carrito.guardarCarrito(productoCarrito); */
+    
+    let item = new ProductoCont();
+    var idProductoString = pruducto.id;
+    var idProductoNumber: number = +idProductoString;
+
+    var precioString = pruducto.precio;
+    var precioNumber: number = +precioString;
+
+    var ofertaString = pruducto.oferta;
+    var ofertaNumber: number = +ofertaString;
+
+    pruducto.id = idProductoNumber;
+    pruducto.precio = precioNumber;
+    pruducto.oferta = ofertaNumber;
+    
+   item.producto = pruducto;
+   item.cantidad = 1;
+   this.service_carrito.guardarCarrito(item); 
+    
   }
  
 

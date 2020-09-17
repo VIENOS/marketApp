@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
  // urlServicios : "assets/",
- urlServicios : "http://reportes.elvisalcantara.com/index.php/deliveriando/",
+ urlServicios : "https://apinormal.casasmarket.pe/index.php/market/",
   imgPath : "../assets/imgs/"
 };

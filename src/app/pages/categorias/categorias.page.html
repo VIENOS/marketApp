@@ -20,7 +20,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-searchbar class="searchbar-transparente" type="text" color="" (ionInput)="find($event)"
-      placeholder="¿Que buscas hoy?">
+      placeholder="¿Qué buscas hoy?">
     </ion-searchbar>
   </div>
 
@@ -44,7 +44,7 @@
   </ion-row>
 
   <ion-infinite-scroll (ionInfinite)="siguiente_pagina($event)">
-    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando mas ofertas...">
+    <ion-infinite-scroll-content>
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
